@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+
+*{padding: 0; margin: 0;}
+
+/*폰트설정*/
+header {font-family: 'Do Hyeon', sans-serif;}
+body {font-family: 'Do Hyeon', sans-serif;}
+
+#menu {height: 60px; display: flex; justify-content: flex-start; align-items: center; background-color: powderblue;}
+
+/*메뉴바 UI*/
+header #header_container #menu ul li {display: inline-block; list-style: none;}
+
+/*a태그 UI*/
+#menu a {font-size: 30px; color: black;}
+#menu a:link {text-decoration: none;}
+#menu a:visited {text-decoration: none;}
+#menu a:hover {text-decoration: none;}
+#menu a:active {text-decoration: none;}
