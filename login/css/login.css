@@ -1,0 +1,6 @@
+/*폼컨테이너설정*/
+#form_container {display: flex; justify-content: center;}
+
+#form_container ul li {list-style: none}
+
+#password {ime-mode:disabled;}

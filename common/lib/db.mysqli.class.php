@@ -24,6 +24,7 @@ class DB
     }
 
     public function MysqliConnect() {
+        session_start();
         $dbflag = "NO";
         $con = mysqli_connect($this->host,$this->user,$this->password,'');
         $con->set_charset($this->charset);
@@ -45,10 +46,6 @@ class DB
         }
 
         $dbcon = mysqli_select_db($con, "a4b1") or die('Error:' . mysqli_error($con));
-
-//        $sql = "create table test (no int primary key not null)";
-//        $result = mysqli_query($con,$sql) or die('Error: ' . mysqli_error($con));
-
 
         return $con;
     }
