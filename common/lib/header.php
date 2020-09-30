@@ -2,7 +2,7 @@
     <div>
         <ul>
             <?php
-                if($_SESSION['id'] && $_SESSION['password']) {
+                if(isset($_SESSION['id']) && isset($_SESSION['password'])) {
             ?>
                     <li>아이디 : <?=$_SESSION['id']?></li>
                     <li>비밀번호 : <?=$_SESSION['password']?></li>
