@@ -9,6 +9,7 @@
                     <li><a onclick="logoutCheck('<?=$_SERVER['HTTP_HOST']?>')">로그아웃</a></li>
             <?php }else{?>
                     <li><a href="http://<?=$_SERVER['HTTP_HOST']?>/a4b1/login/index.php">로그인</a></li>
+                    <li><a href="http://<?=$_SERVER['HTTP_HOST']?>/a4b1/login/index.php">회원가입</a></li>
             <?php }?>
         </ul>
     </div>
