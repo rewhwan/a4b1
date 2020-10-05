@@ -3,6 +3,7 @@
 
     //싱글톤 객체 불러오기
     $db = DB::getInstance();
+    $db->sessionStart();
     $dbcon = $db->MysqliConnect();
 
     if(!isset($_POST['id']) || trim($_POST['id']) == '') {
@@ -21,9 +22,9 @@
 
     if(mysqli_num_rows($result) != 1) {
         echo "<script>alert('아이디와 비밀번호가 일치하지 않습니다.');history.go(-1);</script>";
+    }else {
+        $_SESSION['id'] = $_POST['id'];
+        $_SESSION['password'] = $_POST['password'];
+
+        echo "<script>alert('로그인에 성공했습니다!.');location.href='http://" . $_SERVER['HTTP_HOST'] . "/a4b1/index.php';</script>";
     }
-
-    $_SESSION['id'] = $_POST['id'];
-    $_SESSION['password'] = $_POST['password'];
-
-    echo "<script>alert('로그인에 성공했습니다!.');location.href='http://".$_SERVER['HTTP_HOST']."/a4b1/index.php';</script>";

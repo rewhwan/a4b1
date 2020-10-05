@@ -53,6 +53,10 @@ class DB
         session_start();
     }
 
+    public function sessionDestroy() {
+        session_destroy();
+    }
+
     public function connector() {
         $con = mysqli_connect($this->host,$this->user,$this->password,'a4b1');
         return $con;
