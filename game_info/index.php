@@ -2,7 +2,7 @@
 require $_SERVER['DOCUMENT_ROOT']."/a4b1/common/lib/db.mysqli.class.php";
 //싱글톤 객체 불러오기
 $db = DB::getInstance();
-$dbcon = $db->MysqliConnect();
+$dbcon = $db->mysqliConnect();
 ?>
 <!doctype html>
 <html lang="ko">

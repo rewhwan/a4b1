@@ -23,7 +23,7 @@ class DB
         return $inst;
     }
 
-    public function MysqliConnect() {
+    public function mysqliConnect() {
         session_start();
         $dbflag = "NO";
         $con = mysqli_connect($this->host,$this->user,$this->password,'');
@@ -47,6 +47,15 @@ class DB
 
         $dbcon = mysqli_select_db($con, "a4b1") or die('Error:' . mysqli_error($con));
 
+        return $con;
+    }
+
+    public function sessionStart() {
+        session_start();
+    }
+
+    public function connector() {
+        $con = mysqli_connect($this->host,$this->user,$this->password,'a4b1');
         return $con;
     }
 }
