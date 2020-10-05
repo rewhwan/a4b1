@@ -24,7 +24,6 @@ class DB
     }
 
     public function mysqliConnect() {
-        session_start();
         $dbflag = "NO";
         $con = mysqli_connect($this->host,$this->user,$this->password,'');
         $con->set_charset($this->charset);
