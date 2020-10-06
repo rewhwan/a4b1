@@ -5,7 +5,7 @@
 
     //싱글톤 객체 불러오기
     $db = DB::getInstance();
-    $dbcon = $db->MysqliConnect();
+    $dbcon = $db->connector();
     //쿼리문 작성
     $sql = "SELECT * from game_info";
     //쿼리문 실행
@@ -31,8 +31,6 @@
         $create_by = $row["create_by"];
         $create_at = $row["create_at"];
 
-        echo"$num,,$name,,$content,,$developer,,$grade,,$release_date,,$price,,$homepage,,$service_kor,,$circulation,,$image,,$create_by,,$create_at";
-        echo"<img src='http://".$_SERVER['HTTP_HOST']."/a4b1/game_info/img/title/$image'>";
     }
     
 ?>

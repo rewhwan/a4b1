@@ -5,7 +5,7 @@ require $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/db.mysqli.class.php";
 include $_SERVER['DOCUMENT_ROOT'] . "/a4b1/game_info/function.php";
 //싱글톤 객체 불러오기
 $db = DB::getInstance();
-$dbcon = $db->MysqliConnect();
+$dbcon = $db->connector();
 
 //세션 값 이용 관리자 인지 파악하기
 if (!isset($_SESSION['id']) || !$_SESSION['id'] == "admin") {
@@ -45,9 +45,9 @@ $create_by = $_SESSION['id'];
 if(isset($_FILES['title_image']) && $_FILES['title_image']['error'] != UPLOAD_ERR_NO_FILE){
     $copied_file_name=file_upload("title_image","./img/title/");
     //db 등록을 위한 쿼리문 작성
-    $sql = "INSERT into `game_info` values(null,'$name','$content','$developer','$grade','$open_day','$price','$homepage','$service_kor','$circulation','$copied_file_name','$create_by','$create_at')";
+    $sql = "INSERT into `game_info` values(null,'$name','$content','$developer','$grade','$open_day','$price','$homepage','$service_kor','$circulation','$copied_file_name','$create_by',now())";
 }else{
-    $sql = "INSERT into `game_info` values(null,'$name','$content','$developer','$grade','$open_day','$price','$homepage','$service_kor','$circulation',null,'$create_by','$create_at')";
+    $sql = "INSERT into `game_info` values(null,'$name','$content','$developer','$grade','$open_day','$price','$homepage','$service_kor','$circulation',null,'$create_by',now())";
 }
 //쿼리문 실행.
 mysqli_query($dbcon,$sql) or die("쿼리문 오류1 : ".mysqli_error($dbcon));

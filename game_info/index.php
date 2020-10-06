@@ -12,5 +12,6 @@
         </header>
         게임정보 입니다.
         <a href="info_insert_form.php">글쓰기</a>
+        <a href="game_info_list.php">리스트 보기</a>
     </body>
 </html>

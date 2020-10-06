@@ -24,8 +24,7 @@ function file_upload($file_name, $upload_location)
 {
     //파일 값들 확인하기
     //파일업로드기능
-    //1. $_FILES['upfile']로부터 5가지 배열명을 가져와서 저장한다.
-    $upload = $_FILES["$file_name"]; //한개파일업로드정보(5가지정보배열로들어있음)
+    //$_FILES['upfile']로부터 5가지 배열명을 가져와서 저장한다.
     $upload_name = $_FILES["$file_name"]['name']; //f03.jpg
     $upload_type = $_FILES["$file_name"]['type']; //image/gif  file/txt
     $upload_tmp_name = $_FILES["$file_name"]['tmp_name'];
@@ -84,9 +83,7 @@ function file_upload_multi($file_name, $upload_location)
     $screen_shot = [];
     $file_array = $_FILES[$file_name];
     for ($i = 0; $i < count($_FILES['name']); $i++) {
-        print_r($_FILES[$file_name]);
         //파일업로드기능
-        //1. $_FILES['upfile']로부터 5가지 배열명을 가져와서 저장한다.
         $upload_name = $file_array['name'][$i]; //f03.jpg
         $upload_type = $file_array['type'][$i]; //image/gif  file/txt
         $upload_tmp_name = $file_array['tmp_name'][$i];
