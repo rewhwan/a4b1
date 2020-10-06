@@ -1,3 +1,10 @@
+<?php
+require $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/db.mysqli.class.php";
+
+//싱글톤 객체 불러오기
+$db = DB::getInstance();
+$db->sessionStart();
+?>
 <div id="header_container">
     <div id="top_menu">
         <ul>
