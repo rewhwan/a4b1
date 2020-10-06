@@ -1,6 +1,24 @@
+/*body 크기 및 배경화면 설정*/
+body {width: 100vw; height: 100vh;}
+body {background-image: url("../img/background.jpg"); background-repeat: no-repeat; background-position: center;
+    background-size: 100% 100%;}
+
 /*폼컨테이너설정*/
-#form_container {display: flex; justify-content: center;}
+body #login_form_container{width: 100%; height:100vh; display: flex; justify-content: center; align-items: center;}
 
-#form_container ul li {list-style: none}
+#login_form {background-color: white; border-radius: 15px; padding: 20px}
 
-#password {ime-mode:disabled;}
+/*리스트 관련 CSS*/
+#login_form h2 {display: flex; justify-content: center; margin: 10px 0;}
+#login_form form {display: flex; justify-content: center;}
+
+#login_form ul li {list-style: none; margin: 15px;}
+#login_form form ul li input[type='text'],#login_form form ul li input[type='password'] {
+    width: 300px;height: 30px; font-size: 24px;}
+#login_form form ul li input[type='submit'] {width: 300px; height: 35px; font-size: 24px; background-color: #235896;
+    color: white; border-radius: 10px;}
+#login_form form ul li:nth-child(4) {display: flex; justify-content: space-between; align-items: center;}
+#login_form form ul li a {margin: 5px;}
+
+
+
