@@ -19,12 +19,14 @@
     $sql = "SELECT * FROM members where id = '{$_POST['id']}' AND password = '{$_POST['password']}';";
 
     $result = mysqli_query($dbcon,$sql)or die('Error: ' . mysqli_error($dbcon));
+    $row = mysqli_fetch_array($result);
 
     if(mysqli_num_rows($result) != 1) {
         echo "<script>alert('아이디와 비밀번호가 일치하지 않습니다.');history.go(-1);</script>";
     }else {
-        $_SESSION['id'] = $_POST['id'];
-        $_SESSION['password'] = $_POST['password'];
+        $_SESSION['id'] = $row['id'];
+        $_SESSION['password'] = $row['password'];
+        $_SESSION['admin'] = $row['admin'];
 
-        echo "<script>alert('로그인에 성공했습니다!.');location.href='http://" . $_SERVER['HTTP_HOST'] . "/a4b1/index.php';</script>";
+        echo "<script>alert('로그인에 성공했습니다!.\\n환영합니다! ".$_SESSION['id']."님');location.href='http://" . $_SERVER['HTTP_HOST'] . "/a4b1/index.php';</script>";
     }
