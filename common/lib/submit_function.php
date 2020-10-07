@@ -8,6 +8,7 @@ function alert_back($message)
             history.go(-1);
         </script>
         ";
+    exit();
 }
 
 //공백,백슬래쉬를 없애고 특수문자를 html화 해주는 함수
