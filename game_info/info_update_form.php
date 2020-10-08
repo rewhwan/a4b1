@@ -48,7 +48,8 @@
             }else{
                 $platform = $platform.",".$row2['platform'];
             }
-         } 
+         }
+         mysqli_close($dbcon);
 ?>
 <!DOCTYPE html>
 <html lang="en">

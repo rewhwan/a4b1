@@ -78,6 +78,8 @@ if(isset($_FILES['screen_shot']) && $_FILES['screen_shot']['error'] != UPLOAD_ER
     $copied_file_name = array();
     //파일업로드 함수
     $copied_file_name = file_upload_multi("screen_shot","./img/screen/");
+    //echo $copied_file_name."<br>";
+    //echo count($copied_file_name);
     for($i=0; $i<count($copied_file_name); $i++){
         $sql = "INSERT into `game_info_files` values(null,'$num','$copied_file_name[$i]')";
         mysqli_query($dbcon,$sql) or die("쿼리문 오류5 : ".mysqli_error($dbcon));

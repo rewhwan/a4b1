@@ -80,10 +80,11 @@ function file_upload($file_name, $upload_location)
 
 function file_upload_multi($file_name, $upload_location)
 {   
-    
     $screen_shot = [];
     $file_array = $_FILES[$file_name];
-    for ($i = 0; $i < count($_FILES['name']); $i++) {
+    $count = count($file_array['name']);
+    //echo"<script>console.log($count);</script>";
+    for ($i = 0; $i < $count; $i++) {
         //파일업로드기능
         $upload_name = $file_array['name'][$i]; //f03.jpg
         $upload_type = $file_array['type'][$i]; //image/gif  file/txt
@@ -94,12 +95,12 @@ function file_upload_multi($file_name, $upload_location)
         //.업로드될 폴더를 지정한다.
         $upload_dir = "$upload_location"; //업로드된파일을 저장하는장소지정
 
-        echo "upload_name".$upload_name."<br>";
+        //echo "upload_name".$upload_name."<br>";
         //파일명과 확장자를 구분해서 저장한다.
         $file = explode(".", $upload_name); //파일명과 확장자구분에서 배열저장
         $file_name = $file[0];             //파일명
         $file_extension = $file[1];        //확장자
-        echo $file_extension;
+        //echo $file_extension;
 
         //확장자 확인을 위한 분리 배열로 리턴
         $type = explode("/", $upload_type);
@@ -120,8 +121,8 @@ function file_upload_multi($file_name, $upload_location)
         //파일명이 중복되지 않도록 임의파일명을 정한다.
         if (!$upload_error) {
             $new_file_name = date("Y_m_d_H_i_s");
-            $new_file_name = $new_file_name . "_" . "$upload_name";
-            $copied_file_name = $new_file_name . "." . $file_extension;
+            $copied_file_name = $new_file_name . "_" . "$upload_name";
+            //$copied_file_name = $new_file_name . "." . $file_extension;
             $uploaded_file = $upload_dir . $copied_file_name;
             // $uploaded_file = "./data/2019_04_22_15_09_30_파일이름.확장지";
         }
