@@ -74,12 +74,25 @@
     height: 40px;
   }
 
+  #page_num {	text-align: center;	margin: 30px 0 }
+  #page_num li { display: inline; }
   /* 상새보기 관련UI ===============================================================*/
-  #star_point div{
-    display: inline-block;
-  }
 
+#point {width: 1980px; border: 1px solid; padding: 30px; display: flex;}
 
+#info{}
+
+#user_info {display: inline; border: 1px solid;}
+#user_info div{display: inline; }
+
+#star_point{border: 1px solid black;  display: inline-block;}
+
+#star1 div{display: inline-block;}
+#star2 div{display: inline-block;}
+
+#image_container{width: 500px; height: 500px;border: 1px solid black;}
+
+#point_container{}
 
   /* 삽입관련 UI ===================================================================*/
   #form_container {font-size: 20px; display: flex; justify-content: center; align-items: center;margin: 30px;}
