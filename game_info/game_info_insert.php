@@ -2,19 +2,14 @@
 //설정한 지역의 시간대로 설정
 date_default_timezone_set("Asia/Seoul");
 require $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/db.mysqli.class.php";
-include $_SERVER['DOCUMENT_ROOT'] . "/a4b1/game_info/function.php";
+include $_SERVER['DOCUMENT_ROOT']."/a4b1/common/lib/submit_function.php";
 //싱글톤 객체 불러오기
 $db = DB::getInstance();
 $dbcon = $db->connector();
 
 //세션 값 이용 관리자 인지 파악하기
 if (!isset($_SESSION['id']) || !$_SESSION['id'] == "admin") {
-    echo "
-        <script>
-            alert('권한이없습니다.');
-            history.go(-1);
-        </script>
-        ";
+    alert_back("권한이 없습니다.");
 }
 //값 검정하기
 
@@ -90,6 +85,6 @@ if(isset($_FILES['screen_shot']) && $_FILES['screen_shot']['error'] != UPLOAD_ER
     
 }
 mysqli_close($dbcon);
-echo "<script>location.href='./game_info_view.php';</script>";
+echo "<script>location.href='./game_info_list.php';</script>";
 
-//db에 insert
+

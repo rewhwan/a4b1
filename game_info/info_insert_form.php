@@ -1,5 +1,9 @@
 <?php 
     session_start();
+    include $_SERVER['DOCUMENT_ROOT']."/a4b1/common/lib/submit_function.php";
+    if(intval($_SESSION['admin']) < 1){
+        alert_back("권한이 없습니다.");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,6 +20,7 @@
 <body>
     <header>
         <?php include $_SERVER['DOCUMENT_ROOT']."/a4b1/common/lib/header.php";?>
+        
     </header>
     <!-- 파일을 보내기위한 인코딩 방식 설정 -->
     <form action="game_info_insert.php" method="post" enctype="multipart/form-data" id="insert_form">
@@ -83,7 +88,7 @@
                 <label for="service_kor">지원 <input type="radio" name="service_kor" id="service_kor" value="1"></label>
                 <label for="service_kor">미 지원 <input type="radio" name="service_kor" id="service_kor" value="0"></label>
                 <label for="price">가격</label>
-                <input type="text" name="price" id="price">
+                <input type="number" name="price" id="price">
             </li>
             <br>
             <li>
@@ -102,7 +107,9 @@
             </li>
         </ul>
     </form>
+    <?php if(intval($_SESSION['admin']) >= 1){?>
     <button onclick="check_input()">등록하기</button>
+    <?php } ?>
 </body>
 
 </html>
