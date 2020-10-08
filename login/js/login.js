@@ -45,3 +45,8 @@ function check_input() {
 
     loginForm.submit();
 }
+
+//아이디 비밀번호 찾기 버튼 클릭시 팝업창으로 보여줌
+function showPopup() {
+    window.open('find_id_pw.php','a','width=400,height=400,left=100,top=50,toolbar=1');
+}

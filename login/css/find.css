@@ -1,0 +1,55 @@
+button {background: none;border: 0;outline: 0;cursor: pointer;}
+
+.tab_menu_container {display: flex;justify-content: center;background-color: rgba(22, 43, 96, 0.15);}
+.tab_menu_btn {width: 100px;height: 40px;transition: 0.3s all;}
+.tab_menu_btn.on {border-bottom: 2px solid #df0000;font-weight: 700;color: #df0000;}
+.tab_menu_btn:hover {color: #df0000;}
+
+.tab_box {display: none; padding: 20px 0;}
+.tab_box.on {display: block;}
+
+.box h2 {text-align: center; margin-bottom: 10px;}
+.box p {text-align: center; color: red; font-weight: 350; margin: 10px 0;}
+.box input[type='text'] {width: 80vw; height: 30px; margin: 5px 0; font-size: 18px;}
+.box input[type='button'] {width: 80vw; height: 35px; font-size: 24px; background-color: #235896;
+    color: white; border-radius: 10px; margin-top: 10px;}
+
+.form {display: flex; flex-direction: column; align-items: center;}
+
+
+input {
+    width: 200px;
+    height: 35px;
+    margin-bottom: 10px;
+    border-radius: 2px;
+    border: 0.5px solid lightgray;
+    box-sizing: border-box;
+}
+
+#send_code {
+    width: 320px;
+    border-radius: 2px;
+    background-color: white;
+    border: 1px solid #F23005;
+    color: #F23005;
+    font-size: 13px;
+}
+
+#password_certification_button {
+    width: 200px;
+    border-radius: 2px;
+    background-color: #F23005;
+    border: 1px solid #F23005;
+    color: white;
+    font-size: 13px;
+}
+
+#phone_input select {
+    width: 90px;
+    height: 35px;
+    border-radius: 2px;
+}
+
+#phone_input input {
+    width: 100px;
+}
