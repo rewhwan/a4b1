@@ -94,7 +94,7 @@
                 <label>PS4<input type="checkbox" name="platform[]" value="PS4" id="PS4"></label>
                 <label>PS5<input type="checkbox" name="platform[]" value="PS5" id="PS5"></label>
                 <label>XBOX 360<input type="checkbox" name="platform[]" value="XBOX 360" id="XBOX 360"></label>
-                <label>XBOX one<input type="checkbox" name="platform[]" value="XBOX one" id="XBOX one"></label>
+                <label>XBOX one<input type="checkbox" name="platform[]" value="XBOX ONE" id="XBOX one"></label>
                 <label>nintendo switch<input type="checkbox" name="platform[]" value="nintendo switch" id="nintendo switch"></label>
                 <script>platform_check('<?=$platform?>')</script>
             </li>

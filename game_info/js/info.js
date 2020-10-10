@@ -210,6 +210,7 @@ function select_ripple(num,page){
             }else{
                 //alert("댓글로딩 오류");
                 console.log("댓글로딩 오류 또는 댓글이 없음");
+                $("#page_num").append("<li>등록된 댓글이 없습니다.</li>");
                 return false;
             }
         },
@@ -314,4 +315,19 @@ function grade_check(grade){
             break;
             default:break;
         }
+}
+
+function check_search(){
+    $search = $("#search").val();
+    $search_word = $("#search_word").val();
+    if(!$search){
+        alert("검색 종류가 선택되지 않았습니다.");
+        return false;
+    }
+    if(!$search_word){
+        alert("검색어가 선택되지 않았습니다.");
+        return false;
+    }
+    
+    location.href="game_info_list.php?mode=search&search="+$search+"&search_word="+$search_word;
 }
