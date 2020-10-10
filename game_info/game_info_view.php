@@ -52,6 +52,15 @@ while ($row2 = mysqli_fetch_array($result)) {
         $platform = $row2['platform'];
     }
 }
+$sql = "SELECT * from `game_info_files` where `info_num` = $num";
+$result = mysqli_query($dbcon, $sql) or die("list select error5 : " . mysqli_error($dbcon));
+while ($row3 = mysqli_fetch_array($result)) {
+    if (isset($platform)) {
+        $screen = $screen . "," . $row3['name'];
+    } else {
+        $screen = $row3['name'];
+    }
+}
 // //상수 지정
 // define('SCALE', 5);
 
@@ -116,7 +125,22 @@ while ($row2 = mysqli_fetch_array($result)) {
     <div>
         <p><?= $content ?></p>
     </div>
-
+    <div id="screen_shot_show">
+        <ul>
+            <li>
+                <?php
+                    $screen_shot = explode(",",$screen);
+                    $count= count($screen_shot);
+                    for($i=0; $i<$count; $i++){
+                        $screen_image= $screen_shot[$i];
+                ?>
+                    <img src="./img/screen/<?=$screen_image?>" alt="">
+                <?php
+                    }
+                ?> 
+            </li>
+        </ul>
+    </div>
     <label for="content">댓글입력</label>
     <br>
     
@@ -143,6 +167,7 @@ while ($row2 = mysqli_fetch_array($result)) {
         <?php
         }
         ?>
+        <button onclick="history.go(-1)">뒤로 가기</button>
     </div>
 </body>
 

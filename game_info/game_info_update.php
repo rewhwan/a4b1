@@ -30,11 +30,11 @@ $price = $_POST['price'];
 $price = intval($price);
 $homepage = $_POST['homepage'];
 $content = $_POST['content'];
-$create_at = date("Y-m-d H:i:s");
+$created_at = date("Y-m-d H:i:s");
 $content = test_input($content);
 
 //업로드 한 사람 이름 등록
-$create_by = $_SESSION['id'];
+$created_by = $_SESSION['id'];
 
 //타이틀이미지 해제
 $sql="SELECT * from `game_info` where `num` = $num";
@@ -60,25 +60,54 @@ if(mysqli_num_rows($result) != 0) {
         $file_path = "./img/screen/".$row['name'];
         unlink($file_path);
     }
+    $sql="DELETE from `game_info_files` where `info_num` = $num";
+    $result = mysqli_query($dbcon,$sql) or die("game_info_update_error2-1 : ".mysqli_error($dbcon));
+}
+
+//파일 예외 처리
+$upload_error1 = $_FILES['title_image']['error'];
+$upload_error2 = $_FILES['screen_shot']['error'];
+if($upload_error1 || $upload_error2){
+    if($upload_error1){
+        $upload_error = $upload_error1;
+    }else{
+        $upload_error = $upload_error2;
+    }
+    switch($upload_error){
+        case UPLOAD_ERR_OK: $message ="업로드 성공적";
+        break;
+        case UPLOAD_ERR_INI_SIZE : $message = "php.ini에 설정된 최대 파일크기 초과";
+        break;
+        case UPLOAD_ERR_FORM_SIZE : $message = "HTML 폼에 설정된 최대 파일크기 초과";
+        break;
+        case UPLOAD_ERR_PARTIAL : $message = "파일의 일부만 업로드됌";
+        break;
+        case UPLOAD_ERR_NO_FILE : $message = "업로드할 파일이 없음";
+        break;
+        case UPLOAD_ERR_NO_TMP_DIR : $message = "웹서버에 임시폴더가 없음";
+        break;
+        case UPLOAD_ERR_CANT_WRITE : $message = "웹서버에 파일을 쓸 수 없음";
+        break;
+        case UPLOAD_ERR_CANT_WRITE : $message = "웹서버에 파일을 쓸 수 없음";
+        break;
+        case UPLOAD_ERR_CANT_WRITE : $message = "PHP 확장기능에 의한 업로드 중단";
+        break;
+        default: $message="알 수 없는 오류";
+        break;
+    }
+    alert_back('4. 업로드 에러 이유: '.$message);
 }
 
 //파일업로드 함수
 if(isset($_FILES['title_image']) && $_FILES['title_image']['error'] != UPLOAD_ERR_NO_FILE){
     $copied_file_name=file_upload("title_image","./img/title/");
     //db 등록을 위한 쿼리문 작성
-    $sql = "UPDATE  `game_info` set name='$name',content='$content',developer='$developer',grade='$grade',release_date='$open_day',price='$price',homepage='$homepage',service_kor='$service_kor',circulation='$circulation',image='$copied_file_name',created_by='$create_by',created_at=now() where `num`= $num";
+    $sql = "UPDATE  `game_info` set name='$name',content='$content',developer='$developer',grade='$grade',release_date='$open_day',price='$price',homepage='$homepage',service_kor='$service_kor',circulation='$circulation',image='$copied_file_name',created_by='$created_by',created_at=now() where `num`= $num";
 }else{
-    $sql = "UPDATE  `game_info` set name='$name',content='$content',developer='$developer',grade='$grade',release_date='$open_day',price='$price',homepage='$homepage',service_kor='$service_kor',circulation='$circulation',null,created_by='$create_by',created_at=now() where `num`= $num";
+    $sql = "UPDATE  `game_info` set name='$name',content='$content',developer='$developer',grade='$grade',release_date='$open_day',price='$price',homepage='$homepage',service_kor='$service_kor',circulation='$circulation',null,created_by='$created_by',created_at=now() where `num`= $num";
 }
 //쿼리문 실행.
 mysqli_query($dbcon,$sql) or die("game_info_update_error3 : ".mysqli_error($dbcon));
-
-// $sql = "SELECT `num` from `game_info` where `name` ='$name'";
-// $result = mysqli_query($dbcon, $sql) or die("game_info_update_error4 : ".mysqli_error($dbcon));
-// $num = "";
-// while($row = mysqli_fetch_array($result)){
-//     $num = $row['num'];
-// }
 
 for($i=0; $i<count($genre); $i++){
     $sql = "UPDATE  `game_info_genre` set genre='$genre[$i]' where `info_num` = $num";
@@ -96,7 +125,8 @@ if(isset($_FILES['screen_shot']) && $_FILES['screen_shot']['error'] != UPLOAD_ER
     //파일업로드 함수
     $copied_file_name = file_upload_multi("screen_shot","./img/screen/");
     for($i=0; $i<count($copied_file_name); $i++){
-        $sql = "UPDATE `game_info_files` set name='$copied_file_name[$i]' where `info_num` = $num";
+        //$sql = "UPDATE `game_info_files` set name='$copied_file_name[$i]' where `info_num` = $num";
+        $sql = "INSERT into `game_info_files` values(null,'$num','$copied_file_name[$i]')";
         mysqli_query($dbcon,$sql) or die("game_info_update_error7 : ".mysqli_error($dbcon));
     }
     
