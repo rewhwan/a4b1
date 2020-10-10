@@ -102,7 +102,7 @@
   #form_container form ul li div {display: flex; justify-content: center; align-items: center; width: 300px; }
   #form_container form ul li input[type=text] {width: 800px; margin-left: 60px;}
   #form_container form ul li textarea {width: 800px;}
-  #form_container form ul li:nth-child(3), #form_container form ul li:nth-child(4) {justify-content: center;}
+  #form_container form ul li:nth-child(4), #form_container form ul li:nth-child(5) {justify-content: center;}
 
 
    /* 별점관련 UI ===================================================================*/

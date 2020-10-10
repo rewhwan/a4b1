@@ -61,4 +61,10 @@ class DB
         $con = mysqli_connect($this->host,$this->user,$this->password,'a4b1');
         return $con;
     }
+
+    function mysqliError($returnArray, $error){
+        $returnArray['isSuccess'] = 0;
+        $returnArray['errorMsg'] = $error;
+        echo json_encode($returnArray);
+    }
 }

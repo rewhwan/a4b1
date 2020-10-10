@@ -29,11 +29,45 @@ window.onload = function() {
         console.log($(".difficulty .on").length);
         return false;
     });
+
+    //게임검색 엔터키 입력시 검색 실행
+    $('#game_name').on('keypress',function () {
+        //검색어가 입력되어 있으면 검색버튼을 눌러준다.
+        if(event.keyCode == 13) {
+            if($(this).val().trim() != '') {
+                $('#game_search').click();
+            }else {
+                toastr.error('검색어를 입력해주세요',"검색어 입력요망", {timeOut: 3000});
+                return;
+            }
+        }
+    });
+
+    //검색버튼 클릭시 실행 함수
+    $('#game_search').click(function () {
+        console.log('검색버튼이 눌렸다.')
+        $.ajax({
+            url: "http://localhost/a4b1/game_review/review_game_search.php",
+            type: 'POST',
+            dataType: 'json',
+            data: {
+               name: $('#game_name').val()
+            },
+            success: function (data) {
+                console.log(data);
+                var selector = $('#game_search_result');
+                for(var i in data.data) {
+                    console.log(data.data[i]);
+                    selector.append("<option value="+data.data[i].num+">"+data.data[i].name+"</option>")
+                }
+            }
+        });
+    });
 }
 
 function check_input(){
 
-    if(!$("#name").val()){
+    if(!$("#game_search_result").val()){
         alert("게임이 선택되지 않았습니다.");
         $("#name").focus();
         return false;
@@ -64,11 +98,6 @@ function check_input(){
         return false;
     }
     if(!$("#content").val()){
-        alert("리뷰가 입력되지 않았습니다.");
-        $("#content").focus();
-        return false;
-    }
-    if(!$("").val()){
         alert("리뷰가 입력되지 않았습니다.");
         $("#content").focus();
         return false;

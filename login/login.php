@@ -28,5 +28,5 @@
         $_SESSION['password'] = $row['password'];
         $_SESSION['admin'] = $row['admin'];
 
-        echo "<script>alert('로그인에 성공했습니다!.\\n환영합니다! ".$_SESSION['id']."님');location.href='http://" . $_SERVER['HTTP_HOST'] . "/a4b1/index.php';</script>";
+        echo "<script>alert('로그인에 성공했습니다!.\\n환영합니다! ".$_SESSION['id']."님');history.go(-2);</script>";
     }

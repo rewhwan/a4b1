@@ -4,7 +4,7 @@ require $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/db.mysqli.class.php";
 //싱글톤 객체 불러오기
 $db = DB::getInstance();
 $db->sessionStart();
-$con = $db->connector();
+$dbcon = $db->connector();
 
 //아이디 비밀번호 찾기 구분 변수
 $find_type = $_POST["find_type"];
@@ -20,11 +20,11 @@ if ($find_type === "id") {
     if (isset($_POST["find_id_email"])) $email = $_POST["find_id_email"];
     else $email = "";
 
-    $name = mysqli_real_escape_string($con, $name);
-    $email = mysqli_real_escape_string($con, $email);
+    $name = mysqli_real_escape_string($dbcon, $name);
+    $email = mysqli_real_escape_string($dbcon, $email);
 
     $sql = "select * from members where name='$name' and email='$email';";
-    $result = mysqli_query($con, $sql) or die(mysqliError($returnArray, mysqli_error($con)));
+    $result = mysqli_query($dbcon, $sql) or die($db->mysqliError($returnArray, mysqli_error($dbcon)));
 
     //결과에 따른 반환값 설정
     if (mysqli_num_rows($result) == 0) {
@@ -52,11 +52,11 @@ if ($find_type === "id") {
 
     $phone = $phone_one . "-" . $phone_two . "-" . $phone_three;
 
-    $id = mysqli_real_escape_string($con, $id);
-    $phone = mysqli_real_escape_string($con, $phone);
+    $id = mysqli_real_escape_string($dbcon, $id);
+    $phone = mysqli_real_escape_string($dbcon, $phone);
 
     $sql = "select * from members where id='$id' and phone='$phone';";
-    $result = mysqli_query($con, $sql) or die(mysqliError($returnArray, mysqli_error($con)));
+    $result = mysqli_query($dbcon, $sql) or die($db->mysqliError($returnArray, mysqli_error($dbcon)));
 
     //결과에 따른 반환값 설정
     if (mysqli_num_rows($result) == 0) {
@@ -86,11 +86,11 @@ if ($find_type === "id") {
 
     $phone = $phone_one . "-" . $phone_two . "-" . $phone_three;
 
-    $id = mysqli_real_escape_string($con, $id);
-    $phone = mysqli_real_escape_string($con, $phone);
+    $id = mysqli_real_escape_string($dbcon, $id);
+    $phone = mysqli_real_escape_string($dbcon, $phone);
 
     $sql = "select * from members where id='$id' and phone='$phone';";
-    $result = mysqli_query($con, $sql) or die(mysqliError($returnArray, mysqli_error($con)));
+    $result = mysqli_query($dbcon, $sql) or die($db->mysqliError($returnArray, mysqli_error($dbcon)));
 
     if (mysqli_num_rows($result) == 0) {
         $returnArray['isSuccess'] = 0;
@@ -100,52 +100,8 @@ if ($find_type === "id") {
         $returnArray['data'] = $row;
     }
     echo json_encode($returnArray);
-
-    //회원가입 중복체크
-} else if ($find_type == "signup_duplicate_check") {
-
-    if (isset($_POST["input_name"])) {
-        $name = $_POST["input_name"];
-    } else {
-        $name = "";
-    }
-
-    if (isset($_POST["email_one"])) {
-        $email_one = $_POST["email_one"];
-    } else {
-        $email_one = "";
-    }
-
-    if (isset($_POST["email_two"])) {
-        $email_two = $_POST["email_two"];
-    } else {
-        $email_two = "";
-    }
-
-    $name = mysqli_real_escape_string($con, $name);
-    $email_one = mysqli_real_escape_string($con, $email_one);
-    $email_two = mysqli_real_escape_string($con, $email_two);
-
-    $email = $email_one . "@" . $email_two;
-
-    $sql = "select * from members where name='$name' and email='$email';";
-    $result = mysqli_query($con, $sql) or die("실패원인 : " . mysqli_error($con));
-
-    if (mysqli_num_rows($result) == 0) {
-        echo "ok";
-    } else {
-        $row = mysqli_fetch_array($result);
-        echo "{$row['id']}";
-    }
 }
 
-mysqli_close($con);
-
-function mysqliError($returnArray, $error)
-{
-    $returnArray['isSuccess'] = 0;
-    $returnArray['errorMsg'] = $error;
-    echo json_encode($returnArray);
-}
+mysqli_close($dbcon);
 
 ?>
