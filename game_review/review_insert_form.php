@@ -53,7 +53,7 @@ $dbcon = $db->connector();
                     <select id="game_search_result" name="name"></select>
                 </li>
                 <li>
-                    <p>제목</p> <input type="text" name="title">
+                    <p>제목</p> <input type="text" id="title" name="title">
                 </li>
                 <li>
                     <div class="story">
@@ -112,7 +112,7 @@ $dbcon = $db->connector();
                     </div>
                 </li>
                 <li>리뷰남기기 <textarea name="content" id="content" cols="30" rows="10"></textarea></li>
-                <li><p>이미지 첨부하기</p><input type="file" name="new_file" multiple="multiple" accept="image/*"></li>
+                <li><p>이미지 첨부하기</p><input type="file" id="new_file" name="new_file[]" multiple accept="image/*"></li>
             </ul>
             <button type="button">취소</button>
            <input type="button" onclick="check_input()" value="등록">

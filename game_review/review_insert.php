@@ -52,7 +52,6 @@ if(isset($_FILES['new_file']) && $_FILES['new_file']['error'] != UPLOAD_ERR_NO_F
     $copied_file_name = array();
     //파일업로드 함수
     $copied_file_name = file_upload_multi("new_file","./img/");
-    echo $copied_file_name;
     for($i=0; $i<count($copied_file_name); $i++){
         $sql = "INSERT into game_review_files values(null,$resultNum,'$copied_file_name[$i]')";
         mysqli_query($con,$sql) or die("쿼리문 오류5 : ".mysqli_error($con));
