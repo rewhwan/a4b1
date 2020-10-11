@@ -12,7 +12,7 @@ window.onscroll = function () {
     // body 태그 변수 적용
     var body = document.getElementById("body");
 
-    if(scrollTop > 20) {
+    if(scrollTop > 82) {
         menu.classList.add("leftTopFixed");
         body.classList.add("bodyMenuFixed");
     } else {

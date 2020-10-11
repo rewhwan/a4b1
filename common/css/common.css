@@ -6,9 +6,11 @@
 #menu {font-family: "Do Hyeon", sans-serif;}
 #logo_span {font-family: "Do Hyeon", sans-serif; font-size: 25px;}
 
+body{height: 2000px;}
+
 /*최상단 메뉴바 UI*/
-#top_menu {background-color: #ffffff;}
-#top_menu ul {position: fixed; top: 10px; right: 0;}
+#top_menu {height:7vh; background-color: #ffffff; position: relative;}
+#top_menu ul {position: absolute; top: 10px; right: 0;}
 #top_menu ul li {display: inline-block; margin: 0 10px}
 #logo_container {display: flex; align-items: center;}
 
@@ -23,15 +25,14 @@
 #top_menu a:active {text-decoration: none;}
 
 /*메뉴바 UI*/
-#menu {height: 6vh; width: 100vw; display: flex; justify-content: center; align-items: center;
-    background-color: #205591; top: 0; left: 0;}
+#menu {height: 6vh; width: 100vw; display: flex; justify-content: center; align-items: center; background-color: #205591;}
 #menu ul {margin: 0 10px}
 #menu ul li {display: inline-block; list-style: none; margin: 0 20px}
 #menu ul li a {color: whitesmoke;}
 
 /*메뉴바 고정 클래스*/
 .leftTopFixed {position: fixed; left: 0; top: 0;}
-.bodyMenuFixed {margin-top: 60px;}
+.bodyMenuFixed {margin-top: 7vh;}
 
 /*a태그 UI*/
 #menu a {font-size: 30px; color: black;}
