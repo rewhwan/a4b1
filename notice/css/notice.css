@@ -1,0 +1,38 @@
+/* 게시판 글쓰기(notice_insert.php) */
+#notice_box { position: relative; width: 800px; margin: 0 auto; }
+#notice_box h3 { margin-top: 30px;	padding: 10px; border-bottom: solid 2px #516e7f; font-size: 20px; }
+#notice_form span { display: inline-block; }
+#notice_form .col1 { width: 150px; }
+#notice_form { list-style: none;}
+#notice_form li {	padding: 12px; border-bottom: solid 1px #dddddd; }
+#notice_form input { width: 500px; height: 25px; }
+#notice_form textarea { width: 500px;	height: 150px; }
+#notice_form #text_area { position: relative;	height: 158px; }
+#notice_form #text_area .col1 { position: absolute; top: 10px; }
+#notice_form #text_area .col2 { position: absolute; left: 166px; }
+#notice_box .buttons { text-align: right; margin: 20px 0 40px 0; }
+#notice_box .buttons li { display: inline; }
+#notice_box .buttons button { padding: 5px 10px; cursor: pointer; }
+#notice_box .buttons form { display: inline-block; }
+/* 게시판 목록보기(index.php) */
+#notice_list {list-style: none;}
+#notice_list li { padding: 10px 0; border-bottom: solid 1px #dddddd; }
+#notice_list span { display: inline-block; text-align: center; font-size: 15px;}
+#notice_list .list1 { width: 80px;}
+#notice_list .list2 { width: 330px; text-align: left; }
+#notice_list .list3 { width: 100px; }
+#notice_list .list4 { width: 40px; }
+#notice_list .list5 { width: 180px; }
+#notice_list .list6 { width: 40px; }
+#page_num {	text-align: center;	margin: 30px 0 }
+#page_num li { display: inline; }
+/* 게시판 내용보기(notice_view.php) */
+#notice_box { width: 800px; margin: 0 auto; }
+#notice_box .title { margin-top: 30px; padding: 10px; border-bottom: solid 2px #516e7f; font-size: 20px; }
+#view_content {list-style: none; }
+#view_content li:nth-child(1) {	padding: 15px; border-bottom: solid 1px #aaaaaa; }
+#view_content .col2 { float: right; }
+#view_content li:nth-child(2) {	padding: 15px 15px 80px 15px; border-bottom: solid 1px #cccccc; }
+#view_content li:nth-child(3) button { padding: 5px 20px; margin: 15px 0 40px 720px; cursor: pointer; }
+
+#page_num { margin-top:10px; text-align:center; }
