@@ -4,10 +4,16 @@
 
 /*폰트설정*/
 #menu {font-family: "Do Hyeon", sans-serif;}
+#logo_span {font-family: "Do Hyeon", sans-serif; font-size: 25px;}
 
 /*최상단 메뉴바 UI*/
-#top_menu {height: 2vh; display: flex; justify-content: flex-end; background-color: #ffffff;}
+#top_menu {background-color: #ffffff;}
+#top_menu ul {position: fixed; top: 10px; right: 0;}
 #top_menu ul li {display: inline-block; margin: 0 10px}
+#logo_container {display: flex; align-items: center;}
+
+/*최상단 메뉴바 로고 UI*/
+#logo {width: 60px; height: 60px; margin: 10px 20px 10px 60px;}
 
 /*최상단 메뉴바 a태그 UI*/
 #top_menu a {color: #1d1d1d;}
@@ -34,5 +40,5 @@
 #menu a:hover {text-decoration: none;}
 #menu a:active {text-decoration: none;}
 
-
-#test {height: 2000px;}
+/*커서 포인터 UI*/
+.cursor_pointer {cursor: pointer;}
