@@ -1,0 +1,136 @@
+@import url("https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap");
+body{
+    /* background-image: url("./back_img/back2.jpg");
+    background-repeat: no-repeat; 
+    background-attachment: fixed;*/
+    width: 100%;
+    height: 100%;
+    /* text-align: center; */
+    position: relative;
+    z-index: 1;
+}
+/* 배경화면만 흐르기 하기 위한 가상요소 생성 */
+body::after{
+    width: 100%;
+    height: 100%;
+    content: "";
+    background-image: url("./back_img/back2.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    opacity: 0.5;
+}
+#image_container{
+    margin: 30px auto;
+    margin-left: 100px;
+    text-align: center;
+    /* display: inline-block; */
+    float: left;
+}
+img{
+    height: 650px;
+    width: 700px;
+    border-radius: 20px;
+}
+#game_info_view{
+    margin: 20px auto;
+    text-align: center;
+}
+#game_info_view h2,#game_info_view h3,#game_info_view p{
+    /* background-color: white; */
+    display: inline-block;
+    font: 200 20px/1.5 Do Hyeon, Times New Roman, serif;
+    margin-left: 20px;
+}
+#game_info_view a{
+    /* background-color: white; */
+    display: inline-block;
+    font: 200 20px/1.5 Do Hyeon, Times New Roman, serif;
+}
+#game_content{
+    margin: 0 auto;
+    text-align: center;
+}
+#game_content #content{
+    display: inline-block;
+    width: 500px;
+    font: 200 20px/1.5 Do Hyeon, Times New Roman, serif;
+}
+
+#ripple_regist{
+    margin: 10px auto;
+    text-align: center;
+}
+#ripple2{
+    display: inline-block;
+    margin-left: 70px;
+}
+
+#ripple_regist p{
+    font: 200 20px/1.5 Do Hyeon, Times New Roman, serif;
+    text-align: left;
+}
+#ripple_bag{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+#ripple_form{
+    list-style: none;
+    padding: 10px;
+}
+#ripple_form li{
+    margin-top: 10px;
+    border-bottom: 1px solid black;
+    width: 800px;
+}
+
+#ripple_form li button{
+    margin: 10px 0 10px 0;
+}
+#ripple_form #page{
+    margin: 0 auto;
+    text-align: center;
+}
+ /*댓글 달기 버튼*/
+button{
+   background:#89cebc;
+   color:#fff;
+   border:none;
+   border-radius: 10px;
+   position:relative;
+   height:30px;
+   font-size:12px;
+   padding:0 2px;
+   cursor:pointer;
+   transition:800ms ease all;
+   outline:none;
+ }
+button:hover{
+   background:#fff;
+   color:#89cebc;
+ }
+button:before,button:after{
+   content:'';
+   position:absolute;
+   top:0;
+   right:0;
+   height:2px;
+   width:0;
+   background: #89cebc;
+   transition:400ms ease all;
+ }
+button:after{
+   right:inherit;
+   top:inherit;
+   left:0;
+   bottom:0;
+ }
+ button:hover:before, button:hover:after{
+   width:100%;
+   transition:800ms ease all;
+ }

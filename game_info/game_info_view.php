@@ -88,6 +88,7 @@ while ($row3 = mysqli_fetch_array($result)) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/common/css/common.css?ver=1">
+    <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/game_info/css/insert_form.css">
     <script src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/common/js/common.js?ver=1"></script>
     <script src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/common/js/jquery/jquery-3.5.1.min.js?ver=1"></script>
     <script src="./js/info.js"></script>
@@ -99,36 +100,38 @@ while ($row3 = mysqli_fetch_array($result)) {
     <header>
         <?php include $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/header.php"; ?>
     </header>
-    <div>
+    <div id="image_container">
         <img src="./img/title/<?= $image ?>" alt="">
     </div>
-    <div>
-        <h1><?= $num ?></h1>
-        <h2>게임명 : <?= $name ?></h2>
-        <p>지원 플랫폼 : <?= $platform ?></p>
-        <p>개발사 : <?= $developer ?></p>
-    </div>
-    <div>
-        <p>장르 : <?= $genre ?></p>
-        <p>출시일자 : <?= $release_date ?></p>
-        <p>등급 : <?= $grade ?></p>
-    </div>
-    <div>
-        <p>유통사 : <?= $circulation ?></p>
-        <p>한국어 지원 : <?= $service_kor ?></p>
-        <p>가격 : <?= $price ?></p>
-    </div>
-    <div>
-        <a href="<?= $homepage ?>">공식홈페이지</a>
+    <div id="game_info_view">
+        <div>
+            <h1>게임명 : <?= $name ?></h1>
+            <p>지원 플랫폼 : <?= $platform ?></p>
+            <p>개발사 : <?= $developer ?></p>
+        </div>
+        <div>
+            <p>장르 : <?= $genre ?></p>
+            <p>출시일자 : <?= $release_date ?></p>
+            <p>등급 : <?= $grade ?></p>
+        </div>
+        <div>
+            <p>유통사 : <?= $circulation ?></p>
+            <p>한국어 지원 : <?= $service_kor ?></p>
+            <p>가격 : <?= $price ?></p>
+        </div>
+        <div>
+            <a href="<?= $homepage ?>">공식홈페이지</a>
+        </div>
     </div>
     <br>
-    <div>
-        <p><?= $content ?></p>
+    <div id="game_content">
+        <p id="content"><?= $content ?></p>
     </div>
     <div id="screen_shot_show">
         <ul>
             <li>
                 <?php
+                if(isset($screen)){
                     $screen_shot = explode(",",$screen);
                     $count= count($screen_shot);
                     for($i=0; $i<$count; $i++){
@@ -137,38 +140,45 @@ while ($row3 = mysqli_fetch_array($result)) {
                     <img src="./img/screen/<?=$screen_image?>" alt="">
                 <?php
                     }
+                }    
                 ?> 
             </li>
         </ul>
     </div>
-    <label for="content">댓글입력</label>
-    <br>
     
-        <input type="hidden" name="userid" id="userid" value="<?= $_SESSION['id'] ?>">
-        <!-- <input type="hidden" name="num" id="num" value=""> -->
-        <textarea name="content" id="content" cols="70" rows="10"></textarea>
-        <button onclick="ripple_insert(<?= $num ?>)">댓글달기</button>
-    
-
-    <ul id="ripple_form">
-        
-    </ul>
-    <div id="page_button">
-			<div id="page_num">
-            </div>
+    <div id="ripple_regist">
+        <div id="ripple2">
+            <p>댓글입력</p>
+            <br>
+            <input type="hidden" name="userid" id="userid" value="<?= $_SESSION['id'] ?>">
+            <!-- <input type="hidden" name="num" id="num" value=""> -->
+            <textarea name="content" id="content" cols="70" rows="10"></textarea>
+            <button onclick="ripple_insert(<?= $num ?>)">댓글달기</button>
+        </div>
+    </div>
+    <div id="ripple_bag">
+        <ul id="ripple_form">
             
+        </ul>
+        <div id="page">
+            <div id="page_button">
+                <div id="page_num">
+                </div>  
+            </div>
+            <div>
+                <?php
+                if(isset($_SESSION['id']) && ($_SESSION['id'] == "admin" || intval($_SESSION['admin']) >= 1)){
+                ?>
+                    <button onclick="location.href='./info_update_form.php?num=<?=$num?>'">정보 수정</button>
+                    <button onclick="location.href='./game_info_delete.php?num=<?=$num?>'">정보 삭제</button>
+                <?php
+                }
+                ?>
+            </div>
+        </div>
     </div>
-    <div>
-        <?php
-        if(isset($_SESSION['id']) && ($_SESSION['id'] == "admin" || intval($_SESSION['admin']) >= 1)){
-        ?>
-            <button onclick="location.href='./info_update_form.php?num=<?=$num?>'">정보 수정</button>
-            <button onclick="location.href='./game_info_delete.php?num=<?=$num?>'">정보 삭제</button>
-        <?php
-        }
-        ?>
-        <button onclick="history.go(-1)">뒤로 가기</button>
-    </div>
+    
+    <button onclick="history.go(-1)">뒤로 가기</button>
 </body>
 
 </html>
