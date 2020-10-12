@@ -20,16 +20,7 @@ $dbcon = $db->connector();
     <header>
         <?php include $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/header.php"; ?>
     </header>
-    <?php
-    if (!isset($_SESSION['id'])) {
-        echo "<script>
-                alert('공지사항은 회원만 확인 할수있습니다.');
-                location.href='http://$_SERVER[HTTP_HOST]/a4b1/login/index.php'
 
-</script>";
-        exit;
-    }
-    ?>
     <section>
         <div id="notice_box">
             <h3>공지사항 > 목록</h3>
@@ -46,12 +37,12 @@ $dbcon = $db->connector();
 
                 <?php
 
-                if (isset($_GET["page"]))  $page = $_GET["page"];
+                if (isset($_GET["page"])) $page = $_GET["page"];
                 else $page = 1;
 
                 //현재 날짜에서 3일 이내의 긴급 공지를 가져옴 오름차순
                 $sql = "SELECT * FROM notice_urgent WHERE date(now())-date(created_at) <=3 order by created_at DESC";
-                $result = mysqli_query($dbcon,$sql);
+                $result = mysqli_query($dbcon, $sql);
 
                 //쿼리문 결과값을 변수로 저장
                 $total_record_urgent_notice = mysqli_num_rows($result);
@@ -142,7 +133,7 @@ $dbcon = $db->connector();
                     <button onclick="location.href='index.php">목록</button>
                 </li>
                 <?php
-                if ($_SESSION['id'] == "admin") {
+                if (isset($_SESSION['admin'])&&$_SESSION['admin'] >= 1) {
                     ?>
                     <li>
                         <button onclick="location.href='notice_form.php'">글쓰기</button>
