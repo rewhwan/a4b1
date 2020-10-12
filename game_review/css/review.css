@@ -57,6 +57,7 @@ body{height: 100vh;}
 #review_form ul li select {height: 30px;}
 #review_form ul li #star_container {width: 804px;}
 #review_form ul li #star_container:nth-child(1) {padding-left: 120px;}
+#submit_container {display: flex; justify-content: flex-end;}
 
 /*게임 검색 결과창*/
 #form_container form ul li:nth-child(2) {display: none;}

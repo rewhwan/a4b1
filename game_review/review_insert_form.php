@@ -127,8 +127,10 @@
                     <li><p>리뷰내용</p><textarea name="content" id="content" cols="30" rows="10"></textarea></li>
                     <li><p>이미지 파일</p><input type="file" id="new_file" name="new_file[]" multiple accept="image/*"></li>
                 </ul>
-                <button type="button">취소</button>
-                <button id="submit" onclick="check_input()" type="button">등록</button>
+                <div id="submit_container">
+                    <button type="button">취소</button>
+                    <button id="submit" onclick="check_input()" type="button">등록</button>
+                </div>
             </form>
         </div>
 
