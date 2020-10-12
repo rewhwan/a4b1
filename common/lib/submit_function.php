@@ -63,8 +63,8 @@ function file_upload($file_name, $upload_location)
     $upload_dir = "$upload_location"; //업로드된파일을 저장하는장소지정
     //echo "upload_name".$upload_name."<br>";
     //파일명과 확장자를 구분해서 저장한다.
-    $file = explode(".", $upload_name); //파일명과 확장자구분에서 배열저장
-    $file_name = $file[0];             //파일명
+    //$file = explode(".", $upload_name); //파일명과 확장자구분에서 배열저장
+    //$file_name = $file[0];             //파일명
     //$file_extension = $file[1];        //확장자
     //echo $file_extension;
 
@@ -153,8 +153,8 @@ function file_upload_multi($file_name, $upload_location)
         $upload_dir = "$upload_location"; //업로드된파일을 저장하는장소지정
         //echo "upload_name".$upload_name."<br>";
         //파일명과 확장자를 구분해서 저장한다.
-        $file = explode(".", $upload_name); //파일명과 확장자구분에서 배열저장
-        $file_name = $file[0];             //파일명
+        //$file = explode(".", $upload_name); //파일명과 확장자구분에서 배열저장
+        //$file_name = $file[0];             //파일명
         //$file_extension = $file[1];        //확장자
         //echo $file_extension;
 

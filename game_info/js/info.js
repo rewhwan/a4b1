@@ -125,7 +125,7 @@ function ripple_insert(num){
                 +json_data.data.created_at+"</p><p>"+json_data.data.content
                 +"</p><p><input type='hidden' name='ripples_num' value="
                 +json_data.data.num+"></p><?php if($_SESSION['id'] == $ripple_create_by){?><button onclick=ripple_delete("
-                +json_data.data.num+")>삭제</button></li><?php}?>");
+                +json_data.data.num+")>삭        제</button></li><?php}?>");
                 
                 var offsetTOP = $("#"+json_data.data.num).offset().top;
                 $('body').animate({scrollTop : offsetTOP}, 400);
@@ -194,7 +194,7 @@ function select_ripple(num,page){
                 +json_data.data[i]['created_at']+"</p><p>"+json_data.data[i]['content']
                 +"</p><p><input type='hidden' name='ripples_num' value="
                 +json_data.data[i]['num']+"></p><?php if($_SESSION['id'] == $ripple_create_by){?><button onclick=ripple_delete("
-                +json_data.data[i]['num']+")>삭제</button></li><?php}?>");
+                +json_data.data[i]['num']+")>삭        제</button></li><?php}?>");
                 }
 
                 length = parseInt(json_data.isSuccess[1]);
@@ -316,7 +316,7 @@ function grade_check(grade){
             default:break;
         }
 }
-
+//검색기능시 쿠키등록 및 예외처리 함수
 function check_search(){
     $search = $("#search").val();
     $search_word = $("#search_word").val();
@@ -328,6 +328,21 @@ function check_search(){
         alert("검색어가 선택되지 않았습니다.");
         return false;
     }
-    
     location.href="game_info_list.php?mode=search&search="+$search+"&search_word="+$search_word;
+}
+
+//선언된 값을 받아서 검색에 띄워주는 창
+function search_word_check(search,search_word){
+    
+    switch(search){
+       case"name": $("#option_name").attr("selected",true);
+       break;
+       case"grade": $("#option_grade").attr("selected",true);
+       break;
+       case"genre": $("#option_genre").attr("selected",true);
+       break;
+       case"platform": $("#option_platform").attr("selected",true);
+       break;
+    }
+    $("#search_word").val(search_word);
 }

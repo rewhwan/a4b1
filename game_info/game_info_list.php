@@ -20,6 +20,7 @@ $dbcon = $db->connector();
     <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/common/css/common.css?ver=1">
     <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/game_info/css/review.css">
     <script src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/common/js/common.js?ver=1"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
     <!-- 자바스크립트 추가 -->
     <script src="./js/info.js"></script>
     <title>게임 정보 리스트</title>
@@ -32,7 +33,7 @@ $dbcon = $db->connector();
     <?php
     $mode = $_GET['mode'];
     //상수 지정
-    define('SCALE', 1);
+    define('SCALE', 8);
     if($mode == "search"){
         $search = $_GET['search'];
         $search_word = strtoupper($_GET['search_word']);
@@ -72,15 +73,22 @@ $dbcon = $db->connector();
         <div id="top">
             <ul>
             <select name="search" id="search">
-                <option value=""></option>
-                <option value="name">이름</option>
-                <option value="genre">장르</option>
-                <option value="platform">플랫폼</option>
-                <option value="grade">등급</option>
+                <option value="" id="option_no">선택</option>
+                <option value="name" id="option_name">이름</option>
+                <option value="genre" id="option_genre">장르</option>
+                <option value="platform" id="option_platform">플랫폼</option>
+                <option value="grade" id="option_grade">등급</option>
             </select>
                 <li><input type="text" name="search_word" id="search_word"></li>
                 <li><button onclick="check_search()">검색하기</button></li>
             </ul>
+            <?php
+                if(isset($_GET['search'])  && isset($_GET['search_word'])){
+                    $value = $_GET['search'];
+                    $word = $_GET['search_word'];
+                    echo"<script>search_word_check('$value','$word');</script>";
+                }
+            ?>
         </div>
 
         <div id="list">
@@ -106,7 +114,7 @@ $dbcon = $db->connector();
                     $result = mysqli_query($dbcon, $sql1) or die("list select error2 : " . mysqli_error($dbcon));
                     mysqli_data_seek($result, $i);
                     $row = mysqli_fetch_array($result);
-                    if($mode == "search"){
+                    if($mode == "search" &&($search == "genre" || $search=="platform")){
                         $num = $row['info_num'];
                     }else{
                         $num = $row['num'];
@@ -157,8 +165,6 @@ $dbcon = $db->connector();
                         <p>작성자 : <?=$created_by?></p>
                         <p>작성일자 : <?=$created_at?></p>
                         <p>등급 : <?=$grade?></p>
-                        <p>sql : <?=$sql1?></p>
-                        <p>mode : <?=$mode?></p>
                     </li>
                 </a>
                 <?php
@@ -171,7 +177,7 @@ $dbcon = $db->connector();
         <div id="page_button">
 						<div id="page_num"> 
                         <?php
-                         if($i != 1){
+                         if($page != 1){
                             if($mode == "search"){
                         ?>    
                         <a href="./game_info_list.php?page=<?=$page-1?>&mode=search&search=<?=$search?>&search_word=<?=$search_word?>">이전◀</a>
@@ -211,7 +217,6 @@ $dbcon = $db->connector();
                                 }
                             }
                             ?>
-							<br><br><br><br><br><br><br>
 						</div>
         </div>
 
