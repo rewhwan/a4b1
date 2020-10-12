@@ -1,43 +1,84 @@
+@import url("https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap");
 * {margin: 0; padding: 0;}
 
 body{height: 100vh;}
 
 /*리스트 관련 UI*/
-#list {width: 1280px; margin: 0 auto; border: 2px solid #777;}
-#list ul {list-style: none; margin: 0; padding: 0;}
-#list h3 {font: bold 20px/1.5 Helvetica, Verdana, sans-serif;}
-#list li img {float: left; margin: 0 15px 0 0; width: 300px; height: 200px;}
-#list li p {font: 200 12px/1.5 Georgia, Times New Roman, serif;}
-#list li {width: 580px; height: 200px; padding: 10px; border: 1px solid #777;}
-#list li:hover {background: #eee; cursor: pointer;}
-#list a {display: inline-block; color: #000; margin: 8px 17px; text-decoration: none;}
+  #list{width: 1400px; margin: 0 auto;    border: 2px solid #777;    background-color: #205591; padding: 10px 50px 10px 50px;}
 
-#top ul {list-style-type: none;}
-#top ul li {display: inline;}
-#top {display: flex; justify-content: flex-end;}
+  #list ul {    list-style: none;    margin: 0;    padding: 0;  }
 
-#container_body {width: fit-content; margin: 10px auto;}
+  #list h3 {    font: bold 20px/1.5 Helvetica, Verdana, sans-serif;  }
+
+  #list li img {    float: left;    margin: 0 15px 0 0;    width: 300px;    height: 200px;  }
+  
+  #list li p {    font: 200 12px/1.5 Georgia, Times New Roman, serif;  }
+  
+  #list li {    background-color: #504F4F;    width: 630px;    height: 200px;    padding: 10px;    border: 1px solid #777;  }
+
+  #list li:hover {    cursor: pointer;  }
+
+  #list a {    display: inline-block;    color: #000;    margin: 8px 17px;    text-decoration: none;  }
+
+  #top ul {    list-style-type: none;  }
+
+  #top ul li {    display: inline;  }
+
+  #top {    display: flex;    justify-content: flex-end;  }
+
+  #container_body {    width: fit-content;    margin:10px auto;  }
+
+  button {    width: 80px;    height: 40px;  }
+
+  #page_num {	text-align: center;	margin: 30px 0 }
+
+  #page_num li { display: inline; }
+
+  #review_insert { list-style-type: none; }
+  
+  #review_insert { display: flex;    justify-content: flex-end; }
+
+  a{text-decoration: none;}
+
+  /* 상새보기 관련UI ===============================================================*/
 
 #page_num { text-align: center; margin: 30px 0 }
 #page_num li { display: inline; }
 
 /* 상새보기 관련UI ===============================================================*/
-#point {width: 1980px; border: 1px solid; padding: 30px; display: flex;}
+#point_group{ display: flex; margin: 0 auto; }
 
-#info {}
+#point {width: 100%; border: 1px solid; padding: 30px; display: flex;}
 
-#user_info {display: inline; border: 1px solid;}
+/* #point_container div{ border: 1px solid; } */
+
+/* #point { background-image: url("../img/background_image.jpg"); } */
+
+#info_group { margin-top: 150px; width: 700px; text-align: center; font: 200 25px/1.5 Do Hyeon, Times New Roman, serif;}
+
+#user_info {display: inline; }
 #user_info div {display: inline; }
 
 #star_point {border: 1px solid black; display: inline-block;}
+
+#star_point div{ margin-left: 20px;}
+
 
 #star1 div {display: inline-block;}
 #star2 div {display: inline-block;}
 
 #image_container {width: 500px; height: 500px;border: 1px solid black;}
 
-#point_container {}
+#prev { display: flex;    justify-content: flex-end; }
 
+#button_group { display: flex;    justify-content: flex-end; font-size: 15px; }
+
+#textarea{font-size: 20px;}
+
+#image_container {border-radius: 30px;}
+#image_container img{border-radius: 30px;}
+
+#content {width: 100%; text-align: center; }
 /* 삽입관련 UI ===================================================================*/
 #form_container {font-size: 20px; height: 86vh; display: flex; justify-content: center;
     align-items: center;}

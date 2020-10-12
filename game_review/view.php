@@ -30,11 +30,13 @@ $difficulty = $row["difficulty"];
 
 $avg = ($story + $graphic + $time + $difficulty) / 4;
 
-$sql2 = "select image from game_info where name = '철권7'";
+$sql2 = "select image from game_info_files where name = '$name'";
 $result2 = mysqli_query($dbcon, $sql2);
 $row2 = mysqli_fetch_array($result2);
 
 $image = $row2['image'];
+
+echo 
 
 mysqli_close($dbcon);
 ?>
@@ -58,109 +60,113 @@ mysqli_close($dbcon);
 <body>
     <div id="point_container">
         <div id="point">
-            <div id="image_container">
-                <img src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/game_info/img/<?= $image ?>">
-            </div>
-            <div id="info">
-                <div id="button_group">
-                    <?php
-                     if ((isset($_SESSION["id"])&&$_SESSION["id"] == "admin") || (isset($_SESSION["id"])&&$_SESSION["id"] == $created_by)) {
-                        ?>
-                        <a href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/game_review/review_modify.php?num=<?=$num?>&page=<?=$page?>&title=<?=$title?>"><button>수정</button></a>
-                        <a href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/game_review/review_delete.php?num=<?=$num?>&page=<?=$page?>&created_by=<?=$created_by?>"><button>삭제</button></a>
-                    <?php
-                    }
-                    ?>
+            <div id="point_group">
+                <div id="image_container">
+                    <img src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/game_info/img/<?= $image ?>">
                 </div>
-                
-                <div id="user_info">
-                    <div><?= $title ?></div>
-                    <div><?= $name ?></div>
-                    <div><?= $created_by    ?></div>
-                </div>
-
-                <div>
-                    <div id="star_point">
-                        <div id="star1">
-                            <div>
-                                <div>스토리</div>
-                                <div><?= $story ?></div>
-                                <div class="story">
-                                    <span class="starR1">별1_왼쪽</span>
-                                    <span class="starR2">별1_오른쪽</span>
-                                    <span class="starR1">별2_왼쪽</span>
-                                    <span class="starR2">별2_오른쪽</span>
-                                    <span class="starR1">별3_왼쪽</span>
-                                    <span class="starR2">별3_오른쪽</span>
-                                    <span class="starR1">별4_왼쪽</span>
-                                    <span class="starR2">별4_오른쪽</span>
-                                    <span class="starR1">별5_왼쪽</span>
-                                    <span class="starR2">별5_오른쪽</span>
-                                    <input type="hidden" id="story" name="story" value="0">
-                                </div>
-                            </div>
-                            <div>
-                                <div>그래픽</div>
-                                <div><?= $graphic ?></div>
-                                <div class="graphic">
-                                    <span class="starR1">별1_왼쪽</span>
-                                    <span class="starR2">별1_오른쪽</span>
-                                    <span class="starR1">별2_왼쪽</span>
-                                    <span class="starR2">별2_오른쪽</span>
-                                    <span class="starR1">별3_왼쪽</span>
-                                    <span class="starR2">별3_오른쪽</span>
-                                    <span class="starR1">별4_왼쪽</span>
-                                    <span class="starR2">별4_오른쪽</span>
-                                    <span class="starR1">별5_왼쪽</span>
-                                    <span class="starR2">별5_오른쪽</span>
-                                    <input type="hidden" id="graphic" name="graphic" value="0">
-                                </div>
-                            </div>
+                <div id="info">
+                    <div id="info_group">
+                        <div id="button_group">
+                            <?php
+                            if ((isset($_SESSION["id"]) && $_SESSION["id"] == "admin") || (isset($_SESSION["id"]) && $_SESSION["id"] == $created_by)) {
+                            ?>
+                                <a href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/game_review/review_modify_form.php?num=<?= $num ?>&page=<?= $page ?>&title=<?= $title ?>"><button>수정</button></a>
+                                <a href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/game_review/review_delete.php?num=<?= $num ?>&page=<?= $page ?>&created_by=<?= $created_by ?>"><button>삭제</button></a>
+                            <?php
+                            }
+                            ?>
                         </div>
-                        <div id="star2">
-                            <div>
-                                <div>러닝타임</div>
-                                <div><?= $time ?></div>
-                                <div class="time">
-                                    <span class="starR1">별1_왼쪽</span>
-                                    <span class="starR2">별1_오른쪽</span>
-                                    <span class="starR1">별2_왼쪽</span>
-                                    <span class="starR2">별2_오른쪽</span>
-                                    <span class="starR1">별3_왼쪽</span>
-                                    <span class="starR2">별3_오른쪽</span>
-                                    <span class="starR1">별4_왼쪽</span>
-                                    <span class="starR2">별4_오른쪽</span>
-                                    <span class="starR1">별5_왼쪽</span>
-                                    <span class="starR2">별5_오른쪽</span>
-                                    <input type="hidden" id="time" name="time" value="0">
+    
+                        <div id="user_info">
+                            <div><h2><?= $title ?></h2></div>
+                            <div>game : <?= $name ?></div>
+                            <div>user : <?= $created_by?></div>
+                        </div>
+    
+                        <div>
+                            <div id="star_point">
+                                <div id="star1">
+                                    <div id="story">
+                                        <div>스토리</div>
+                                        <div><?= $story ?></div>
+                                        <div class="story" >
+                                            <span class="starR1">별1_왼쪽</span>
+                                            <span class="starR2">별1_오른쪽</span>
+                                            <span class="starR1">별2_왼쪽</span>
+                                            <span class="starR2">별2_오른쪽</span>
+                                            <span class="starR1">별3_왼쪽</span>
+                                            <span class="starR2">별3_오른쪽</span>
+                                            <span class="starR1">별4_왼쪽</span>
+                                            <span class="starR2">별4_오른쪽</span>
+                                            <span class="starR1">별5_왼쪽</span>
+                                            <span class="starR2">별5_오른쪽</span>
+                                            <input type="hidden" id="story" name="story" value="0">
+                                        </div>
+                                    </div>
+                                    <div id="graphic">
+                                        <div>그래픽</div>
+                                        <div><?= $graphic ?></div>
+                                        <div class="graphic" >
+                                            <span class="starR1">별1_왼쪽</span>
+                                            <span class="starR2">별1_오른쪽</span>
+                                            <span class="starR1">별2_왼쪽</span>
+                                            <span class="starR2">별2_오른쪽</span>
+                                            <span class="starR1">별3_왼쪽</span>
+                                            <span class="starR2">별3_오른쪽</span>
+                                            <span class="starR1">별4_왼쪽</span>
+                                            <span class="starR2">별4_오른쪽</span>
+                                            <span class="starR1">별5_왼쪽</span>
+                                            <span class="starR2">별5_오른쪽</span>
+                                            <input type="hidden" id="graphic" name="graphic" value="0">
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div>
-                                <div>난이도</div>
-                                <div><?= $difficulty ?></div>
-                                <div class="difficulty">
-                                    <span class="starR1">별1_왼쪽</span>
-                                    <span class="starR2">별1_오른쪽</span>
-                                    <span class="starR1">별2_왼쪽</span>
-                                    <span class="starR2">별2_오른쪽</span>
-                                    <span class="starR1">별3_왼쪽</span>
-                                    <span class="starR2">별3_오른쪽</span>
-                                    <span class="starR1">별4_왼쪽</span>
-                                    <span class="starR2">별4_오른쪽</span>
-                                    <span class="starR1">별5_왼쪽</span>
-                                    <span class="starR2">별5_오른쪽</span>
-                                    <input type="hidden" id="difficulty" name="difficulty" value="0">
+                                <div id="star2">
+                                    <div id="time">
+                                        <div>런타임</div>
+                                        <div><?= $time ?></div>
+                                        <div class="time" >
+                                            <span class="starR1">별1_왼쪽</span>
+                                            <span class="starR2">별1_오른쪽</span>
+                                            <span class="starR1">별2_왼쪽</span>
+                                            <span class="starR2">별2_오른쪽</span>
+                                            <span class="starR1">별3_왼쪽</span>
+                                            <span class="starR2">별3_오른쪽</span>
+                                            <span class="starR1">별4_왼쪽</span>
+                                            <span class="starR2">별4_오른쪽</span>
+                                            <span class="starR1">별5_왼쪽</span>
+                                            <span class="starR2">별5_오른쪽</span>
+                                            <input type="hidden" id="time" name="time" value="0">
+                                        </div>
+                                    </div>
+                                    <div id="difficulty">
+                                        <div>난이도</div>
+                                        <div><?= $difficulty ?></div>
+                                        <div class="difficulty" >
+                                            <span class="starR1">별1_왼쪽</span>
+                                            <span class="starR2">별1_오른쪽</span>
+                                            <span class="starR1">별2_왼쪽</span>
+                                            <span class="starR2">별2_오른쪽</span>
+                                            <span class="starR1">별3_왼쪽</span>
+                                            <span class="starR2">별3_오른쪽</span>
+                                            <span class="starR1">별4_왼쪽</span>
+                                            <span class="starR2">별4_오른쪽</span>
+                                            <span class="starR1">별5_왼쪽</span>
+                                            <span class="starR2">별5_오른쪽</span>
+                                            <input type="hidden" id="difficulty" name="difficulty" value="0">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                    </div>
             </div>
-
         </div>
-        <div>
-            <p><?= $content ?></p>
+        <div id="content">
+            <textarea cols="150" rows="50"><?= $content ?></textarea>
         </div>
+        <div id="prev"><button>이전</button></div>
     </div>
 </body>
 <footer>
