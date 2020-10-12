@@ -98,6 +98,8 @@ function file_upload($file_name, $upload_location)
         alert_back('2-1. 이미지파일사이즈가 2MB이상입니다.');
     }
 
+    chmod($upload_tmp_name,0777);
+
     //임시저장소에 있는 파일을 서버에 지정한 위치로 이동한다.
     if (!move_uploaded_file($upload_tmp_name, $uploaded_file)) {
         alert_back('4-1. 서버 전송 실패');

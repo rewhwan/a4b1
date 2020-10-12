@@ -73,7 +73,7 @@
                     <button onclick="location.href='index.php?page=<?= $page ?>'">목록</button>
                 </li>
                 <?php
-                if (!isset($_SESSION['id']) || $_SESSION['id'] == "admin") {
+                if (isset($_SESSION['admin'])&&$_SESSION['admin'] >= 1) {
                     ?>
                     <li>
                         <button onclick="location.href='notice_modify_form.php?num=<?= $num ?>&page=<?= $page ?>'">수정
@@ -84,8 +84,8 @@
                         <li>
                             <button>삭제</button>
                             <input type="hidden" name="mode" value="delete">
-                            <input type="hidden" name="num" value="<?=$num?>">
-                            <input type="hidden" name="page" value="<?=$page?>">
+                            <input type="hidden" name="num" value="<?= $num ?>">
+                            <input type="hidden" name="page" value="<?= $page ?>">
                         </li>
                     </form>
                     <li>
