@@ -1,139 +1,85 @@
-* {
-    margin: 0;
-    padding: 0;
-  }
+* {margin: 0; padding: 0;}
+
+body{height: 100vh;}
 
 /*리스트 관련 UI*/
-  #list{
-    width: 1280px;
-    margin: 0 auto;
-    border: 2px solid #777;
-  }
+#list {width: 1280px; margin: 0 auto; border: 2px solid #777;}
+#list ul {list-style: none; margin: 0; padding: 0;}
+#list h3 {font: bold 20px/1.5 Helvetica, Verdana, sans-serif;}
+#list li img {float: left; margin: 0 15px 0 0; width: 300px; height: 200px;}
+#list li p {font: 200 12px/1.5 Georgia, Times New Roman, serif;}
+#list li {width: 580px; height: 200px; padding: 10px; border: 1px solid #777;}
+#list li:hover {background: #eee; cursor: pointer;}
+#list a {display: inline-block; color: #000; margin: 8px 17px; text-decoration: none;}
 
-  #list ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
+#top ul {list-style-type: none;}
+#top ul li {display: inline;}
+#top {display: flex; justify-content: flex-end;}
 
-  #list h3 {
-    font: bold 20px/1.5 Helvetica, Verdana, sans-serif;
-  }
+#container_body {width: fit-content; margin: 10px auto;}
 
-  #list li img {
-    float: left;
-    margin: 0 15px 0 0;
-    width: 300px;
-    height: 200px;
-  }
+#page_num { text-align: center; margin: 30px 0 }
+#page_num li { display: inline; }
 
-  #list li p {
-    font: 200 12px/1.5 Georgia, Times New Roman, serif;
-  }
-
-  #list li {
-    width: 580px;
-    height: 200px;
-    padding: 10px;
-    border: 1px solid #777;
-  }
-
-  #list li:hover {
-    background: #eee;
-    cursor: pointer;
-  }
-
-  #list a {
-    display: inline-block;
-    color: #000;
-    margin: 8px 17px;
-    text-decoration: none;
-  }
-
-
-  #top ul {
-    list-style-type: none;
-  }
-
-  #top ul li {
-    display: inline;
-  }
-
-  #top {
-    display: flex;
-    justify-content: flex-end;
-  }
-
-  #container_body {
-    width: fit-content;
-    margin:10px auto;
-  }
-
-  button {
-    width: 80px;
-    height: 40px;
-  }
-
-  #page_num {	text-align: center;	margin: 30px 0 }
-  #page_num li { display: inline; }
-  /* 상새보기 관련UI ===============================================================*/
-
+/* 상새보기 관련UI ===============================================================*/
 #point {width: 1980px; border: 1px solid; padding: 30px; display: flex;}
 
-#info{}
+#info {}
 
 #user_info {display: inline; border: 1px solid;}
-#user_info div{display: inline; }
+#user_info div {display: inline; }
 
-#star_point{border: 1px solid black;  display: inline-block;}
+#star_point {border: 1px solid black; display: inline-block;}
 
-#star1 div{display: inline-block;}
-#star2 div{display: inline-block;}
+#star1 div {display: inline-block;}
+#star2 div {display: inline-block;}
 
-#image_container{width: 500px; height: 500px;border: 1px solid black;}
+#image_container {width: 500px; height: 500px;border: 1px solid black;}
 
-#point_container{}
+#point_container {}
 
-  /* 삽입관련 UI ===================================================================*/
-  #form_container {font-size: 20px; display: flex; justify-content: center; align-items: center;margin: 30px;}
-  #form_container form {width:fit-content;}
-  #form_container form select{margin-left: 60px;}
-  #form_container form ul li {list-style: none; display: flex; justify-content: flex-start; margin: 20px;}
-  #form_container form ul li div {display: flex; justify-content: center; align-items: center; width: 300px; }
-  #form_container form ul li input[type=text] {width: 800px; margin-left: 60px;}
-  #form_container form ul li textarea {width: 800px;}
-  #form_container form ul li:nth-child(4), #form_container form ul li:nth-child(5) {justify-content: center;}
+/* 삽입관련 UI ===================================================================*/
+#form_container {font-size: 20px; height: 87vh; display: flex; justify-content: center;
+    align-items: center;}
+#form_container:after { content : ""; display: block; position: absolute; top: 0; left: 0;
+    background-image: url('../img/background-1.jpg'); background-size: cover; width: 100%; height: 100%; opacity : 0.7;
+    z-index: -1;}
+#form_container form {width: fit-content;}
+#form_container form ul li {list-style: none; display: flex; justify-content: flex-start; margin: 20px;}
+#form_container form ul li div {display: flex; justify-content: center; align-items: center; width: 300px; }
+#form_container form ul li input[type=text] {width: 800px; height:40px;}
+#form_container form ul li textarea {width: 800px;}
+/*#form_container form ul li:nth-child(4), #form_container form ul li:nth-child(5) {justify-content: center;}*/
+
+/*리뷰 작성폼 UI*/
+#review_form {background-color: white; border-radius: 15px; padding: 30px; margin: 60px 0;}
+#review_form ul li p { width: 100px; text-align: center; margin: 0 20px 0 0;}
+#review_form ul li select {height: 30px;}
+#review_form ul li #star_container {width: 804px;}
+#review_form ul li #star_container:nth-child(1) {padding-left: 120px;}
+
+/*게임 검색 결과창*/
+#form_container form ul li:nth-child(2) {display: none;}
+
+/* 별점관련 UI ===================================================================*/
+#container div {display: inline-block;}
+.starR1 {background: url("http://miuu227.godohosting.com/images/icon/ico_review.png ") no-repeat -52px 0;
+    background-size: auto 100%; width: 15px; height: 30px; float: left; text-indent: -9999px; cursor: pointer;}
+.starR2 {background: url("http://miuu227.godohosting.com/images/icon/ico_review.png") no-repeat right 0;
+    background-size: auto 100%; width: 15px; height: 30px; float: left; text-indent: -9999px; cursor: pointer}
+.starR1.on {background-position: 0 0;}
+.starR2.on {background-position: -15px 0;}
+
+/*버튼 CSS*/
+button{background:#1AAB8A; color:#fff; border:none; position:relative; height:40px; font-size:1em; padding:0 1em;
+    margin: 0 10px; cursor:pointer; transition:800ms ease all; outline:none;}
+button:hover{background:#fff; color:#1AAB8A;}
+button:before,button:after{content:''; position:absolute; top:0; right:0; height:2px; width:0; background: #1AAB8A;
+    transition:400ms ease all;}
+button:after{right:inherit; top:inherit; left:0; bottom:0;}
+button:hover:before,button:hover:after{width: 100%; transition:800ms ease all;}
 
 
-   /* 별점관련 UI ===================================================================*/
-  #container div {
-    display: inline-block;
-}
 
-.starR1 {
-    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png ') no-repeat -52px 0;
-    background-size: auto 100%;
-    width: 15px;
-    height: 30px;
-    float: left;
-    text-indent: -9999px;
-    cursor: pointer;
-}
 
-.starR2 {
-    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
-    background-size: auto 100%;
-    width: 15px;
-    height: 30px;
-    float: left;
-    text-indent: -9999px;
-    cursor: pointer;
-}
 
-.starR1.on {
-    background-position: 0 0;
-}
-
-.starR2.on {
-    background-position: -15px 0;
-}
