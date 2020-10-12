@@ -82,14 +82,7 @@ window.onload = function() {
     $('#title').on('keypress',function () {
         //검색어가 입력되어 있으면 검색버튼을 눌러준다.
         if(event.keyCode == 13) {
-            $('#submit').click();
-        }
-    });
-
-    $('#content').on('keypress',function () {
-        //검색어가 입력되어 있으면 검색버튼을 눌러준다.
-        if(event.keyCode == 13) {
-            $('#submit').click();
+            $('#submit_btn').click();
         }
     });
 }

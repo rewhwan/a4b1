@@ -129,7 +129,7 @@
                 </ul>
                 <div id="submit_container">
                     <button type="button">취소</button>
-                    <button id="submit" onclick="check_input()" type="button">등록</button>
+                    <button id="submit_btn" type="button" onclick="check_input()">등록</button>
                 </div>
             </form>
         </div>
