@@ -9,10 +9,11 @@
 body{height: 2000px;}
 
 /*최상단 메뉴바 UI*/
-#top_menu {height:7vh; background-color: #ffffff; position: relative;}
+#top_menu {height:8vh; background-color: #ffffff; position: relative;}
 #top_menu ul {position: absolute; top: 10px; right: 0;}
 #top_menu ul li {display: inline-block; margin: 0 10px}
 #logo_container {display: flex; align-items: center;}
+#logo_container a:nth-child(1) {height: 8vh;}
 
 /*최상단 메뉴바 로고 UI*/
 #logo {width: 60px; height: 60px; margin: 10px 20px 10px 60px;}
@@ -32,7 +33,7 @@ body{height: 2000px;}
 
 /*메뉴바 고정 클래스*/
 .leftTopFixed {position: fixed; left: 0; top: 0;}
-.bodyMenuFixed {margin-top: 7vh;}
+.bodyMenuFixed {margin-top: 8vh;}
 
 /*a태그 UI*/
 #menu a {font-size: 30px; color: black;}
