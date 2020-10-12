@@ -1,4 +1,4 @@
-<!doctype html>
+    <!doctype html>
 <html lang="ko">
 <?php
 require $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/db.mysqli.class.php";
@@ -38,10 +38,9 @@ $dbcon = $db->connector();
                 else
                     $page = 1;
 
-                $sql = "select * from game_review order by num desc";
+                $sql = "select * from game_review left join game_review_point on num = review_num order by num desc";
                 $result = mysqli_query($dbcon, $sql);
                 $total_record = mysqli_num_rows($result);
-
 
                 //1페이지의 개수 상수로 정해놓기
                 $scale = 8;
@@ -75,19 +74,38 @@ $dbcon = $db->connector();
                     $created_at = $row["created_at"];
                     $created_by = $row["created_by"];
 
-                    $sql2 = "select image from game_info where name = '<$name>'";
-                    $result2 = mysqli_query($dbcon, $sql2);
-                    $row2 = mysqli_fetch_array($result2);
+                    //별점저장 로직
+                    $story = $row["story"];
+                    $graphic = $row["graphic"];
+                    $time = $row["time"];
+                    $difficulty = $row["difficulty"];
+    
+                    $avg = ($story + $graphic + $time + $difficulty) / 4;
 
-                    $image = $row2["image"];
-
+                    //게임정보를 등록되어있는것에서 가져올지말지 분기점
+                    if(is_numeric($name)) {
+                        //게임 정보를 game_info 테이블에서 가져오는 로직
+                        $sql2 = "select * from game_info where num = '$name'";
+                        $result2 = mysqli_query($dbcon, $sql2);
+                        $row2 = mysqli_fetch_array($result2);
+                        
+                        $name = $row2['name'];
+                        $image = $_SERVER['HTTP_HOST']."/a4b1/game_info/img/title/".$row2['image'];
+                    }else {
+                        //등록되어 있는 정보를 그대로 가져오는 로직
+                        $sql2 = "select * from game_review_files where review_num = '$num' order by num ASC";
+                        $result2 = mysqli_query($dbcon, $sql2);
+                        $row2 = mysqli_fetch_assoc($result2);
+                        if($row2['name'] == '') $image = $_SERVER['HTTP_HOST']."/a4b1/game_review/data/default.png";
+                        else  $image = $_SERVER['HTTP_HOST']."/a4b1/game_review/img/".$row2['name'];
+                    }
                 ?>
-                    <a href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/game_review/view.php?num=<?= $num ?>&page=<?= $page ?>&name=<?=$name?> ">
+                    <a href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/game_review/view.php?num=<?= $num ?>&page=<?= $page ?>&image=<?=$image?> ">
                         <li>
-                            <img src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/game_info/image/title/<?= $image ?>">
-                            <h3><?= $title ?></h3>
+                            <img src="http://<?= $image ?>">
+                            <h2><?= $title ?></h2>
                             <p><?= $name ?></p>
-                            <p>별점</p>
+                            <p><?= $avg ?></p>
                             <p><?= $created_by ?></p>
                         </li>
                     </a>
@@ -102,7 +120,7 @@ $dbcon = $db->connector();
                     <?php
                     if ($total_page >= 2 && $page >= 2) {
                         $new_page = $page - 1;
-                        echo "<li><a href='board_list.php?page=$new_page'>◀ 이전</a> </li>";
+                        echo "<li><a href='index.php?page=$new_page'>◀ 이전</a> </li>";
                     } else
                         echo "<li>&nbsp;</li>";
     
@@ -112,17 +130,18 @@ $dbcon = $db->connector();
                         {
                             echo "<li><b> $i </b></li>";
                         } else {
-                            echo "<li><a href='board_list.php?page=$i'> $i </a><li>";
+                            echo "<li><a href='index.php?page=$i'> $i </a><li>";
                         }
                     }
                     if ($total_page >= 2 && $page != $total_page) {
                         $new_page = $page + 1;
-                        echo "<li> <a href='board_list.php?page=$new_page'>다음 ▶</a> </li>";
+                        echo "<li> <a href='index.php?page=$new_page'>다음 ▶</a> </li>";
                     } else
                         echo "<li>&nbsp;</li>";
                     ?>
                 </ul>
-        <a href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/game_review/review_insert_form.php">리뷰작성하기</a>
+                <ul id="review_insert"><li><a href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/game_review/review_insert_form.php">리뷰작성하기</a></li></ul>
+        
     </div>
     <footer>
 
