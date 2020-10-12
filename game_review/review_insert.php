@@ -39,7 +39,6 @@ $result = mysqli_query($con, $sql) or die("DB 오류 : Error.Code = 2".mysqli_er
 
 if(mysqli_num_rows($result) != 0) $result_array = mysqli_fetch_array($result);
 $resultNum = $result_array['num'];
-echo "숫자다 : ".$resultNum;
 
 // 별점 DB 추가
 $sql = "insert into game_review_point(review_num,story, graphic, time, difficulty)";
@@ -65,7 +64,7 @@ mysqli_close($con);
 // 완료후 돌아가기
 echo "
 	   <script>
-//	    location.href = 'index.php';
+	    location.href = 'index.php';
 	   </script>
 	";
 ?>
