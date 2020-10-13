@@ -1,0 +1,94 @@
+@import url("https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap");
+body{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+}
+/* 배경화면만 흐르기 하기 위한 가상요소 생성 */
+body::after{
+    width: 100%;
+    height: 100%;
+    content: "";
+    background-image: url("./back_img/back2.jpg");
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    opacity: 0.5;
+}
+#form_container{
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+#form_container ul{
+    margin-top: 20px;
+    list-style: none;
+}
+h1{
+    text-align: center;
+    margin-bottom: 50px;
+}
+label, span{
+    font: 200 20px/1.5 Do Hyeon, Times New Roman, serif;
+}
+#insert_form{
+    background-color: white;
+    border-radius: 10px;
+    padding: 40px;
+}
+.subject{
+    font: 200 30px/1.5 Do Hyeon, Times New Roman, serif;
+}
+input[type="text"], input[type="number"]{
+    height: 30px;
+    width: 200px;
+}
+#label_dev, #label_pri{
+    margin-left: 100px;
+}
+#div_b{
+    text-align: right;
+}
+/* 버튼 css */
+button{
+    background:#89cebc;
+    color:#fff;
+    border:none;
+    border-radius: 10px;
+    position:relative;
+    height:50px;
+    width: 200px;
+    font-size:17px;
+    padding:0 2px;
+    cursor:pointer;
+    transition:800ms ease all;
+    outline:none;
+  }
+ button:hover{
+    background:#fff;
+    color:#89cebc;
+  }
+ button:before,button:after{
+    content:'';
+    position:absolute;
+    top:0;
+    right:0;
+    height:2px;
+    width:0;
+    background: #89cebc;
+    transition:400ms ease all;
+  }
+ button:after{
+    right:inherit;
+    top:inherit;
+    left:0;
+    bottom:0;
+  }
+  button:hover:before, button:hover:after{
+    width:100%;
+    transition:800ms ease all;
+  }

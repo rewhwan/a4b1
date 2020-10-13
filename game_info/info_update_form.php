@@ -58,23 +58,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/common/css/common.css">
-    <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/game_info/css/insert_form.css">
+    <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/game_info/css/game_info_form.css">
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="http://<?=$_SERVER['HTTP_HOST']?>/a4b1/common/js/common.js?ver=1"></script>
     <script src="./js/info.js"></script>
     
 </head>
 
-<body>
+<body id="body">
     <header>
         <?php include $_SERVER['DOCUMENT_ROOT']."/a4b1/common/lib/header.php";?>
         
     </header>
+    <div id="form_container">
     <!-- 파일을 보내기위한 인코딩 방식 설정 -->
     <form action="game_info_update.php?num=<?=$num?>" method="post" enctype="multipart/form-data" id="insert_form">
+    <h1>게임 정보 수정하기</h1>
         <ul>
             <li>
-                <label for="title_image">타이틀 이미지</label>
+                <label for="title_image" class="subject">타이틀 이미지</label>
                 <input type="file" name="title_image" id="title_image" accept="image/*" onchange="file_check(this,'title_image')">
                 <label for="file">첨부파일</label>
                 <span id="file"><?=$image?></span>
@@ -82,15 +84,16 @@
 
             <br>
             <li>
-                <label for="name">게임 명</label>
+                <label for="name" class="subject">게임 명</label>
                 <input type="text" name="name" id="name" value="<?=$name?>">
-                <label for="developer">개발사</label>
+                <label for="developer" class="subject">개발사</label>
                 <input type="text" name="developer" id="developer" value="<?=$developer?>">
             </li>
             
             <br>
             <li>
-                <label for="platform">플랫폼</label>
+                <label for="platform" class="subject">플랫폼</label>
+                <br>
                 <label>PS3<input type="checkbox" name="platform[]" value="PS3" id="PS3"></label>
                 <label>PS4<input type="checkbox" name="platform[]" value="PS4" id="PS4"></label>
                 <label>PS5<input type="checkbox" name="platform[]" value="PS5" id="PS5"></label>
@@ -102,27 +105,28 @@
 
             <br>
             <li>
-                <label for="genre">장르</label>
+                <label for="genre" class="subject">장르</label>
             </li>
             <li>
                 <label>액션<input type="checkbox" name="genre[]" value="액션" id="act"></label>
                 <label>공포<input type="checkbox" name="genre[]" value="공포" id="fear"></label>
                 <label>어드밴처<input type="checkbox" name="genre[]" value="어드밴처" id="adv"></label>
                 <label>롤플레잉<input type="checkbox" name="genre[]" value="롤플레잉" id="roll"></label>
-                <label>스포츠<input type="checkbox" name="genre[]" value="스포츠" id="sport"></label>
             </li>
             <li>
+                <label>스포츠<input type="checkbox" name="genre[]" value="스포츠" id="sport"></label>
                 <label>레이싱<input type="checkbox" name="genre[]" value="레이싱" id="rac"></label>
                 <label>음악<input type="checkbox" name="genre[]" value="음악" id="music"></label>
                 <label>퍼즐<input type="checkbox" name="genre[]" value="퍼즐" id="puzzle"></label>
             </li>
             <script>genre_check('<?=$genre?>')</script>
             <li>
-                <label for="open_day">출시일자</label>
+                <label for="open_day" class="subject">출시일자</label>
+                <br>
                 <input type="date" name="open_day" id="open_day" value="<?=$release_date?>">
             </li>
             <li>
-                <span>심의등급</span>
+                <span class="subject">심의등급</span>
                 <br>
                 
                 <label for="all">전체이용가<input type="radio" name="grade" id="all" value="전체이용가"></label>
@@ -136,36 +140,41 @@
 
             <br>
             <li>
-                <label for="circulation">유통사</label>
+                <label for="circulation" class="subject">유통사</label>
                 <input type="text" name="circulation" id="circulation" value="<?=$circulation?>">
-                
-                <label for="service_kor">한국어 지원 <?=$service_kor?></label>
-                <label for="service_kor">지원 <input type="radio" name="service_kor" id="service_kor1" value="1"></label>
-                <label for="service_kor">미 지원 <input type="radio" name="service_kor" id="service_kor0" value="0"></label>
-                <script>service_kor_check('<?=$service_kor?>')</script>
-                <label for="price">가격</label>
+                <label for="price" class="subject">가격</label>
                 <input type="number" name="price" id="price" value="<?=$price?>">
             </li>
             <br>
             <li>
-                <label for="homepage">공식 홈페이지</label>
+                <label for="service_kor" class="subject">한국어 지원</label>
+                <label for="service_kor">지원 <input type="radio" name="service_kor" id="service_kor1" value="1"></label>
+                <label for="service_kor">미 지원 <input type="radio" name="service_kor" id="service_kor0" value="0"></label>
+                <script>service_kor_check('<?=$service_kor?>')</script>
+            </li>
+            <br>
+            <li>
+                <label for="homepage" class="subject">공식 홈페이지</label>
                 <input type="text" name="homepage" id="homepage" value="<?=$homepage?>">
             </li>
             <br>
             <li>
-                <label for="content">게임 개요</label>
+                <label for="content" class="subject">게임 개요</label>
                 <br>
                 <textarea name="content" id="content" cols="70" rows="10"><?=$content?></textarea>
             </li>
             <li>
-                <label for="screen_shot">게임 내 스크린 샷</label>
+                <label for="screen_shot" class="subject">게임 내 스크린 샷</label>
                 <input type="file" name="screen_shot[]" id="screen_shot" multiple accept="image/*" onchange="file_check(this,'screen_shot')">
             </li>
         </ul>
+        <?php if(intval($_SESSION['admin']) >= 1){?>
+            <div id="div_b">
+                <button onclick="check_input()" type="button">수정하기</button>
+            </div>
+        <?php } ?>
     </form>
-    <?php if(intval($_SESSION['admin']) >= 1){?>
-    <button onclick="check_input()">수정하기</button>
-    <?php } ?>
+    </div>
 </body>
 
 </html>
