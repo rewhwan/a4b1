@@ -28,8 +28,10 @@
             $db->sessionStart();
             $dbcon = $db->connector();
 
-            $sql = "select * from notice where num = $num";
-            $result = mysqli_query($dbcon,$sql);
+            if(isset($_GET['urgent']) && $_GET['urgent'] == 't') $sql = "SELECT * FROM notice_urgent WHERE num ={$num}";
+            else $sql = "SELECT * FROM notice WHERE num = {$num}";
+
+            $result = mysqli_query($dbcon,$sql) or die("쿼리문 오류1 : " . mysqli_error($dbcon));;
             $row = mysqli_fetch_array($result);
 
             $create_by = $row["created_by"];
@@ -44,6 +46,11 @@
         <form name="notice_form" method="post" action="dmi_notice.php" enctype="multipart/form-data">
             <ul id="notice_form">
                 <li>
+                    <?php
+                        if(isset($_GET['urgent']) && $_GET['urgent'] == 't') {
+                    ?>
+                    <input type="hidden" name="urgent" value="t">
+                    <?php } ?>
                     <input type="hidden" name="mode" value="modify">
                     <input type="hidden" name="num" value="<?=$num?>">
                     <input type="hidden" name="page" value="<?=$page?>">
