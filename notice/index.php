@@ -112,6 +112,15 @@ $dbcon = $db->connector();
                     }
                     $number++;
                 }
+
+                if($total_record == 0 && $total_record_urgent_notice == 0) {
+                ?>
+                    <li id="no_record">
+                        <p>등록된 공지사항이 없습니다.</p>
+                        <p>공지사항을 먼저 등록해주세요.</p>
+                    </li>
+                <?php
+                }
                 mysqli_close($dbcon);
                 ?>
             </ul>

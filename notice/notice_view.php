@@ -81,7 +81,11 @@
                 if (isset($_SESSION['admin'])&&$_SESSION['admin'] >= 1) {
                     ?>
                     <li>
-                        <button onclick="location.href='notice_modify_form.php?num=<?= $num ?>&page=<?= $page ?>'">수정
+                        <?php if(isset($_GET["urgent"]) && $urgent == 't') { ?>
+                            <button onclick="location.href='notice_modify_form.php?num=<?= $num ?>&page=<?= $page ?>&urgent=t'">수정
+                        <?php }else { ?>
+                            <button onclick="location.href='notice_modify_form.php?num=<?= $num ?>&page=<?= $page ?>'">수정
+                        <?php } ?>
                         </button>
                     </li>
                     <form name="notice_form" method="post" action="dmi_notice.php"
@@ -89,6 +93,9 @@
                         <li>
                             <button>삭제</button>
                             <input type="hidden" name="mode" value="delete">
+                            <?php if(isset($_GET["urgent"]) && $urgent == 't') { ?>
+                                <input type="hidden" name="urgent" value="t">
+                            <?php } ?>
                             <input type="hidden" name="num" value="<?= $num ?>">
                             <input type="hidden" name="page" value="<?= $page ?>">
                         </li>
