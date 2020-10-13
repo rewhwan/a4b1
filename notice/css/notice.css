@@ -14,18 +14,33 @@
 #notice_box .buttons li { display: inline; }
 #notice_box .buttons button { padding: 5px 10px; cursor: pointer; }
 #notice_box .buttons form { display: inline-block; }
+
 /* 게시판 목록보기(index.php) */
 #notice_list {list-style: none;}
 #notice_list li { padding: 10px 0; border-bottom: solid 1px #dddddd; }
-#notice_list span { display: inline-block; text-align: center; font-size: 15px;}
+#notice_list span { display: inline-block; text-align: center; vertical-align: middle; font-size: 15px;}
 #notice_list .list1 { width: 80px;}
 #notice_list .list2 { width: 330px; text-align: left; }
 #notice_list .list3 { width: 100px; }
 #notice_list .list4 { width: 40px; }
 #notice_list .list5 { width: 180px; }
 #notice_list .list6 { width: 40px; }
+
+#notice_list .list4 img {vertical-align: middle;}
+
 #page_num {	text-align: center;	margin: 30px 0 }
 #page_num li { display: inline; }
+#page_num li  a:link { color: black; text-decoration: none;}
+#page_num li a:visited { color: black; text-decoration: none;}
+#page_num li a:hover { color: blue; text-decoration: underline;}
+
+.urgent_notice {background-color: #e6e6e6;}
+.urgent_notice .list1 {color: red;}
+
+#notice_list li .list2 a:link { color: black; text-decoration: none;}
+#notice_list li .list2 a:visited { color: black; text-decoration: none;}
+#notice_list li .list2 a:hover { color: blue; text-decoration: underline;}
+
 /* 게시판 내용보기(notice_view.php) */
 #notice_box { width: 800px; margin: 0 auto; }
 #notice_box .title { margin-top: 30px; padding: 10px; border-bottom: solid 2px #516e7f; font-size: 20px; }

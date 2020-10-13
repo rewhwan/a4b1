@@ -28,8 +28,11 @@
             <?php
             $num = $_GET["num"];
             $page = $_GET["page"];
+            $urgent = $_GET["urgent"];
 
-            $sql = "select * from notice where num=$num";
+            if(isset($_GET["urgent"]) && $urgent == 't') $sql = "select * from notice_urgent where num={$num}";
+            else $sql = "select * from notice where num=$num";
+
             $result = mysqli_query($dbcon, $sql);
 
             $row = mysqli_fetch_array($result);
@@ -46,7 +49,9 @@
             $content = str_replace("\n", "<br>", $content);
 
             $new_hit = $hit + 1;
-            $sql = "update notice set hit=$new_hit where num='$num'";
+
+            if(isset($_GET["urgent"]) && $urgent == 't') $sql = "update notice_urgent set hit=$new_hit where num='$num'";
+            else $sql = "update notice set hit=$new_hit where num='$num'";
             mysqli_query($dbcon, $sql);
             ?>
             <ul id="view_content">

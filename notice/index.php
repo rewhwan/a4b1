@@ -16,7 +16,7 @@ $dbcon = $db->connector();
     <script src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/common/js/common.js?ver=1"></script>
     <script src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/common/js/common.js?ver=1"></script>
 </head>
-<body>
+<body id="body">
     <header>
         <?php include $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/header.php"; ?>
     </header>
@@ -41,33 +41,39 @@ $dbcon = $db->connector();
                 else $page = 1;
 
                 //현재 날짜에서 3일 이내의 긴급 공지를 가져옴 오름차순
-                $sql = "SELECT * FROM notice_urgent WHERE date(now())-date(created_at) <=3 order by created_at DESC";
-                $result = mysqli_query($dbcon, $sql);
+                $sql = "SELECT num,title,content,file_name,file_type,file_copied,hit,created_by,DATE_FORMAT(created_at,'%Y-%m-%d')AS created_at FROM notice_urgent WHERE date(now())-date(created_at) <=3 order by created_at DESC;";
+                $result_urgent = mysqli_query($dbcon, $sql);
 
                 //쿼리문 결과값을 변수로 저장
-                $total_record_urgent_notice = mysqli_num_rows($result);
-                $urgent_notice_array = mysqli_fetch_all($result);
+                $total_record_urgent_notice = mysqli_num_rows($result_urgent);
 
-                $sql = "select * from notice order by num desc";
+                $sql = "select num,title,content,file_name,file_type,file_copied,hit,created_by,DATE_FORMAT(created_at,'%Y-%m-%d') AS created_at from notice order by num desc;";
                 $result = mysqli_query($dbcon, $sql);
                 $total_record = mysqli_num_rows($result);
 
                 $scale = 10;
 
-                if ($total_record % $scale == 0)
-                    $total_page = floor($total_record / $scale);
+                if (($total_record+$total_record_urgent_notice) % $scale == 0)
+                    $total_page = floor(($total_record+$total_record_urgent_notice) / $scale);
                 else
-                    $total_page = floor($total_record / $scale) + 1;
+                    $total_page = floor(($total_record+$total_record_urgent_notice) / $scale) + 1;
 
                 $start = ($page - 1) * $scale;
 
                 $number = $start + 1;
 
-                for ($i = $start; $i < $start + $scale && $i < $total_record; $i++) {
-                    mysqli_data_seek($result, $i);
+                for ($i = $start; $i < $start + $scale && $i < $total_record+$total_record_urgent_notice; $i++) {
+                    if($i>=$total_record_urgent_notice){
+                        //공지사항 데이터를 불러온다
+                        mysqli_data_seek($result, $i-$total_record_urgent_notice);
+                        $row = mysqli_fetch_array($result);
+                    }else {
+                        //긴급 공지사항 데이터를 불러온다
+                        mysqli_data_seek($result_urgent, $i);
+                        $row = mysqli_fetch_array($result_urgent);
+                    }
 
-                    $row = mysqli_fetch_array($result);
-
+                    /*로우 디자인에서 보여줄 내용 변수 설정*/
                     $num = $row["num"];
                     $create_by = $row["created_by"];
                     $title = $row["title"];
@@ -77,20 +83,33 @@ $dbcon = $db->connector();
                     $file_type = $row["file_type"];
                     $hit = $row["hit"];
                     if ($row["file_name"])
-                        $file_image = "<img src='./image/file.gif'>";
+                        $file_image = "<img src='./image/file.png'>";
                     else
                         $file_image = " ";
+
+                    if($i<$total_record_urgent_notice) {
                     ?>
-                    <li>
-                        <span class="list1"><?= $number ?></span>
+                    <li class="urgent_notice">
+                        <span class="list1">긴급</span>
                         <span class="list2"><a
-                                    href="notice_view.php?num=<?= $num ?>&page=<?= $page ?>"><?= $title ?></a></span>
+                                    href="notice_view.php?num=<?= $num ?>&page=<?= $page ?>&urgent=t"><?= $title ?></a></span>
                         <span class="list3"><?= $create_by ?></span>
                         <span class="list4"><?= $file_image ?></span>
-                        <span class="lust5"><?= $create_at ?></span>
+                        <span class="list5"><?= $create_at ?></span>
+                        <span class="list6"><?= $hit ?></span>
+                    </li>
+                    <?php }else{ ?>
+                    <li>
+                        <span class="list1"><?= $number-$total_record_urgent_notice ?></span>
+                        <span class="list2"><a
+                                    href="notice_view.php?num=<?= $num ?>&page=<?= $page ?>&urgent=f"><?= $title ?></a></span>
+                        <span class="list3"><?= $create_by ?></span>
+                        <span class="list4"><?= $file_image ?></span>
+                        <span class="list5"><?= $create_at ?></span>
                         <span class="list6"><?= $hit ?></span>
                     </li>
                     <?php
+                    }
                     $number++;
                 }
                 mysqli_close($dbcon);
