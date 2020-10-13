@@ -30,17 +30,20 @@ if (isset($_POST['mode']) && $_POST['mode'] == "insert") {
 
     $created_by = $_SESSION['id'];
 
-    if (isset($_FILES['upfile']) && $_FILES['upfile']['error'] != UPLOAD_ERR_NO_FILE) {
-        $copied_file_name = file_upload("upfile", "./data/");
-        $sql = "insert into notice values(null,'$title','$content','$file_name','$file_type','$copied_file_name',0,'$created_by',now())";
-    } else $sql = "insert into notice values(null,'$title','$content',null,null,null,0,'$created_by',now())";
-
-    if (isset($_POST['cb'])) {
-        $sql = "insert into notice_urgent value(null,'$title','$content','$file_name','$file_type','$copied_file_name',0,
-'$created_by',now())";
-    } else {
-        $sql = "insert into notice values(null,'$title','$content','$file_name','$file_type','$copied_file_name',0,'$created_by',now())";
+    //긴급공지사항인지 여부 분기점
+    if(isset($_POST['cb'])) {
+        //파일을 같이 등록했는지 여부 분기점
+        if (isset($_FILES['upfile']) && $_FILES['upfile']['error'] != UPLOAD_ERR_NO_FILE) {
+            $copied_file_name = file_upload("upfile", "./data/");
+            $sql = "insert into notice_urgent values(null,'$title','$content','$file_name','$file_type','$copied_file_name',0,'$created_by',now())";
+        }else $sql = "insert into notice_urgent values(null,'$title','$content',null,null,null,0,'$created_by',now())";
+    }else {
+        if (isset($_FILES['upfile']) && $_FILES['upfile']['error'] != UPLOAD_ERR_NO_FILE) {
+            $copied_file_name = file_upload("upfile", "./data/");
+            $sql = "insert into notice values(null,'$title','$content','$file_name','$file_type','$copied_file_name',0,'$created_by',now())";
+        }else $sql = "insert into notice values(null,'$title','$content',null,null,null,0,'$created_by',now())";
     }
+
     mysqli_query($dbcon, $sql) or die("쿼리문 오류1 : " . mysqli_error($dbcon));
 
     echo "<script>
@@ -117,5 +120,5 @@ if (isset($_POST['mode']) && $_POST['mode'] == "delete") {
 
     echo "<script>location.href = 'index.php';</script>";
     exit;
-} 
+}
 ?>
