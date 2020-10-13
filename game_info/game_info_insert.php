@@ -36,39 +36,6 @@ $content = test_input($content);
 //업로드 한 사람 이름 등록
 $create_by = $_SESSION['id'];
 
-//파일 예외 처리
-$upload_error1 = $_FILES['title_image']['error'];
-$upload_error2 = $_FILES['screen_shot']['error'];
-if($upload_error1 || $upload_error2){
-    if($upload_error1){
-        $upload_error = $upload_error1;
-    }else{
-        $upload_error = $upload_error2;
-    }
-    switch($upload_error){
-        case UPLOAD_ERR_OK: $message ="업로드 성공적";
-        break;
-        case UPLOAD_ERR_INI_SIZE : $message = "php.ini에 설정된 최대 파일크기 초과";
-        break;
-        case UPLOAD_ERR_FORM_SIZE : $message = "HTML 폼에 설정된 최대 파일크기 초과";
-        break;
-        case UPLOAD_ERR_PARTIAL : $message = "파일의 일부만 업로드됌";
-        break;
-        case UPLOAD_ERR_NO_FILE : $message = "업로드할 파일이 없음";
-        break;
-        case UPLOAD_ERR_NO_TMP_DIR : $message = "웹서버에 임시폴더가 없음";
-        break;
-        case UPLOAD_ERR_CANT_WRITE : $message = "웹서버에 파일을 쓸 수 없음";
-        break;
-        case UPLOAD_ERR_CANT_WRITE : $message = "웹서버에 파일을 쓸 수 없음";
-        break;
-        case UPLOAD_ERR_CANT_WRITE : $message = "PHP 확장기능에 의한 업로드 중단";
-        break;
-        default: $message="알 수 없는 오류";
-        break;
-    }
-    alert_back('4. 업로드 에러 이유: '.$message);
-}
 //파일업로드 함수
 if(isset($_FILES['title_image']) && !$_FILES['title_image']['error']){
     $copied_file_name=file_upload("title_image","./img/title/");
@@ -79,16 +46,6 @@ if(isset($_FILES['title_image']) && !$_FILES['title_image']['error']){
 }
 //쿼리문 실행.
 mysqli_query($dbcon,$sql) or die("쿼리문 오류1 : ".mysqli_error($dbcon));
-//등록된사용자가 최근 입력한 이미지게시판을 보여주기 위하여 num 찾아서 전달하기 위함이다.
-// $sql = "SELECT num from `game_info` where id ='$create_by' order by num desc limit 1;";
-// $result = mysqli_query($dbcon, $sql);
-// if (!$result) {
-//     alert_back('Error: 6' . mysqli_error($dbcon));
-//     // die('Error: ' . mysqli_error($conn));
-// }
-// $row = mysqli_fetch_array($result);
-// $num = $row['num'];
-
 $sql = "SELECT `num` from `game_info` where `name` ='$name'";
 $result = mysqli_query($dbcon, $sql) or die("쿼리문 오류2 : ".mysqli_error($dbcon));
 $num = "";

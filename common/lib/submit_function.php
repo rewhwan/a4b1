@@ -33,7 +33,7 @@ function file_upload($file_name, $upload_location)
     $upload_size = $_FILES["$file_name"]['size'];
 
     //오류 파악
-    if($upload_error){
+    if($upload_error!=0){
         switch($upload_error){
             case UPLOAD_ERR_OK: $message ="업로드 성공적";
             break;
@@ -42,8 +42,6 @@ function file_upload($file_name, $upload_location)
             case UPLOAD_ERR_FORM_SIZE : $message = "HTML 폼에 설정된 최대 파일크기 초과";
             break;
             case UPLOAD_ERR_PARTIAL : $message = "파일의 일부만 업로드됌";
-            break;
-            case UPLOAD_ERR_NO_FILE : $message = "업로드할 파일이 없음";
             break;
             case UPLOAD_ERR_NO_TMP_DIR : $message = "웹서버에 임시폴더가 없음";
             break;
@@ -94,8 +92,8 @@ function file_upload($file_name, $upload_location)
     }
 
     //업로드된 파일사이즈(2mb)를 체크해서 넘어버리면 돌려보낸다.
-    if ($upload_size > 2000000) {
-        alert_back('2-1. 이미지파일사이즈가 2MB이상입니다.');
+    if ($upload_size > 200000000) {
+        alert_back('2-1. 이미지파일사이즈가 200MB이상입니다.');
     }
 
     chmod($upload_tmp_name,0777);
@@ -123,25 +121,19 @@ function file_upload_multi($file_name, $upload_location)
         $upload_size = $file_array['size'][$i];
 
         //오류 파악
-        if($upload_error){
+        if($upload_error != 0){
             switch($upload_error){
-                case UPLOAD_ERR_OK: $message ="업로드 성공적";
-                break;
                 case UPLOAD_ERR_INI_SIZE : $message = "php.ini에 설정된 최대 파일크기 초과";
                 break;
                 case UPLOAD_ERR_FORM_SIZE : $message = "HTML 폼에 설정된 최대 파일크기 초과";
                 break;
                 case UPLOAD_ERR_PARTIAL : $message = "파일의 일부만 업로드됌";
                 break;
-                case UPLOAD_ERR_NO_FILE : $message = "업로드할 파일이 없음";
-                break;
                 case UPLOAD_ERR_NO_TMP_DIR : $message = "웹서버에 임시폴더가 없음";
                 break;
                 case UPLOAD_ERR_CANT_WRITE : $message = "웹서버에 파일을 쓸 수 없음";
                 break;
-                case UPLOAD_ERR_CANT_WRITE : $message = "웹서버에 파일을 쓸 수 없음";
-                break;
-                case UPLOAD_ERR_CANT_WRITE : $message = "PHP 확장기능에 의한 업로드 중단";
+                case UPLOAD_ERR_EXTENSION : $message = "PHP 확장기능에 의한 업로드 중단";
                 break;
                 default: $message="알 수 없는 오류";
                 break;
@@ -184,8 +176,8 @@ function file_upload_multi($file_name, $upload_location)
         }
 
         //업로드된 파일사이즈(2mb)를 체크해서 넘어버리면 돌려보낸다.
-        if ($upload_size > 2000000) {
-            alert_back('2-2. 이미지파일사이즈가 2MB이상입니다.');
+        if ($upload_size > 200000000) {
+            alert_back('2-2. 이미지파일사이즈가 200MB이상입니다.');
         }
 
         //임시저장소에 있는 파일을 서버에 지정한 위치로 이동한다.

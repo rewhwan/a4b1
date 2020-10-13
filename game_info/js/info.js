@@ -96,10 +96,55 @@ function file_check(file,id) {
         if (!upload) return false;
     }
 }
+//화면 출력시 댓글을 가져오는 함수
+function select_ripple(num,page){
+    $.ajax({
+        url : "./select_ripple.php?num="+num+"&page="+page,
+        type : "POST",
+        data : {num : num, page:page},
+        datatype : 'json',
+        success : function(data){
+            var json_data = JSON.parse(data);
+
+            if(json_data.isSuccess[0] == 1){
+                $("#ripple_form").empty();
+                //console.log(json_data.isSuccess[3]);
+                for(i=0;i<json_data.isSuccess[3] && i<json_data.isSuccess[2]; i++){
+                $("#ripple_form").append("<li id="+json_data.data[i]['num']
+                +"><h3>작성자 : "+json_data.data[i]['created_by']+"</h3><p>작성일자 : "
+                +json_data.data[i]['created_at']+"</p><p>"+json_data.data[i]['content']
+                +"</p><p><input type='hidden' name='ripples_num' value="
+                +json_data.data[i]['num']+"></p><?php if($_SESSION['id'] == $ripple_create_by){?><button onclick=ripple_delete("
+                +json_data.data[i]['num']+")>삭        제</button></li><?php}?>");
+                }
+
+                length = parseInt(json_data.isSuccess[1]);
+                $("#page_num").empty();
+                for(e=1; e<=length; e++){
+                    //console.log(e);
+                    if (page == e) {
+                        $("#page_num").append("<a href='javascript:void(0);'>&nbsp;"+e+"&nbsp;</a>");
+                    } else {
+                        $("#page_num").append("<a href='javascript:void(0);' onclick='select_ripple("+num+",0+"+e+")'>&nbsp;"+e+"&nbsp;</a>");
+                    }
+                }
+            }else{
+                //alert("댓글로딩 오류");
+                //console.log("댓글로딩 오류 또는 댓글이 없음");
+                $("#ripple_form").append("<li>등록된 댓글이 없습니다.</li>");
+                return false;
+            }
+        },
+        error : function(XMLHttpRequest,textStatus, errorThrown){
+            alert("통신실패");
+            alert("code:"+XMLHttpRequest.textStatus+"\n"+"message:"+XMLHttpRequest.responseText+"\n"+"error:"+errorThrown);
+        }
+    });
+}
 //댓글을 추가하는 함수
 function ripple_insert(num){
     $name = $("#userid").val();
-    $content = $("#content").val();
+    $content = $("#ripple_content").val();
     $count = $content.length;
     $num = num;
     if(!$name){
@@ -120,15 +165,16 @@ function ripple_insert(num){
         success : function(data){
             var json_data = JSON.parse(data)
             if(json_data.isSuccess == 1){
-                $("#ripple_form").prepend("<li id="+json_data.data.num
-                +"><h3>작성자 : "+json_data.data.created_by+"</h3><p>작성일자 : "
-                +json_data.data.created_at+"</p><p>"+json_data.data.content
-                +"</p><p><input type='hidden' name='ripples_num' value="
-                +json_data.data.num+"></p><?php if($_SESSION['id'] == $ripple_create_by){?><button onclick=ripple_delete("
-                +json_data.data.num+")>삭        제</button></li><?php}?>");
+                // $("#ripple_form").prepend("<li id="+json_data.data.num
+                // +"><h3>작성자 : "+json_data.data.created_by+"</h3><p>작성일자 : "
+                // +json_data.data.created_at+"</p><p>"+json_data.data.content
+                // +"</p><p><input type='hidden' name='ripples_num' value="
+                // +json_data.data.num+"></p><?php if($_SESSION['id'] == $ripple_create_by){?><button onclick=ripple_delete("
+                // +json_data.data.num+")>삭        제</button></li><?php}?>");
                 
-                var offsetTOP = $("#"+json_data.data.num).offset().top;
-                $('body').animate({scrollTop : offsetTOP}, 400);
+                // var offsetTOP = $("#"+json_data.data.num).offset().top;
+                // $('body').animate({scrollTop : offsetTOP}, 400);
+                select_ripple(num,1);
                 $("#content").val("");
             }else{
                 alert("댓글달기 오류");
@@ -169,51 +215,6 @@ function ripple_delete(num){
             
         },
         
-        error : function(XMLHttpRequest,textStatus, errorThrown){
-            alert("통신실패");
-            alert("code:"+XMLHttpRequest.textStatus+"\n"+"message:"+XMLHttpRequest.responseText+"\n"+"error:"+errorThrown);
-        }
-    });
-}
-//화면 출력시 댓글을 가져오는 함수
-function select_ripple(num,page){
-    $.ajax({
-        url : "./select_ripple.php?num="+num+"&page="+page,
-        type : "POST",
-        data : {num : num, page:page},
-        datatype : 'json',
-        success : function(data){
-            var json_data = JSON.parse(data);
-
-            if(json_data.isSuccess[0] == 1){
-                $("#ripple_form").empty();
-                //console.log(json_data.isSuccess[3]);
-                for(i=0;i<json_data.isSuccess[3] && i<json_data.isSuccess[2]; i++){
-                $("#ripple_form").append("<li id="+json_data.data[i]['num']
-                +"><h3>작성자 : "+json_data.data[i]['created_by']+"</h3><p>작성일자 : "
-                +json_data.data[i]['created_at']+"</p><p>"+json_data.data[i]['content']
-                +"</p><p><input type='hidden' name='ripples_num' value="
-                +json_data.data[i]['num']+"></p><?php if($_SESSION['id'] == $ripple_create_by){?><button onclick=ripple_delete("
-                +json_data.data[i]['num']+")>삭        제</button></li><?php}?>");
-                }
-
-                length = parseInt(json_data.isSuccess[1]);
-                $("#page_num").empty();
-                for(e=1; e<=length; e++){
-                    //console.log(e);
-                    // if (page == e) {
-                    //     $("#page_num").append("<a href='javascript:void(0);'>&nbsp;"+e+"&nbsp;</a>");
-                    // } else {
-                        $("#page_num").append("<a href='javascript:void(0);' onclick='select_ripple("+num+",0+"+e+")'>&nbsp;"+e+"&nbsp;</a>");
-                    // }
-                }
-            }else{
-                //alert("댓글로딩 오류");
-                console.log("댓글로딩 오류 또는 댓글이 없음");
-                $("#page_num").append("<li>등록된 댓글이 없습니다.</li>");
-                return false;
-            }
-        },
         error : function(XMLHttpRequest,textStatus, errorThrown){
             alert("통신실패");
             alert("code:"+XMLHttpRequest.textStatus+"\n"+"message:"+XMLHttpRequest.responseText+"\n"+"error:"+errorThrown);

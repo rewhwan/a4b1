@@ -55,31 +55,12 @@ while ($row2 = mysqli_fetch_array($result)) {
 $sql = "SELECT * from `game_info_files` where `info_num` = $num";
 $result = mysqli_query($dbcon, $sql) or die("list select error5 : " . mysqli_error($dbcon));
 while ($row3 = mysqli_fetch_array($result)) {
-    if (isset($platform)) {
+    if (isset($screen)) {
         $screen = $screen . "," . $row3['name'];
     } else {
         $screen = $row3['name'];
     }
 }
-// //상수 지정
-// define('SCALE', 5);
-
-// //전체 레코드수를 가져와 총 페이지 계산
-// $sql = "SELECT * from `game_info_ripples` where `info_num` = $num order by `num` desc";
-// $result = mysqli_query($dbcon, $sql) or die("list select error1 : " . mysqli_error($dbcon));
-// $total_record = mysqli_num_rows($result);
-// //딱 맞아 떨어지면 그대로 아니면 올림수로 계산
-// $total_page = ($total_record % SCALE == 0) ? ($total_record / SCALE) : (ceil($total_record / SCALE));
-
-// //2.페이지가 없으면 디폴트 페이지 1페이지
-// if (empty($_GET['page'])) {
-//     $page = 1;
-// } else {
-//     $page = $_GET['page'];
-// }
-
-// $start = ($page - 1) * SCALE;
-// $number = $total_record - $start;
 ?>
 <!DOCTYPE html>
 <html lang="ko">
@@ -88,7 +69,7 @@ while ($row3 = mysqli_fetch_array($result)) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/common/css/common.css?ver=1">
-    <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/game_info/css/insert_form.css">
+    <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/game_info/css/game_info_view.css">
     <script src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/common/js/common.js?ver=1"></script>
     <script src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/common/js/jquery/jquery-3.5.1.min.js?ver=1"></script>
     <script src="./js/info.js"></script>
@@ -100,12 +81,24 @@ while ($row3 = mysqli_fetch_array($result)) {
     <header>
         <?php include $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/header.php"; ?>
     </header>
+    <div id="container">
     <div id="image_container">
+        <?php
+        if($image){
+        ?>
         <img src="./img/title/<?= $image ?>" alt="">
+        <?php
+        }else{
+        ?>
+        <img src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/game_review/data/default.png">
+        <?php
+        }
+        ?>
     </div>
     <div id="game_info_view">
         <div>
             <h1>게임명 : <?= $name ?></h1>
+            
             <p>지원 플랫폼 : <?= $platform ?></p>
             <p>개발사 : <?= $developer ?></p>
         </div>
@@ -127,22 +120,30 @@ while ($row3 = mysqli_fetch_array($result)) {
     <div id="game_content">
         <p id="content"><?= $content ?></p>
     </div>
+    </div>
     <div id="screen_shot_show">
-        <ul>
-            <li>
-                <?php
-                if(isset($screen)){
-                    $screen_shot = explode(",",$screen);
-                    $count= count($screen_shot);
-                    for($i=0; $i<$count; $i++){
-                        $screen_image= $screen_shot[$i];
+            <?php
+            if($screen != null){
                 ?>
-                    <img src="./img/screen/<?=$screen_image?>" alt="">
+        <div id="ingame">
+            게임 내 사진
+        </div>
+        <ul>
+        <?php
+                $screen_shot = explode(",",$screen);
+                $count= count($screen_shot);
+                for($i=0; $i<$count; $i++){
+                    $screen_image= $screen_shot[$i];
+                    //echo"<script>console.log($screen_shot)</script>";
+                    //echo"<script>console.log('$screen_image')</script>";
+                    echo"<li>";
+                ?>
+                    <img src='./img/screen/<?=$screen_image?>' alt=''>
                 <?php
-                    }
-                }    
-                ?> 
-            </li>
+                echo"</li>";
+                }
+            }    
+            ?> 
         </ul>
     </div>
     
@@ -152,7 +153,7 @@ while ($row3 = mysqli_fetch_array($result)) {
             <br>
             <input type="hidden" name="userid" id="userid" value="<?= $_SESSION['id'] ?>">
             <!-- <input type="hidden" name="num" id="num" value=""> -->
-            <textarea name="content" id="content" cols="70" rows="10"></textarea>
+            <textarea name="content" id="ripple_content" cols="70" rows="10"></textarea>
             <button onclick="ripple_insert(<?= $num ?>)">댓글달기</button>
         </div>
     </div>
@@ -165,7 +166,7 @@ while ($row3 = mysqli_fetch_array($result)) {
                 <div id="page_num">
                 </div>  
             </div>
-            <div>
+            <div id="buttons">
                 <?php
                 if(isset($_SESSION['id']) && ($_SESSION['id'] == "admin" || intval($_SESSION['admin']) >= 1)){
                 ?>
@@ -174,11 +175,11 @@ while ($row3 = mysqli_fetch_array($result)) {
                 <?php
                 }
                 ?>
+                <button onclick="history.go(-1)">뒤로 가기</button>
             </div>
         </div>
     </div>
     
-    <button onclick="history.go(-1)">뒤로 가기</button>
 </body>
 
 </html>

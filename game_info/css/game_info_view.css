@@ -23,6 +23,9 @@ body::after{
     z-index: -1;
     opacity: 0.5;
 }
+#container{
+    display: flow-root;
+}
 #image_container{
     margin: 30px auto;
     margin-left: 100px;
@@ -42,8 +45,9 @@ img{
 #game_info_view h2,#game_info_view h3,#game_info_view p{
     /* background-color: white; */
     display: inline-block;
-    font: 200 20px/1.5 Do Hyeon, Times New Roman, serif;
+    font: 200 18px/1.5 Do Hyeon, Times New Roman, serif;
     margin-left: 20px;
+    margin-top: 30px;
 }
 #game_info_view a{
     /* background-color: white; */
@@ -83,6 +87,11 @@ img{
     list-style: none;
     padding: 10px;
 }
+#list ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
 #ripple_form li{
     margin-top: 10px;
     border-bottom: 1px solid black;
@@ -95,6 +104,29 @@ img{
 #ripple_form #page{
     margin: 0 auto;
     text-align: center;
+}
+
+#page_num a:link { color: black; text-decoration: none;}
+#page_num a:visited { color: black; text-decoration: none;}
+#page_num a:hover { color: black; text-decoration: underline;}
+#ingame{
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 20px;
+    font: 200 40px/1.5 Do Hyeon, Times New Roman, serif;
+}
+/* 스크린샷 이미지 설정 */
+#screen_shot_show ul{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    list-style: none;
+}
+#screen_shot_show img{
+    margin-left: 20px;
+    width: 300px;
+    height: 300px;
 }
  /*댓글 달기 버튼*/
 button{
@@ -133,4 +165,7 @@ button:after{
  button:hover:before, button:hover:after{
    width:100%;
    transition:800ms ease all;
+ }
+ #buttons{
+     margin-top: 20px;
  }

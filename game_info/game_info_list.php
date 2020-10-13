@@ -81,6 +81,7 @@ $dbcon = $db->connector();
             </select>
                 <li><input type="text" name="search_word" id="search_word"></li>
                 <li><button onclick="check_search()">검색하기</button></li>
+                <li><button onclick="location.href='info_insert_form.php'">글쓰기</button></li>
             </ul>
             <?php
                 if(isset($_GET['search'])  && isset($_GET['search_word'])){
@@ -108,7 +109,7 @@ $dbcon = $db->connector();
                             break;
                         }
                     }else{
-                        $sql1 = "SELECT * from `game_info`";
+                        $sql1 = "SELECT * from `game_info` order by `num` desc";
                     }
                     
                     $result = mysqli_query($dbcon, $sql1) or die("list select error2 : " . mysqli_error($dbcon));
@@ -157,7 +158,17 @@ $dbcon = $db->connector();
                 ?>
                 <a href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/game_info/game_info_view.php?num=<?=$num?>">
                     <li>
+                        <?php
+                            if($image){
+                        ?>
                         <img src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/game_info/img/title/<?=$image?>">
+                        <?php
+                            }else{
+                        ?>
+                        <img src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/game_review/data/default.png">
+                        <?php
+                            }
+                        ?>
                         <h3><?= $name ?></h3>
                         <p>장르 : <?=$genre?></p>
                         <p>지원 플랫폼 : <?=$platform?></p>

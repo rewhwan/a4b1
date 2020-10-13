@@ -26,19 +26,20 @@
   }
 
   #list h3 {
-    font: bold 20px/1.5 Helvetica, Verdana, sans-serif;
+    font: bold 24px/1.5 Helvetica, Verdana, sans-serif;
+    margin-bottom: 10px;
   }
 
   #list li img {
     float: left;
     margin: 0 14px 0 0;
-    width: 300px;
+    width: 280px;
     height: 200px;
     border-radius: 25px;
   }
 
   #list li p {
-    font: 200 20px/1.5 Do Hyeon, Times New Roman, serif;
+    font: 200 18px/1.5 Do Hyeon, Times New Roman, serif;
   }
 
   #list li {
