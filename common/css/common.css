@@ -6,7 +6,7 @@
 #menu {font-family: "Do Hyeon", sans-serif;}
 #logo_span {font-family: "Do Hyeon", sans-serif; font-size: 25px;}
 
-body{height: 2000px;}
+/*body{height: 2000px;}*/
 
 /*최상단 메뉴바 UI*/
 #top_menu {height:8vh; background-color: #ffffff; position: relative;}
