@@ -117,9 +117,5 @@ if (isset($_POST['mode']) && $_POST['mode'] == "delete") {
 
     echo "<script>location.href = 'index.php';</script>";
     exit;
-} else {
-    echo "<script>
-                         alert('삭제중 오류 발생!');
-                      </script>";
-}
+} 
 ?>
