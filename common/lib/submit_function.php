@@ -33,7 +33,7 @@ function file_upload($file_name, $upload_location)
     $upload_size = $_FILES["$file_name"]['size'];
 
     //오류 파악
-    if($upload_error!=0){
+    if($upload_error!=0 && $upload_error !=4){
         switch($upload_error){
             case UPLOAD_ERR_OK: $message ="업로드 성공적";
             break;
@@ -98,9 +98,11 @@ function file_upload($file_name, $upload_location)
 
     chmod($upload_tmp_name,0777);
 
-    //임시저장소에 있는 파일을 서버에 지정한 위치로 이동한다.
-    if (!move_uploaded_file($upload_tmp_name, $uploaded_file)) {
-        alert_back('4-1. 서버 전송 실패');
+    if($upload_error != 4){
+        //임시저장소에 있는 파일을 서버에 지정한 위치로 이동한다.
+        if (!move_uploaded_file($upload_tmp_name, $uploaded_file)) {
+            alert_back('4-2. 서버 전송 실패');
+        }
     }
 
     return $copied_file_name;
@@ -121,7 +123,7 @@ function file_upload_multi($file_name, $upload_location)
         $upload_size = $file_array['size'][$i];
 
         //오류 파악
-        if($upload_error != 0){
+        if($upload_error != 0 && $upload_error !=4){
             switch($upload_error){
                 case UPLOAD_ERR_INI_SIZE : $message = "php.ini에 설정된 최대 파일크기 초과";
                 break;
@@ -143,13 +145,7 @@ function file_upload_multi($file_name, $upload_location)
 
         //.업로드될 폴더를 지정한다.
         $upload_dir = "$upload_location"; //업로드된파일을 저장하는장소지정
-        //echo "upload_name".$upload_name."<br>";
-        //파일명과 확장자를 구분해서 저장한다.
-        //$file = explode(".", $upload_name); //파일명과 확장자구분에서 배열저장
-        //$file_name = $file[0];             //파일명
-        //$file_extension = $file[1];        //확장자
-        //echo $file_extension;
-
+        
         //확장자 확인을 위한 분리 배열로 리턴
         $type = explode("/", $upload_type);
         if ($type[0] == 'image') {
@@ -179,11 +175,12 @@ function file_upload_multi($file_name, $upload_location)
         if ($upload_size > 200000000) {
             alert_back('2-2. 이미지파일사이즈가 200MB이상입니다.');
         }
-
-        //임시저장소에 있는 파일을 서버에 지정한 위치로 이동한다.
+        if($upload_error != 4){
+            //임시저장소에 있는 파일을 서버에 지정한 위치로 이동한다.
             if (!move_uploaded_file($upload_tmp_name, $uploaded_file)) {
                 alert_back('4-2. 서버 전송 실패');
             }
+        }
         array_push($screen_shot,$copied_file_name);
     }
     return $screen_shot;

@@ -136,11 +136,12 @@ while ($row3 = mysqli_fetch_array($result)) {
                     $screen_image= $screen_shot[$i];
                     //echo"<script>console.log($screen_shot)</script>";
                     //echo"<script>console.log('$screen_image')</script>";
-                    echo"<li>";
-                ?>
+                    ?>
+                    <li>
                     <img src='./img/screen/<?=$screen_image?>' alt=''>
+                    </li>
+                        
                 <?php
-                echo"</li>";
                 }
             }    
             ?> 

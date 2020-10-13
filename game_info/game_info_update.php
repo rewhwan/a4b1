@@ -66,8 +66,8 @@ if(mysqli_num_rows($result) != 0) {
 
 //오류 파악
 $upload_error1 = $_FILES['title_image']['error'];
-//echo"<script>console.log($upload_error1);</script>";
-if($upload_error1 !=0){
+
+if($upload_error1 != 0 && $upload_error1 != 4){
     switch($upload_error1){
         case UPLOAD_ERR_INI_SIZE : $message = "php.ini에 설정된 최대 파일크기 초과";
         break;
@@ -75,21 +75,19 @@ if($upload_error1 !=0){
         break;
         case UPLOAD_ERR_PARTIAL : $message = "파일의 일부만 업로드됌";
         break;
-        // case UPLOAD_ERR_NO_FILE : $message = "업로드할 파일이 없음";
-        // break;
         case UPLOAD_ERR_NO_TMP_DIR : $message = "웹서버에 임시폴더가 없음";
         break;
         case UPLOAD_ERR_CANT_WRITE : $message = "웹서버에 파일을 쓸 수 없음";
         break;
         case UPLOAD_ERR_EXTENSION : $message = "PHP 확장기능에 의한 업로드 중단";
         break;
-        default: $message="알 수 없는 오류";
+        default: $message=$upload_error1;
         break;
     }
-    alert_back("game_info_update_error :".$message);
+    alert_back("game_info_insert_error1 :".$message);
 }
 //파일업로드 함수
-if(isset($_FILES['title_image']) && ($_FILES['title_image']['error'] !=0 &&$_FILES['title_image']['error'] !=4)){
+if(isset($_FILES['title_image']) && $upload_error1  != 4){
     $copied_file_name=file_upload("title_image","./img/title/");
     //db 등록을 위한 쿼리문 작성
     $sql = "UPDATE  `game_info` set name='$name',content='$content',developer='$developer',grade='$grade',release_date='$open_day',price='$price',homepage='$homepage',service_kor='$service_kor',circulation='$circulation',image='$copied_file_name',created_by='$created_by',created_at=now() where `num`= $num";
@@ -109,18 +107,19 @@ for($i=0; $i<count($platform); $i++){
     mysqli_query($dbcon,$sql) or die("game_info_update_error6 : ".mysqli_error($dbcon));
 }
 //오류 파악
-$upload_error2 = $_FILES['screen_shot']['error'];
-//echo"<script>console.log($upload_error2);</script>";
-if($upload_error2 != 0){
-    switch($upload_error2){
+$count = count($_FILES['screen_shot']['error']);
+$upload_error_value = null;
+for($i=0; $i<$count; $i++){
+    $upload_error2 = $_FILES['screen_shot']['error'][$i];
+    $upload_error_value = $upload_error2;
+    if($upload_error2[$i] !=0 && $upload_error2[$i] !=4){
+    switch($upload_error2[$i]){
         case UPLOAD_ERR_INI_SIZE : $message = "php.ini에 설정된 최대 파일크기 초과";
         break;
         case UPLOAD_ERR_FORM_SIZE : $message = "HTML 폼에 설정된 최대 파일크기 초과";
         break;
         case UPLOAD_ERR_PARTIAL : $message = "파일의 일부만 업로드됌";
         break;
-        // case UPLOAD_ERR_NO_FILE : $message = "업로드할 파일이 없음";
-        // break;
         case UPLOAD_ERR_NO_TMP_DIR : $message = "웹서버에 임시폴더가 없음";
         break;
         case UPLOAD_ERR_CANT_WRITE : $message = "웹서버에 파일을 쓸 수 없음";
@@ -130,10 +129,12 @@ if($upload_error2 != 0){
         default: $message="알 수 없는 오류";
         break;
     }
-    alert_back("game_info_update_error :".$message);
+    alert_back("game_info_insert_error2 :".$message);
+    }
+    
 }
 //스크린샷 파일이 있을 경우 실행
-if(isset($_FILES['screen_shot']) && $_FILES['screen_shot']['error'] !=0){
+if(isset($_FILES['screen_shot']) && $upload_error_value != 4){
     echo"<script>console.log('들어왔다.');</script>";
     $copied_file_name = array();
     //파일업로드 함수
