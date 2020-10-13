@@ -66,83 +66,96 @@ mysqli_close($dbcon);
     </header>
     <div id="form_container">
         <form id="review_modify_form" name="review_modify_form" method="POST" action="review_modify.php" enctype="multipart/form-data">
-        
-            <input type="hidden" name="num" value="<?=$num?>">
-            <input type="hidden" name="page" value="<?=$page?>">
-            <input type="hidden" name="name" value="<?=$name?>">
-            
+
+            <input type="hidden" name="num" value="<?= $num ?>">
+            <input type="hidden" name="page" value="<?= $page ?>">
+            <input type="hidden" name="name" value="<?= $name ?>">
+
             <h2>리뷰 수정하기</h2>
-            <ul>
+            <ul id="modify_list">
                 <li>
-                    <p>게임 : </p>
+                    <p>게임이름</p>
                     <p> <?= $name ?></p>
                 </li>
                 <li>
                     <p>제목</p> <input type="text" id="title" name="title" value="<?= $title ?>">
                 </li>
                 <li>
-                    <div class="story">
-                        <span class="starR1">별1_왼쪽</span>
-                        <span class="starR2">별1_오른쪽</span>
-                        <span class="starR1">별2_왼쪽</span>
-                        <span class="starR2">별2_오른쪽</span>
-                        <span class="starR1">별3_왼쪽</span>
-                        <span class="starR2">별3_오른쪽</span>
-                        <span class="starR1">별4_왼쪽</span>
-                        <span class="starR2">별4_오른쪽</span>
-                        <span class="starR1">별5_왼쪽</span>
-                        <span class="starR2">별5_오른쪽</span>
-                        <input type="hidden" id="story" name="story" value="0">
-                    </div>
-                    <div class="graphic">
-                        <span class="starR1">별1_왼쪽</span>
-                        <span class="starR2">별1_오른쪽</span>
-                        <span class="starR1">별2_왼쪽</span>
-                        <span class="starR2">별2_오른쪽</span>
-                        <span class="starR1">별3_왼쪽</span>
-                        <span class="starR2">별3_오른쪽</span>
-                        <span class="starR1">별4_왼쪽</span>
-                        <span class="starR2">별4_오른쪽</span>
-                        <span class="starR1">별5_왼쪽</span>
-                        <span class="starR2">별5_오른쪽</span>
-                        <input type="hidden" id="graphic" name="graphic" value="0">
+                    <p>별점</p>
+                    <div id="star_container">
+                        <p>스토리</p>
+                        <div class="story">
+                            <span class="starR1">별1_왼쪽</span>
+                            <span class="starR2">별1_오른쪽</span>
+                            <span class="starR1">별2_왼쪽</span>
+                            <span class="starR2">별2_오른쪽</span>
+                            <span class="starR1">별3_왼쪽</span>
+                            <span class="starR2">별3_오른쪽</span>
+                            <span class="starR1">별4_왼쪽</span>
+                            <span class="starR2">별4_오른쪽</span>
+                            <span class="starR1">별5_왼쪽</span>
+                            <span class="starR2">별5_오른쪽</span>
+                            <input type="hidden" id="story" name="story" value="0">
+                        </div>
+
+                        <p>그래픽</p>
+                        <div class="graphic">
+                            <span class="starR1">별1_왼쪽</span>
+                            <span class="starR2">별1_오른쪽</span>
+                            <span class="starR1">별2_왼쪽</span>
+                            <span class="starR2">별2_오른쪽</span>
+                            <span class="starR1">별3_왼쪽</span>
+                            <span class="starR2">별3_오른쪽</span>
+                            <span class="starR1">별4_왼쪽</span>
+                            <span class="starR2">별4_오른쪽</span>
+                            <span class="starR1">별5_왼쪽</span>
+                            <span class="starR2">별5_오른쪽</span>
+                            <input type="hidden" id="graphic" name="graphic" value="0">
+                        </div>
                     </div>
                 </li>
                 <li>
-                    <div class="time">
-                        <span class="starR1">별1_왼쪽</span>
-                        <span class="starR2">별1_오른쪽</span>
-                        <span class="starR1">별2_왼쪽</span>
-                        <span class="starR2">별2_오른쪽</span>
-                        <span class="starR1">별3_왼쪽</span>
-                        <span class="starR2">별3_오른쪽</span>
-                        <span class="starR1">별4_왼쪽</span>
-                        <span class="starR2">별4_오른쪽</span>
-                        <span class="starR1">별5_왼쪽</span>
-                        <span class="starR2">별5_오른쪽</span>
-                        <input type="hidden" id="time" name="time" value="0">
-                    </div>
-                    <div class="difficulty">
-                        <span class="starR1">별1_왼쪽</span>
-                        <span class="starR2">별1_오른쪽</span>
-                        <span class="starR1">별2_왼쪽</span>
-                        <span class="starR2">별2_오른쪽</span>
-                        <span class="starR1">별3_왼쪽</span>
-                        <span class="starR2">별3_오른쪽</span>
-                        <span class="starR1">별4_왼쪽</span>
-                        <span class="starR2">별4_오른쪽</span>
-                        <span class="starR1">별5_왼쪽</span>
-                        <span class="starR2">별5_오른쪽</span>
-                        <input type="hidden" id="difficulty" name="difficulty" value="0">
+                    <div id="star_container">
+                        <p>러닝타임</p>
+                        <div class="time">
+                            <span class="starR1">별1_왼쪽</span>
+                            <span class="starR2">별1_오른쪽</span>
+                            <span class="starR1">별2_왼쪽</span>
+                            <span class="starR2">별2_오른쪽</span>
+                            <span class="starR1">별3_왼쪽</span>
+                            <span class="starR2">별3_오른쪽</span>
+                            <span class="starR1">별4_왼쪽</span>
+                            <span class="starR2">별4_오른쪽</span>
+                            <span class="starR1">별5_왼쪽</span>
+                            <span class="starR2">별5_오른쪽</span>
+                            <input type="hidden" id="time" name="time" value="0">
+                        </div>
+
+                        <p>난이도</p>
+                        <div class="difficulty">
+                            <span class="starR1">별1_왼쪽</span>
+                            <span class="starR2">별1_오른쪽</span>
+                            <span class="starR1">별2_왼쪽</span>
+                            <span class="starR2">별2_오른쪽</span>
+                            <span class="starR1">별3_왼쪽</span>
+                            <span class="starR2">별3_오른쪽</span>
+                            <span class="starR1">별4_왼쪽</span>
+                            <span class="starR2">별4_오른쪽</span>
+                            <span class="starR1">별5_왼쪽</span>
+                            <span class="starR2">별5_오른쪽</span>
+                            <input type="hidden" id="difficulty" name="difficulty" value="0">
+                        </div>
                     </div>
                 </li>
-                <li>리뷰남기기 <textarea name="content" cols="30" rows="10" id="content"><?= $content ?></textarea></li>
+                <li><p>내용</p><textarea name="content" cols="30" rows="10" id="content"><?= $content ?></textarea></li>
                 <li>
-                    <p>이미지 첨부하기</p><input type="file" name="new_file[]" multiple accept="image/*">
+                    <p>파일첨부</p><input type="file" name="new_file[]" multiple accept="image/*">
                 </li>
             </ul>
-            <button type="button">취소</button>
-            <input type="button" onclick="check_input()" value="등록">
+            <div id="submit_container">
+                <button type="button" type="button">취소</button>
+                <button type="button" onclick="check_input()">등록</button>
+            </div>
         </form>
     </div>
 

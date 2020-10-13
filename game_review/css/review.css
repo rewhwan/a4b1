@@ -1,10 +1,32 @@
 @import url("https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap");
 * {margin: 0; padding: 0;}
 
-body{height: 100vh;}
+body{
+    /* background-image: url("./back_img/back2.jpg");
+    background-repeat: no-repeat; 
+    background-attachment: fixed;*/
+    width: 100%;
+    height: 100%;
+    /* text-align: center; */
+    position: relative;
+    z-index: 1;
+}
 
+body::after{
+    width: 100%;
+    height: 100%;
+    content: "";
+    background-image: url("../data/list_background.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    opacity: 0.75;
+}
 /*리스트 관련 UI*/
-  #list{width: 1400px; margin: 0 auto;    border: 2px solid #777;    background-color: #205591; padding: 10px 50px 10px 50px;}
+  #list{width: 1400px; margin: 0 auto;   padding: 10px 50px 10px 50px; border-radius: 20px;}
 
   #list ul {    list-style: none;    margin: 0;    padding: 0;  }
 
@@ -14,7 +36,7 @@ body{height: 100vh;}
   
   #list li p {    font: 200 12px/1.5 Georgia, Times New Roman, serif;  }
   
-  #list li {    background-color: #504F4F;    width: 630px;    height: 200px;    padding: 10px;    border: 1px solid #777;  }
+  #list li {    width: 580px;    height: 200px;    padding: 10px;    border: 1px solid #777;    border-radius: 25px;    background-color: #ffffff;  }
 
   #list li:hover {    cursor: pointer;  }
 
@@ -36,13 +58,23 @@ body{height: 100vh;}
 
   #review_insert { list-style-type: none; }
   
+  #review_insert a button{ font-size: 15px; }
+  
   #review_insert { display: flex;    justify-content: flex-end; }
 
-  a{text-decoration: none;}
+  #list_info { background-color: #ffffff; background-color: rgba( 255, 255, 255, 0.5 ); opacity: 0.95;}
+
+  #list_info h1{ text-align: center; margin-bottom: 20px; }
+
+  #list_info div{ display: flex; margin-left: 35px; }
+
+  a{text-decoration:none ; color:#000; font: 200 20px/1.5 Do Hyeon, Times New Roman, serif;}
+
+  #container_body { }
 
   /* 상새보기 관련UI ===============================================================*/
 
-#page_num { text-align: center; margin: 30px 0 }
+#page_num { text-align: center; margin: 30px 0; font-size: 2em;}
 #page_num li { display: inline; }
 
 /* 상새보기 관련UI ===============================================================*/
@@ -70,15 +102,18 @@ body{height: 100vh;}
 #image_container {width: 500px; height: 500px;border: 1px solid black;}
 
 #prev { display: flex;    justify-content: flex-end; }
-
+ 
 #button_group { display: flex;    justify-content: flex-end; font-size: 15px; }
 
 #textarea{font-size: 20px;}
 
-#image_container {border-radius: 30px;}
-#image_container img{border-radius: 30px;}
+#user_review_img div{ display: inline-block; }
+#user_review_img div img{ width: 250px; height: 250px;}
 
-#content {width: 100%; text-align: center; }
+#image_container {border-radius: 20px;}
+#image_container img{border-radius: 20px; width: 100%; height: 100%;}
+
+#img_container { width: 1000px; }
 /* 삽입관련 UI ===================================================================*/
 #form_container {font-size: 20px; height: 86vh; display: flex; justify-content: center;
     align-items: center;}
@@ -90,9 +125,12 @@ body{height: 100vh;}
 #form_container form ul li div {display: flex; justify-content: center; align-items: center; width: 300px; }
 #form_container form ul li input[type=text] {width: 800px; height:40px;}
 #form_container form ul li textarea {width: 800px;}
+#review_modify_form {background-color: white; border-radius: 15px; padding: 30px; margin: 60px 0;}
+#review_modify_form ul li p { width: 100px; text-align: center; margin: 0 20px 0 0;}
+#review_modify_form ul li #star_container {width: 842px;}
+#review_modify_form ul li #star_container:nth-child(1) {padding-left: 120px;}
 
 /*리뷰 작성 관련 UI =================================================================*/
-
 #insert_form_container {font-size: 20px; height: 86vh; display: flex; justify-content: center;
     align-items: center;}
 #insert_form_container:after { content : ""; display: block; position: absolute; top: 0; left: 0;
@@ -115,6 +153,8 @@ body{height: 100vh;}
 /*게임 검색 결과창*/
 #insert_form_container form ul li:nth-child(2) {display: none;}
 
+/* 리뷰 수정 관련 UI */
+
 
 /* 별점관련 UI ===================================================================*/
 #container div {display: inline-block;}
@@ -133,8 +173,3 @@ button:before,button:after{content:''; position:absolute; top:0; right:0; height
     transition:400ms ease all;}
 button:after{right:inherit; top:inherit; left:0; bottom:0;}
 button:hover:before,button:hover:after{width: 100%; transition:800ms ease all;}
-
-
-
-
-

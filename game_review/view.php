@@ -9,7 +9,8 @@ $dbcon = $db->connector();
 
 $num = $_GET["num"];
 $page = $_GET["page"];
-$name = $_GET["name"];
+
+
 
 $sql = "select * from game_review left join game_review_point on num = review_num where num = {$num}";
 $result = mysqli_query($dbcon, $sql);
@@ -30,15 +31,23 @@ $difficulty = $row["difficulty"];
 
 $avg = ($story + $graphic + $time + $difficulty) / 4;
 
-$sql2 = "select image from game_info_files where name = '$name'";
-$result2 = mysqli_query($dbcon, $sql2);
-$row2 = mysqli_fetch_array($result2);
+if (is_numeric($name)) {
+    //게임 정보를 game_info 테이블에서 가져오는 로직
+    $sql2 = "select * from game_info where num = '$name'";
+    $result2 = mysqli_query($dbcon, $sql2);
+    $row2 = mysqli_fetch_array($result2);
 
-$image = $row2['image'];
+    $name = $row2['name'];
+    $image = $_SERVER['HTTP_HOST'] . "/a4b1/game_info/img/title/" . $row2['image'];
+} else {
+    //등록되어 있는 정보를 그대로 가져오는 로직
+    $sql2 = "select * from game_review_files where review_num = '$num' order by num ASC";
+    $result2 = mysqli_query($dbcon, $sql2);
+    $row2 = mysqli_fetch_assoc($result2);
+    if ($row2['name'] == '') $image = $_SERVER['HTTP_HOST'] . "/a4b1/game_review/data/default.png";
+    else  $image = $_SERVER['HTTP_HOST'] . "/a4b1/game_review/img/" . $row2['name'];
+}
 
-echo 
-
-mysqli_close($dbcon);
 ?>
 <html>
 
@@ -62,7 +71,7 @@ mysqli_close($dbcon);
         <div id="point">
             <div id="point_group">
                 <div id="image_container">
-                    <img src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/game_info/img/<?= $image ?>">
+                    <img src="http://<?= $image ?>">
                 </div>
                 <div id="info">
                     <div id="info_group">
@@ -164,6 +173,27 @@ mysqli_close($dbcon);
             </div>
         </div>
         <div id="content">
+            <div id="user_review_img">
+                <div id="img_container">
+                <?php
+                    $sql = "select * from game_review_files where review_num = $num";
+                    $result = mysqli_query($dbcon,$sql);
+                    $row = mysqli_fetch_array($result);
+                    $r = mysqli_fetch_row($result);
+
+                    for($i =0; $i <count($r);$i++){
+                        $image=$row['name'];
+                        ?>
+                        <div>
+                            <img src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/game_review/img/<?=$image?>";>
+                        </div>
+                        <?php
+                    }
+                
+                    mysqli_close($dbcon)
+                ?>
+                </div>
+            </div>
             <textarea cols="150" rows="50"><?= $content ?></textarea>
         </div>
         <div id="prev"><button>이전</button></div>

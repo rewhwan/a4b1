@@ -68,7 +68,7 @@ if (isset($new_file)) {
 
 echo "
 	   <script>
-	    location.href = 'view.php?num=<$num>&page=$page&name=$name';
+	    location.href = 'view.php?num=<?=$num?>&page=<?=$page?>&name=<?=$name?>';
 	   </script>
 	";
 
