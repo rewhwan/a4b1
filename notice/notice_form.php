@@ -33,10 +33,14 @@
                     </li>
                     <li>
                         <span class="list1">제목 : </span>
-                        <span class="list2"><input name="title" type="text"></span>
-                        <span class="list1">긴급공지
-                        <input type="checkbox" name="cb">
-                            </span>
+                        <span class="list2">
+                            <input name="title" type="text">
+                            <label>긴급공지
+                                <input type="checkbox" name="cb">
+                            </label>
+                        </span>
+
+
                     </li>
                     <li id="text_area">
                         <span class="list1">내용 : </span>

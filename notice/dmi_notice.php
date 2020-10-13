@@ -46,9 +46,7 @@ if (isset($_POST['mode']) && $_POST['mode'] == "insert") {
 
     mysqli_query($dbcon, $sql) or die("쿼리문 오류1 : " . mysqli_error($dbcon));
 
-    echo "<script>
-             location.href = 'index.php';
-      </script>";
+    echo "<script>location.href = 'index.php';</script>";
     exit;
 }
 
@@ -92,7 +90,6 @@ if (isset($_POST['mode']) && $_POST['mode'] == "modify") {
     mysqli_query($dbcon, $sql) or die("쿼리문 오류1 : " . mysqli_error($dbcon));
 
     echo "<script>location.href = 'index.php'</script>";
-
     exit;
 }
 

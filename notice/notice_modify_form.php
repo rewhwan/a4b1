@@ -67,10 +67,14 @@
 	    				<textarea name="content"><?= $content ?></textarea>
 	    			</span>
                 </li>
+                <?php
+                    if($file_copied) {
+                ?>
                 <li>
                     <span class="list1">현재 첨부 파일 : </span>
                     <span class="list2"><?= $file_name ?></span>
                 </li>
+                <?php } ?>
                 <li>
                     <span class="list1">변경할 첨부 파일 : </span>
                     <input type="file" name="upfile" value="<?= $file_name ?>">
