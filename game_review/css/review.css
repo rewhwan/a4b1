@@ -90,7 +90,19 @@ body{height: 100vh;}
 #form_container form ul li div {display: flex; justify-content: center; align-items: center; width: 300px; }
 #form_container form ul li input[type=text] {width: 800px; height:40px;}
 #form_container form ul li textarea {width: 800px;}
-/*#form_container form ul li:nth-child(4), #form_container form ul li:nth-child(5) {justify-content: center;}*/
+
+/*리뷰 작성 관련 UI =================================================================*/
+
+#insert_form_container {font-size: 20px; height: 86vh; display: flex; justify-content: center;
+    align-items: center;}
+#insert_form_container:after { content : ""; display: block; position: absolute; top: 0; left: 0;
+    background-image: url('../img/background-1.jpg'); background-size: cover; width: 100%; height: 100%; opacity : 0.7;
+    z-index: -1;}
+#insert_form_container form {width: fit-content;}
+#insert_form_container form ul li {list-style: none; display: flex; justify-content: flex-start; margin: 20px;}
+#insert_form_container form ul li div {display: flex; justify-content: center; align-items: center; width: 300px; }
+#insert_form_container form ul li input[type=text] {width: 800px; height:40px;}
+#insert_form_container form ul li textarea {width: 800px;}
 
 /*리뷰 작성폼 UI*/
 #review_form {background-color: white; border-radius: 15px; padding: 30px; margin: 60px 0;}
@@ -101,7 +113,8 @@ body{height: 100vh;}
 #submit_container {display: flex; justify-content: flex-end;}
 
 /*게임 검색 결과창*/
-#form_container form ul li:nth-child(2) {display: none;}
+#insert_form_container form ul li:nth-child(2) {display: none;}
+
 
 /* 별점관련 UI ===================================================================*/
 #container div {display: inline-block;}

@@ -42,7 +42,7 @@
         <header>
             <?php include $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/header.php"; ?>
         </header>
-        <div id="form_container">
+        <div id="insert_form_container">
             <form id="review_form" name="review_insert_form" method="POST" action="review_insert.php"
                   enctype="multipart/form-data">
                 <h2>리뷰 작성하기</h2>
