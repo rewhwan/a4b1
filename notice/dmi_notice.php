@@ -84,7 +84,17 @@ if (isset($_POST['mode']) && $_POST['mode'] == "delete") {
     $num = $_POST['num'];
     $page = $_POST['page'];
 
-    $sql = "delete from notice where num = '$num'";
+    //파일 삭제하는 로직 추가
+    if (isset($_POST['urgent']) && $_POST['urgent'] == 't') $sql = "SELECT * FROM notice_urgent WHERE num = {$num}";
+    else $sql = "SELECT * FROM notice WHERE num = {$num}";
+    $result = mysqli_query($dbcon, $sql) or die("쿼리문 오류1 : " . mysqli_error($dbcon));
+    $row = mysqli_fetch_assoc($result);
+    //파일삭제
+    unlink("./data/" . $row['file_copied']);
+
+    if (isset($_POST['urgent']) && $_POST['urgent'] == 't') $sql = "delete from notice_urgent where num = '$num'";
+    else $sql = "delete from notice where num = '$num'";
+
     mysqli_query($dbcon, $sql) or die("쿼리문 오류1 : " . mysqli_error($dbcon));
     mysqli_close($dbcon);
 
@@ -94,7 +104,7 @@ if (isset($_POST['mode']) && $_POST['mode'] == "delete") {
     exit;
 } else {
     echo "<script>
-                     alert('삭제중 오류 발생!');
-                  </script>";
+                         alert('삭제중 오류 발생!');
+                      </script>";
 }
 ?>

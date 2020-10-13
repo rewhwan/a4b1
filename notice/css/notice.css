@@ -37,6 +37,9 @@
 .urgent_notice {background-color: #e6e6e6;}
 .urgent_notice .list1 {color: red;}
 
+#no_record {display: flex; flex-direction: column; justify-content: center; align-items: center; color: red;}
+#no_record p {margin: 5px 0;}
+
 #notice_list li .list2 a:link { color: black; text-decoration: none;}
 #notice_list li .list2 a:visited { color: black; text-decoration: none;}
 #notice_list li .list2 a:hover { color: blue; text-decoration: underline;}
