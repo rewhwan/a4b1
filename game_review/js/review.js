@@ -127,3 +127,30 @@ function check_input(){
 
     $("#review_form").submit();
 }
+//검색기능시 쿠키등록 및 예외처리 함수
+function check_search(){
+    $search = $("#search").val();
+    $search_word = $("#search_word").val();
+    if(!$search){
+        alert("검색 종류가 선택되지 않았습니다.");
+        return false;
+    }
+    if(!$search_word){
+        alert("검색어가 선택되지 않았습니다.");
+        return false;
+    }
+    location.href="game_info_list.php?mode=search&search="+$search+"&search_word="+$search_word;
+}
+
+function search_word_check(search,search_word){
+    
+    switch(search){
+       case"name": $("#option_name").attr("selected",true);
+       break;
+       case"reated_by": $("#option_reated_by").attr("selected",true);
+       break;
+       case"avg": $("#option_avg").attr("selected",true);
+       break;
+    }
+    $("#search_word").val(search_word);
+}

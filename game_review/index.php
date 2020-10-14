@@ -17,7 +17,7 @@
         <script src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/common/js/jquery/jquery-3.5.1.min.js?ver=1"></script>
 
         <!--alert & toastr 라이브러리 추가-->
-        <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/common/css/toastr/toastr.min.css?ver=1"/>
+        <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/common/css/toastr/toastr.min.css?ver=1" />
         <script src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/common/js/toastr/toastr.min.js?ver=1"></script>
         <script src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/common/js/sweetalert/sweetalert.min.js?ver=1"></script>
 
@@ -26,6 +26,7 @@
         <script src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/common/js/common.js?ver=1"></script>
 
         <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/game_review/css/review.css">
+        <script src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/game_review/js/review.js?ver=1"></script>
     </head>
 
     <body>
@@ -36,9 +37,34 @@
         <div id="container_body">
             <div id="top">
                 <ul>
-                    <li>검색</li>
-                    <li>회원가입</li>
+                    <select name="search" id="search">
+                        <option value="" id="option_no">선택</option>
+                        <option value="name" id="option_name">게임별</option>
+                        <option value="created_by" id="option_reated_by">작성자</option>
+                        <option value="avg" id="option_avg">별점순</option>
+                    </select>
+                    <li><input type="text" name="search_word" id="search_word"></li>
+                    <li><button onclick="check_search()">검색</button></li>
                 </ul>
+                <?php
+                if (isset($_GET['mode'])) {
+                    $mode = $_GET['mode'];
+                } else {
+                    $mode = "";
+                }
+
+                if (isset($_GET['search'])  && isset($_GET['search_word'])) {
+                    $value = $_GET['search'];
+                    $word = $_GET['search_word'];
+                    echo "<script>search_word_check('$value','$word');</script>";
+                }
+
+                $sql = "select *,truncate((story+graphic+time+difficulty)/4,1) AS avg from game_review_point group by review_num order by avg desc;";
+                $result = mysqli_query($dbcon, $sql);
+                $row = mysqli_num_rows($result);
+
+                $avg = $row['avg'];
+                ?>
             </div>
 
 
@@ -50,7 +76,27 @@
                     else
                         $page = 1;
 
-                    $sql = "select * from game_review left join game_review_point on num = review_num order by num desc";
+                    //검색 기능 mode 가 있는지 확인
+                    if ($mode === "sort") {
+                        $search = $_GET['sort'];
+
+                        switch ($search) {
+                            case "name":
+                                $sql = "select * from game_review left join game_review_point on num = review_num where name like $search_word order by num desc";
+                                break;
+                            case "created_by":
+                                "select * from game_review left join game_review_point on num = created_by where name like $search_word order by num desc";
+                                break;
+                            case "avg":
+                                "select * from game_review left join game_review_point on num = created_by where  like $search_word order by num desc";
+                                break;
+                            default:
+                                break;
+                        }
+                    } else {
+                        $sql = "select * from game_review left join game_review_point on num = review_num order by num desc";
+                    }
+
                     $result = mysqli_query($dbcon, $sql);
                     $total_record = mysqli_num_rows($result);
 
