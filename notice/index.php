@@ -34,7 +34,6 @@ $dbcon = $db->connector();
                     <span class="list6">조회수</span>
                 </li>
 
-
                 <?php
 
                 if (isset($_GET["page"])) $page = $_GET["page"];
@@ -90,6 +89,7 @@ $dbcon = $db->connector();
                     if($i<$total_record_urgent_notice) {
                     ?>
                     <li class="urgent_notice">
+                        <p style="cursor: pointer"></p>
                         <span class="list1">긴급</span>
                         <span class="list2"><a
                                     href="notice_view.php?num=<?= $num ?>&page=<?= $page ?>&urgent=t"><?= $title ?></a></span>
@@ -172,5 +172,8 @@ $dbcon = $db->connector();
             </ul>
         </div>
     </section>
+    <footer>
+        <?php include $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/footer.php"; ?>
+    </footer>
 </body>
 </html>
