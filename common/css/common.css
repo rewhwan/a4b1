@@ -2,13 +2,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR&display=swap');
 
+/*기본설정 UI ====================================================================================*/
 * {padding: 0; margin: 0;}
+
+/*커서 포인터 UI*/
+.cursor_pointer {cursor: pointer;}
 
 /*폰트설정*/
 #menu {font-family: "Do Hyeon", sans-serif;}
 #logo_span {font-family: "Do Hyeon", sans-serif; font-size: 25px;}
 body {font-family: 'Noto Serif KR', serif;}
-/*body{height: 2000px;}*/
+
+/*헤더 UI ========================================================================================*/
 
 /*최상단 메뉴바 UI*/
 #top_menu {height:8vh; background-color: #ffffff; position: relative;}
@@ -16,33 +21,33 @@ body {font-family: 'Noto Serif KR', serif;}
 #top_menu ul li {display: inline-block; margin: 0 10px}
 #logo_container {display: flex; align-items: center;}
 #logo_container a:nth-child(1) {height: 8vh;}
-
 /*최상단 메뉴바 로고 UI*/
 #logo {width: 60px; height: 60px; margin: 10px 20px 10px 60px;}
-
 /*최상단 메뉴바 a태그 UI*/
 #top_menu a {color: #1d1d1d;}
 #top_menu a:link {text-decoration: none;}
 #top_menu a:visited {text-decoration: none;}
 #top_menu a:hover {text-decoration: none;}
 #top_menu a:active {text-decoration: none;}
-
 /*메뉴바 UI*/
 #menu {height: 6vh; width: 100vw; display: flex; justify-content: center; align-items: center; background-color: #205591;}
 #menu ul {margin: 0 10px}
 #menu ul li {display: inline-block; list-style: none; margin: 0 20px}
 #menu ul li a {color: whitesmoke;}
-
-/*메뉴바 고정 클래스*/
-.leftTopFixed {position: fixed; left: 0; top: 0;}
-.bodyMenuFixed {margin-top: 8vh;}
-
-/*a태그 UI*/
+/*메뉴바 a태그 UI*/
 #menu a {font-size: 30px; color: black;}
 #menu a:link {text-decoration: none;}
 #menu a:visited {text-decoration: none;}
 #menu a:hover {text-decoration: none;}
 #menu a:active {text-decoration: none;}
+/*메뉴바 고정 클래스*/
+.leftTopFixed {position: fixed; left: 0; top: 0;}
+.bodyMenuFixed {margin-top: 8vh;}
+/*body{height: 2000px;}*/
 
-/*커서 포인터 UI*/
-.cursor_pointer {cursor: pointer;}
+/*푸터 UI ===================================================================================*/
+#footer_container {width: 100vw; height: fit-content; display: flex; background-color: grey;
+    justify-content: center; align-items: center;}
+/*로고 UI*/
+#logo_footer {width: 60px; height: 60px;}
+/*내용 UI*/

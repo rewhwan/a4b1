@@ -10,7 +10,7 @@ window.onscroll = function () {
     var scrollTop = document.scrollingElement.scrollTop;
 
     // body 태그 변수 적용
-    var body = document.getElementById("body");
+    var body = document.getElementsByTagName("body");
 
     if(scrollTop > 78.23) {
         menu.classList.add("leftTopFixed");
