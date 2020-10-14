@@ -5,7 +5,7 @@ $returnArray = array('isSuccess'=>array(),'data'=>null);
 
 if(isset($num)){
     //설정한 지역의 시간대로 설정
-    date_default_timezone_set('Asia' / 'Seoul');
+    date_default_timezone_set('Asia/Seoul');
     require $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/db.mysqli.class.php";
     include $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/submit_function.php";
     //싱글톤 객체 불러오기

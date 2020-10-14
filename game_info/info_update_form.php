@@ -1,4 +1,5 @@
 <?php 
+session_start();
     //설정한 지역의 시간대로 설정
     date_default_timezone_set("Asia/Seoul");
     require $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/db.mysqli.class.php";
@@ -8,7 +9,7 @@
     $dbcon = $db->connector();
 
     //세션 값 이용 관리자 인지 파악하기
-    if (!isset($_SESSION['id']) || !$_SESSION['admin'] >= 1 || !$_SESSION['id'] == "admin") {
+    if (!isset($_SESSION['admin'])||!isset($_SESSION['id']) || $_SESSION['admin'] < 1) {
         alert_back("권한이 없습니다.");
     }
     $num = $_GET['num'];
@@ -77,16 +78,28 @@
         <ul>
             <li>
                 <label for="title_image" class="subject">타이틀 이미지</label>
+                <br>
                 <input type="file" name="title_image" id="title_image" accept="image/*" onchange="file_check(this,'title_image')">
-                <label for="file">첨부파일</label>
-                <span id="file"><?=$image?></span>
+                <?php
+                    if($image){
+                ?>
+                <span>기존 첨부파일 :<?=$image?></span>
+                <?php
+                }
+                ?>
+                <label for="file">기존 이미지 삭제</label>
+                <input type="checkbox" name="" id="image_selcet">
             </li>
 
             <br>
             <li>
                 <label for="name" class="subject">게임 명</label>
+                <br>
                 <input type="text" name="name" id="name" value="<?=$name?>">
+                <br>
+                <br>
                 <label for="developer" class="subject">개발사</label>
+                <br>
                 <input type="text" name="developer" id="developer" value="<?=$developer?>">
             </li>
             
@@ -120,11 +133,13 @@
                 <label>퍼즐<input type="checkbox" name="genre[]" value="퍼즐" id="puzzle"></label>
             </li>
             <script>genre_check('<?=$genre?>')</script>
+            <br>
             <li>
                 <label for="open_day" class="subject">출시일자</label>
                 <br>
                 <input type="date" name="open_day" id="open_day" value="<?=$release_date?>">
             </li>
+            <br>
             <li>
                 <span class="subject">심의등급</span>
                 <br>
@@ -141,13 +156,18 @@
             <br>
             <li>
                 <label for="circulation" class="subject">유통사</label>
+                <br>
                 <input type="text" name="circulation" id="circulation" value="<?=$circulation?>">
+                <br>
+                <br>
                 <label for="price" class="subject">가격</label>
+                <br>
                 <input type="number" name="price" id="price" value="<?=$price?>">
             </li>
             <br>
             <li>
                 <label for="service_kor" class="subject">한국어 지원</label>
+                <br>
                 <label for="service_kor">지원 <input type="radio" name="service_kor" id="service_kor1" value="1"></label>
                 <label for="service_kor">미 지원 <input type="radio" name="service_kor" id="service_kor0" value="0"></label>
                 <script>service_kor_check('<?=$service_kor?>')</script>
@@ -155,21 +175,24 @@
             <br>
             <li>
                 <label for="homepage" class="subject">공식 홈페이지</label>
+                <br>
                 <input type="text" name="homepage" id="homepage" value="<?=$homepage?>">
             </li>
             <br>
             <li>
                 <label for="content" class="subject">게임 개요</label>
                 <br>
-                <textarea name="content" id="content" cols="70" rows="10"><?=$content?></textarea>
+                <textarea name="content" id="content" cols="100" rows="10"><?=$content?></textarea>
             </li>
             <li>
                 <label for="screen_shot" class="subject">게임 내 스크린 샷</label>
+                <br>
                 <input type="file" name="screen_shot[]" id="screen_shot" multiple accept="image/*" onchange="file_check(this,'screen_shot')">
             </li>
         </ul>
         <?php if(intval($_SESSION['admin']) >= 1){?>
             <div id="div_b">
+                <button onclick="history.go(-1)" type="button">뒤로가기</button>
                 <button onclick="check_input()" type="button">수정하기</button>
             </div>
         <?php } ?>

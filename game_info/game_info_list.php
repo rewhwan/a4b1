@@ -31,7 +31,11 @@ $dbcon = $db->connector();
         <?php include $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/header.php"; ?>
     </header>
     <?php
-    $mode = $_GET['mode'];
+    if(isset($_GET['mode'])){
+        $mode = $_GET['mode'];
+    }else{
+        $mode = "";
+    }
     //상수 지정
     define('SCALE', 8);
     if($mode == "search"){

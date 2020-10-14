@@ -1,4 +1,5 @@
 <?php
+session_start();
 //설정한 지역의 시간대로 설정
 date_default_timezone_set("Asia/Seoul");
 require $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/db.mysqli.class.php";
@@ -8,7 +9,7 @@ $db = DB::getInstance();
 $dbcon = $db->connector();
 
 //세션 값 이용 관리자 인지 파악하기
-if (!isset($_SESSION['id']) || !$_SESSION['id'] == "admin") {
+if (!isset($_SESSION['admin'])||!isset($_SESSION['id']) || $_SESSION['admin'] < 1) {
     alert_back("권한이 없습니다.");
 }
 //값 검정하기

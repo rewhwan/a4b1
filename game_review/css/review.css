@@ -68,7 +68,7 @@ body::after{
 
   #list_info div{ display: flex; margin-left: 35px; }
 
-  a{text-decoration:none ; color:#000; font: 200 20px/1.5 Do Hyeon, Times New Roman, serif;}
+  #container_body a{text-decoration:none ; color:#000; font: 200 20px/1.5 Do Hyeon, Times New Roman, serif;}
 
   #container_body { }
 
@@ -80,7 +80,7 @@ body::after{
 /* 상새보기 관련UI ===============================================================*/
 #point_group{ display: flex; margin: 0 auto; }
 
-#point {width: 100%; border: 1px solid; padding: 30px; display: flex;}
+#point {width: 100%;  padding: 30px; display: flex;}
 
 /* #point_container div{ border: 1px solid; } */
 
@@ -101,7 +101,7 @@ body::after{
 
 #image_container {width: 500px; height: 500px;border: 1px solid black;}
 
-#prev { display: flex;    justify-content: flex-end; }
+#prev { display: flex;    justify-content: flex-end;}
  
 #button_group { display: flex;    justify-content: flex-end; font-size: 15px; }
 
@@ -113,7 +113,15 @@ body::after{
 #image_container {border-radius: 20px;}
 #image_container img{border-radius: 20px; width: 100%; height: 100%;}
 
-#img_container { width: 1000px; }
+#user_review_img { text-align: center; }
+
+#img_container { width: 1000px; display: inline-block;}
+
+#content_review{ width: 100%; height: 500px; }
+
+#content_review div{ width: 1000px; height: 500px; background-color: white; margin: 0 auto; border-radius: 20px; padding: 20px;}
+
+#content p{ text-align: center; font: 200 25px/1.5 Do Hyeon, Times New Roman, serif;}
 /* 삽입관련 UI ===================================================================*/
 #form_container {font-size: 20px; height: 86vh; display: flex; justify-content: center;
     align-items: center;}
