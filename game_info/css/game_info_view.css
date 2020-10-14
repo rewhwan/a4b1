@@ -110,7 +110,9 @@ img{
     margin: 0 auto;
     text-align: center;
 }
-
+#page{
+    text-align: center;
+}
 #page_num a:link { color: black; text-decoration: none;}
 #page_num a:visited { color: black; text-decoration: none;}
 #page_num a:hover { color: black; text-decoration: underline;}
@@ -121,9 +123,6 @@ img{
     font: 200 40px/1.5 Do Hyeon, Times New Roman, serif;
 }
 /* 스크린샷 이미지 설정 */
-#screen_shot_show{
-
-}
 #screen_shot_show img{
     margin-left: 20px;
     width: 300px;
@@ -169,4 +168,6 @@ button:after{
  }
  #buttons{
      margin-top: 20px;
+     padding-bottom: 30px;
+     text-align: center;
  }

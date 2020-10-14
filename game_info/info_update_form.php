@@ -50,6 +50,16 @@ session_start();
                 $platform = $platform.",".$row2['platform'];
             }
          }
+        $screen=null;
+        $sql = "SELECT * from `game_info_files` where `info_num` = $num";
+        $result = mysqli_query($dbcon, $sql) or die("list select error4 : " . mysqli_error($dbcon));
+        while($row3 = mysqli_fetch_array($result)){
+            if($screen == null){
+                $screen = $row3['name'];
+            }else{
+                $screen = $screen.",".$row3['name'];
+            }
+         }
          mysqli_close($dbcon);
 ?>
 <!DOCTYPE html>
@@ -57,13 +67,12 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>게임 정보 수정 양식</title>
     <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/common/css/common.css">
     <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/game_info/css/game_info_form.css">
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="http://<?=$_SERVER['HTTP_HOST']?>/a4b1/common/js/common.js?ver=1"></script>
-    <script src="./js/info.js"></script>
-    
+    <script src="./js/info.js"></script>   
 </head>
 
 <body id="body">
@@ -79,16 +88,16 @@ session_start();
             <li>
                 <label for="title_image" class="subject">타이틀 이미지</label>
                 <br>
-                <input type="file" name="title_image" id="title_image" accept="image/*" onchange="file_check(this,'title_image')">
+                <input type="file" name="title_image" id="title_image" accept="image/*" onchange="file_check(this)">
                 <?php
-                    if($image){
+                    if($image != null){
                 ?>
                 <span>기존 첨부파일 :<?=$image?></span>
+                <label for="file">기존 이미지 삭제</label>
+                <input type="checkbox" name="title_select" id="title_select" value="check">
                 <?php
                 }
                 ?>
-                <label for="file">기존 이미지 삭제</label>
-                <input type="checkbox" name="" id="image_selcet">
             </li>
 
             <br>
@@ -187,7 +196,21 @@ session_start();
             <li>
                 <label for="screen_shot" class="subject">게임 내 스크린 샷</label>
                 <br>
-                <input type="file" name="screen_shot[]" id="screen_shot" multiple accept="image/*" onchange="file_check(this,'screen_shot')">
+                <input type="file" name="screen_shot[]" id="screen_shot" multiple accept="image/*" onchange="file_check(this)">
+                <br>
+                <br>
+                <?php
+                    if($screen != null){
+                ?>
+                <span>기존 첨부파일</span>
+                <br>
+                <span id="screen_content"><?=$screen?></span>
+                <br>
+                <label for="file">기존 이미지 삭제</label>
+                <input type="checkbox" name="screen_select" id="screen_select" value="check">
+                <?php
+                    }
+                ?>
             </li>
         </ul>
         <?php if(intval($_SESSION['admin']) >= 1){?>

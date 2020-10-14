@@ -68,33 +68,15 @@ function check_input() {
     $("#insert_form").submit();
 }
 
-function file_check(file,id) {
-    //마지막 .을찾는다.
-    pathpoint = file.value.lastIndexOf('.');
-    //.을기준으로 1칸뒤기준으로 파일 끝까지 추출
-    filepoint = file.value.substring(pathpoint + 1, file.length);
-    //소문자로 변경
-    filetype = filepoint.toLowerCase();
-    //console.log(typeof(filetype));
+function file_check(input) {
+    if(input.id == 'title_image') var checkbox_id = 'title_select';
+    else var checkbox_id = 'screen_select';
 
-    //이미지 파일 형식이 아닐경우의 예외처리
-    if (!(filetype == "jpg" || filetype == "gif" || filetype == "png" || filetype == "jpeg" || filetype == "bmp")) {
-        //console.log("이미지 파일");
-        alert("이미지 파일만 선택할 수 있습니다.");
-        
-        //input의 value 값 초기화
-        if(id == "title_image"){
-            $("#title_image").val("");
-        }else{
-            $("#screen_shot").val("");
-        }
-        return false;
-    }
-    //bmp일경우 경고문
-    if (filetype == "bmp") {
-        upload = confirm("BMP 파일은 웹상에서 사용하기에는 부적절한 포맷입니다.\n그래도 계속 하시겠습니까?");
-        if (!upload) return false;
-    }
+   if(input.value != '') {
+       document.getElementById(checkbox_id).checked = true;
+   }else{
+    document.getElementById(checkbox_id).checked = false;
+   }
 }
 //화면 출력시 댓글을 가져오는 함수
 function select_ripple(num,page){
@@ -279,7 +261,6 @@ function genre_check(genre){
 function platform_check(platform){
     array_platform = platform.split(",");
     for($i = 0; $i<array_platform.length; $i++){
-        console.log(array_platform[$i]);
         switch(array_platform[$i]){
             case "PS3" : 
                 $("input:checkbox[id='PS3']").attr("checked",true);
@@ -305,7 +286,6 @@ function platform_check(platform){
 }
 //등급 체크 함수
 function grade_check(grade){
-        console.log(grade);
         switch(grade){
             case "전체이용가" : 
                 $("input:radio[id='all']").attr("checked",true);

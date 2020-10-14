@@ -78,7 +78,7 @@ $dbcon = $db->connector();
             <ul>
             <select name="search" id="search">
                 <option value="" id="option_no">선택</option>
-                <option value="name" id="option_name">이름</option>
+                <option value="name" id="option_name">게임이름</option>
                 <option value="genre" id="option_genre">장르</option>
                 <option value="platform" id="option_platform">플랫폼</option>
                 <option value="grade" id="option_grade">등급</option>

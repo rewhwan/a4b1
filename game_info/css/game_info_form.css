@@ -53,6 +53,9 @@ input[type="text"], input[type="number"]{
 #div_b{
     text-align: right;
 }
+#screen_content{
+    word-break: break-all;
+}
 /* 버튼 css */
 button{
     background:#89cebc;
