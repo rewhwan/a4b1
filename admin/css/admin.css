@@ -1,0 +1,18 @@
+/*구글폰트 추가*/
+@import url("https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Commissioner:wght@300&display=swap');
+
+/*기본여백 수정*/
+*{margin: 0; padding: 0;}
+
+/*상단 타이틀바 UI*/
+#title_container  {background-color: #242831; padding: 15px;}
+#title {font-size: 40px; color: whitesmoke;}
+#title_sub {font-size: 35px; color: whitesmoke;}
+
+/*글씨체 UI*/
+.gfont_1 {font-family: "Do Hyeon", sans-serif;}
+.gfont_2 {font-family: 'Noto Serif KR', serif;}
+.gfont_3 {font-family: 'Commissioner', sans-serif;}
+
