@@ -213,46 +213,57 @@ if (is_numeric($name)) {
             $sql = "select * from game_review_files where review_num = $num";
             $result = mysqli_query($dbcon, $sql);
             $value = mysqli_num_rows($result);
-            if($value != null){
+            if ($value != null) {
             ?>
-            <div id="screen_shot_show">
-                <h1>게임 내 사진</h1>
-                <div class="slideshow-container">
+                <div id="screen_shot_show">
+                    <h1>게임 내 사진</h1>
+                    <div class="slideshow-container">
+                        <?php
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            $count = count($row);
+                            $image = $row['name'];
+                        ?>
+                            <div class="mySlides fade" id="fade">
+                                <img src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/game_review/img/<?= $image ?>" ; style="width:1040px">
+                            </div>
+                        <?php
+                        }
+                        mysqli_close($dbcon)
+                        ?>
+                        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                    </div>
+                    <div style="text-align:center" id="dot_container">
+                        <?php
+                        for ($i = 0; $i < $row; $i++) {
+                        ?>
+                            <span class="dot" onclick="currentSlide(<?= $i ?>+1)"></span>
                     <?php
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        $count = count($row);
-                        $image = $row['name'];
-                    ?>
-                        <div class="mySlides fade" id="fade">
-                            <img src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/game_review/img/<?= $image ?>" ; style="width:1040px">
-                        </div>
-                    <?php
+                        }
                     }
-                    mysqli_close($dbcon)
                     ?>
-                    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                    <a class="next" onclick="plusSlides(1)">&#10095;</a>
-                </div>
-                <div style="text-align:center" id="dot_container">
-                    <?php
-                    for ($i = 0; $i < $row; $i++) {
-                    ?>
-                        <span class="dot" onclick="currentSlide(<?= $i ?>+1)"></span>
-                    <?php
-                    }
-                }
-                ?>
+                    </div>
                 </div>
                 <script src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/game_info/js/game_info_view_slide.js"></script>
-            </div>
-            <div id="content_review">
-                <div>
-                    리뷰제목 : <?= $title ?>
-                    <p><?= $content ?></p>
-                </div>
-            </div>
-            <div id="prev"><a href="./index.php/"><button>이전</button></a></div>
         </div>
+
+
+        <div id="content_review">
+            
+            <h1>게임 리뷰</h1>
+            <ul>
+                <li>
+                    <h2>제목  :  <?=$title?></h2>
+                    <h3>Creation : <?=$created_at?></h3>
+                </li>
+                <hr>
+                <li>
+                    <p><?=$content?></p>
+                </li>
+            </ul>
+        </div>
+        <div id="prev"><a href="./index.php/"><button>이전</button></a></div>
+    </div>
     </div>
 </body>
 <footer>
