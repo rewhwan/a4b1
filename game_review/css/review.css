@@ -70,31 +70,28 @@ body::after{
 
   #container_body a{text-decoration:none ; color:#000; font: 200 20px/1.5 Do Hyeon, Times New Roman, serif;}
 
-  #container_body { }
+  #top ul{ margin-right: 180px;}
 
   /* 상새보기 관련UI ===============================================================*/
+
+#fade img { border-radius: 20px; }
 
 #page_num { text-align: center; margin: 30px 0; font-size: 2em;}
 #page_num li { display: inline; }
 
-/* 상새보기 관련UI ===============================================================*/
+#creater_info {display: flex; justify-content: flex-end; align-items: center; margin-right: 20px;}
+
 #point_group{ display: flex; margin: 0 auto; }
 
-#point {width: 100%;  padding: 30px; display: flex;}
+#point {width: 100%;  padding: 30px; display: flex; justify-content: space-around; align-items: center;}
 
-/* #point_container div{ border: 1px solid; } */
+#screen_shot_show { margin: 20px 0px 20px 0px; }
 
-/* #point { background-image: url("../img/background_image.jpg"); } */
+#screen_shot_show h1{ text-align: center; font: 200 40px/1.5 Do Hyeon, Times New Roman, serif;}
 
-#info_group { margin-top: 150px; width: 700px; text-align: center; font: 200 25px/1.5 Do Hyeon, Times New Roman, serif;}
+#info_group { width: 700px; text-align: center; font: 200 25px/1.5 Do Hyeon, Times New Roman, serif; border-radius: 20px; padding: 30px; background-color: rgb( 255, 255, 255); opacity: 0.90;}
 
-#user_info {display: inline; }
-#user_info div {display: inline; }
-
-#star_point {border: 1px solid black; display: inline-block;}
-
-#star_point div{ margin-left: 20px;}
-
+#star_point {border: 1px solid black; display: inline-block; padding: 10px 20px; margin: 30px 0;}
 
 #star1 div {display: inline-block;}
 #star2 div {display: inline-block;}
@@ -103,7 +100,7 @@ body::after{
 
 #prev { display: flex;    justify-content: flex-end;}
  
-#button_group { display: flex;    justify-content: flex-end; font-size: 15px; }
+#button_group { display: flex; justify-content: flex-end; font-size: 15px; }
 
 #textarea{font-size: 20px;}
 
@@ -119,7 +116,7 @@ body::after{
 
 #content_review{ width: 100%; height: 500px; }
 
-#content_review div{ width: 1000px; height: 500px; background-color: white; margin: 0 auto; border-radius: 20px; padding: 20px;}
+#content_review div{ width: 1100px; height: 500px; background-color: white; margin: 0 auto; border-radius: 20px; padding: 20px;}
 
 #content p{ text-align: center; font: 200 25px/1.5 Do Hyeon, Times New Roman, serif;}
 /* 삽입관련 UI ===================================================================*/
@@ -181,3 +178,114 @@ button:before,button:after{content:''; position:absolute; top:0; right:0; height
     transition:400ms ease all;}
 button:after{right:inherit; top:inherit; left:0; bottom:0;}
 button:hover:before,button:hover:after{width: 100%; transition:800ms ease all;}
+
+
+
+
+/* Slideshow container */
+.slideshow-container {
+    width: 1000px;
+    position: relative;
+    margin: auto;
+    
+  }
+  /* 슬라이드 쇼 사진 */
+  .mySlides {
+    display: none;
+}
+.slideshow-container img {
+    vertical-align: auto;
+    height: 350px;
+}
+  /* Next & previous buttons */
+  .prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    margin-left: 40px;
+    color: white;
+    background-color: black;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+  }
+  
+  /* Position the "next button" to the right */
+  .next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+  }
+  
+  /* On hover, add a black background color with a little bit see-through */
+  .prev:hover, .next:hover {
+    background-color: rgba(255, 255, 255,0.8);
+    color: black;
+  }
+  
+  /* Caption text */
+  .text {
+    color: black;
+    font-size: 15px;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    text-align: center;
+  }
+  
+  /* Number text (1/3 etc) */
+  .numbertext {
+    color: #f2f2f2;
+    font-size: 15px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+    margin-left: 20px;
+  }
+  #dot_container{
+      text-align: center;
+  }
+  /* The dots/bullets/indicators */
+  .dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+  }
+  
+  .active, .dot:hover {
+    background-color: #717171;
+  }
+  
+  /* Fading animation */
+  .fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
+  }
+  
+  @-webkit-keyframes fade {
+    from {opacity: .4} 
+    to {opacity: 1}
+  }
+  
+  @keyframes fade {
+    from {opacity: .4} 
+    to {opacity: 1}
+  }
+  
+  /* On smaller screens, decrease text size */
+  @media only screen and (max-width: 300px) {
+    .prev, .next,.text {font-size: 11px}
+  }
+
+  #fade img {margin: 0 auto;}
