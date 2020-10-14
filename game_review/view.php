@@ -113,34 +113,46 @@ if (is_numeric($name)) {
                                         <div>스토리</div>
                                         <div><?= $story ?></div>
                                         <div class="story">
-                                            <span class="starR1">별1_왼쪽</span>
-                                            <span class="starR2">별1_오른쪽</span>
-                                            <span class="starR1">별2_왼쪽</span>
-                                            <span class="starR2">별2_오른쪽</span>
-                                            <span class="starR1">별3_왼쪽</span>
-                                            <span class="starR2">별3_오른쪽</span>
-                                            <span class="starR1">별4_왼쪽</span>
-                                            <span class="starR2">별4_오른쪽</span>
-                                            <span class="starR1">별5_왼쪽</span>
-                                            <span class="starR2">별5_오른쪽</span>
-                                            <input type="hidden" id="story" name="story" value="0">
+                                            <?php 
+                                                for($i=1;$i<=10;$i++) {
+                                                    if($i%2 ==1) {
+                                                        if($i<=$story) {
+                                                            echo "<span class='starR1 on'>별".$i."_왼쪽</span>";
+                                                        }else {
+                                                            echo "<span class='starR1'>별".$i."_왼쪽</span>";
+                                                        }
+                                                    }else {
+                                                        if($i<=$story) {
+                                                            echo "<span class='starR2 on'>별".$i."_오른쪽</span>";
+                                                        }else {
+                                                            echo "<span class='starR2'>별".$i."_오른쪽</span>";
+                                                        }
+                                                    }
+                                                }
+                                            ?>
                                         </div>
                                     </div>
                                     <div id="graphic">
                                         <div>그래픽</div>
                                         <div><?= $graphic ?></div>
                                         <div class="graphic">
-                                            <span class="starR1">별1_왼쪽</span>
-                                            <span class="starR2">별1_오른쪽</span>
-                                            <span class="starR1">별2_왼쪽</span>
-                                            <span class="starR2">별2_오른쪽</span>
-                                            <span class="starR1">별3_왼쪽</span>
-                                            <span class="starR2">별3_오른쪽</span>
-                                            <span class="starR1">별4_왼쪽</span>
-                                            <span class="starR2">별4_오른쪽</span>
-                                            <span class="starR1">별5_왼쪽</span>
-                                            <span class="starR2">별5_오른쪽</span>
-                                            <input type="hidden" id="graphic" name="graphic" value="0">
+                                        <?php 
+                                            for($i=1;$i<=10;$i++) {
+                                                if($i%2 ==1) {
+                                                    if($i<=$graphic) {
+                                                        echo "<span class='starR1 on'>별".$i."_왼쪽</span>";
+                                                    }else {
+                                                        echo "<span class='starR1'>별".$i."_왼쪽</span>";
+                                                    }
+                                                }else {
+                                                    if($i<=$graphic) {
+                                                        echo "<span class='starR2 on'>별".$i."_오른쪽</span>";
+                                                    }else {
+                                                        echo "<span class='starR2'>별".$i."_오른쪽</span>";
+                                                    }
+                                                }
+                                            }
+                                        ?>
                                         </div>
                                     </div>
                                 </div>
@@ -149,34 +161,46 @@ if (is_numeric($name)) {
                                         <div>런타임</div>
                                         <div><?= $time ?></div>
                                         <div class="time">
-                                            <span class="starR1">별1_왼쪽</span>
-                                            <span class="starR2">별1_오른쪽</span>
-                                            <span class="starR1">별2_왼쪽</span>
-                                            <span class="starR2">별2_오른쪽</span>
-                                            <span class="starR1">별3_왼쪽</span>
-                                            <span class="starR2">별3_오른쪽</span>
-                                            <span class="starR1">별4_왼쪽</span>
-                                            <span class="starR2">별4_오른쪽</span>
-                                            <span class="starR1">별5_왼쪽</span>
-                                            <span class="starR2">별5_오른쪽</span>
-                                            <input type="hidden" id="time" name="time" value="0">
+                                        <?php 
+                                            for($i=1;$i<=10;$i++) {
+                                                if($i%2 ==1) {
+                                                    if($i<=$time) {
+                                                        echo "<span class='starR1 on'>별".$i."_왼쪽</span>";
+                                                    }else {
+                                                        echo "<span class='starR1'>별".$i."_왼쪽</span>";
+                                                    }
+                                                }else {
+                                                    if($i<=$time) {
+                                                        echo "<span class='starR2 on'>별".$i."_오른쪽</span>";
+                                                    }else {
+                                                        echo "<span class='starR2'>별".$i."_오른쪽</span>";
+                                                    }
+                                                }
+                                            }
+                                        ?>
                                         </div>
                                     </div>
                                     <div id="difficulty">
                                         <div>난이도</div>
                                         <div><?= $difficulty ?></div>
                                         <div class="difficulty">
-                                            <span class="starR1">별1_왼쪽</span>
-                                            <span class="starR2">별1_오른쪽</span>
-                                            <span class="starR1">별2_왼쪽</span>
-                                            <span class="starR2">별2_오른쪽</span>
-                                            <span class="starR1">별3_왼쪽</span>
-                                            <span class="starR2">별3_오른쪽</span>
-                                            <span class="starR1">별4_왼쪽</span>
-                                            <span class="starR2">별4_오른쪽</span>
-                                            <span class="starR1">별5_왼쪽</span>
-                                            <span class="starR2">별5_오른쪽</span>
-                                            <input type="hidden" id="difficulty" name="difficulty" value="0">
+                                        <?php 
+                                            for($i=1;$i<=10;$i++) {
+                                                if($i%2 ==1) {
+                                                    if($i<=$difficulty) {
+                                                        echo "<span class='starR1 on'>별".$i."_왼쪽</span>";
+                                                    }else {
+                                                        echo "<span class='starR1'>별".$i."_왼쪽</span>";
+                                                    }
+                                                }else {
+                                                    if($i<=$difficulty) {
+                                                        echo "<span class='starR2 on'>별".$i."_오른쪽</span>";
+                                                    }else {
+                                                        echo "<span class='starR2'>별".$i."_오른쪽</span>";
+                                                    }
+                                                }
+                                            }
+                                        ?>
                                         </div>
                                     </div>
                                 </div>

@@ -87,7 +87,7 @@ mysqli_close($dbcon);
             <ul id="modify_list">
                 <li>
                     <p>게임이름</p>
-                    <p> <?= $name ?></p>
+                    <?= $name ?>
                 </li>
                 <li>
                     <p>제목</p> <input type="text" id="title" name="title" value="<?= $title ?>">
@@ -95,33 +95,47 @@ mysqli_close($dbcon);
                 <li>
                     <p>별점</p>
                     <div id="star_container">
-                        <p>스토리</p>
+                        <p>스토리  </p>
                         <div class="story">
-                            <span class="starR1">별1_왼쪽</span>
-                            <span class="starR2">별1_오른쪽</span>
-                            <span class="starR1">별2_왼쪽</span>
-                            <span class="starR2">별2_오른쪽</span>
-                            <span class="starR1">별3_왼쪽</span>
-                            <span class="starR2">별3_오른쪽</span>
-                            <span class="starR1">별4_왼쪽</span>
-                            <span class="starR2">별4_오른쪽</span>
-                            <span class="starR1">별5_왼쪽</span>
-                            <span class="starR2">별5_오른쪽</span>
+                            <?php
+                            for ($i = 1; $i <= 10; $i++) {
+                                if ($i % 2 == 1) {
+                                    if ($i <= $story) {
+                                        echo "<span class='starR1 on'>별" . $i . "_왼쪽</span>";
+                                    } else {
+                                        echo "<span class='starR1'>별" . $i . "_왼쪽</span>";
+                                    }
+                                } else {
+                                    if ($i <= $story) {
+                                        echo "<span class='starR2 on'>별" . $i . "_오른쪽</span>";
+                                    } else {
+                                        echo "<span class='starR2'>별" . $i . "_오른쪽</span>";
+                                    }
+                                }
+                            }
+                            ?>
                             <input type="hidden" id="story" name="story" value="0">
                         </div>
 
                         <p>그래픽</p>
                         <div class="graphic">
-                            <span class="starR1">별1_왼쪽</span>
-                            <span class="starR2">별1_오른쪽</span>
-                            <span class="starR1">별2_왼쪽</span>
-                            <span class="starR2">별2_오른쪽</span>
-                            <span class="starR1">별3_왼쪽</span>
-                            <span class="starR2">별3_오른쪽</span>
-                            <span class="starR1">별4_왼쪽</span>
-                            <span class="starR2">별4_오른쪽</span>
-                            <span class="starR1">별5_왼쪽</span>
-                            <span class="starR2">별5_오른쪽</span>
+                            <?php
+                            for ($i = 1; $i <= 10; $i++) {
+                                if ($i % 2 == 1) {
+                                    if ($i <= $graphic) {
+                                        echo "<span class='starR1 on'>별" . $i . "_왼쪽</span>";
+                                    } else {
+                                        echo "<span class='starR1'>별" . $i . "_왼쪽</span>";
+                                    }
+                                } else {
+                                    if ($i <= $graphic) {
+                                        echo "<span class='starR2 on'>별" . $i . "_오른쪽</span>";
+                                    } else {
+                                        echo "<span class='starR2'>별" . $i . "_오른쪽</span>";
+                                    }
+                                }
+                            }
+                            ?>
                             <input type="hidden" id="graphic" name="graphic" value="0">
                         </div>
                     </div>
@@ -130,31 +144,45 @@ mysqli_close($dbcon);
                     <div id="star_container">
                         <p>러닝타임</p>
                         <div class="time">
-                            <span class="starR1">별1_왼쪽</span>
-                            <span class="starR2">별1_오른쪽</span>
-                            <span class="starR1">별2_왼쪽</span>
-                            <span class="starR2">별2_오른쪽</span>
-                            <span class="starR1">별3_왼쪽</span>
-                            <span class="starR2">별3_오른쪽</span>
-                            <span class="starR1">별4_왼쪽</span>
-                            <span class="starR2">별4_오른쪽</span>
-                            <span class="starR1">별5_왼쪽</span>
-                            <span class="starR2">별5_오른쪽</span>
+                            <?php
+                            for ($i = 1; $i <= 10; $i++) {
+                                if ($i % 2 == 1) {
+                                    if ($i <= $time) {
+                                        echo "<span class='starR1 on'>별" . $i . "_왼쪽</span>";
+                                    } else {
+                                        echo "<span class='starR1'>별" . $i . "_왼쪽</span>";
+                                    }
+                                } else {
+                                    if ($i <= $time) {
+                                        echo "<span class='starR2 on'>별" . $i . "_오른쪽</span>";
+                                    } else {
+                                        echo "<span class='starR2'>별" . $i . "_오른쪽</span>";
+                                    }
+                                }
+                            }
+                            ?>
                             <input type="hidden" id="time" name="time" value="0">
                         </div>
 
                         <p>난이도</p>
                         <div class="difficulty">
-                            <span class="starR1">별1_왼쪽</span>
-                            <span class="starR2">별1_오른쪽</span>
-                            <span class="starR1">별2_왼쪽</span>
-                            <span class="starR2">별2_오른쪽</span>
-                            <span class="starR1">별3_왼쪽</span>
-                            <span class="starR2">별3_오른쪽</span>
-                            <span class="starR1">별4_왼쪽</span>
-                            <span class="starR2">별4_오른쪽</span>
-                            <span class="starR1">별5_왼쪽</span>
-                            <span class="starR2">별5_오른쪽</span>
+                            <?php
+                            for ($i = 1; $i <= 10; $i++) {
+                                if ($i % 2 == 1) {
+                                    if ($i <= $difficulty) {
+                                        echo "<span class='starR1 on'>별" . $i . "_왼쪽</span>";
+                                    } else {
+                                        echo "<span class='starR1'>별" . $i . "_왼쪽</span>";
+                                    }
+                                } else {
+                                    if ($i <= $difficulty) {
+                                        echo "<span class='starR2 on'>별" . $i . "_오른쪽</span>";
+                                    } else {
+                                        echo "<span class='starR2'>별" . $i . "_오른쪽</span>";
+                                    }
+                                }
+                            }
+                            ?>
                             <input type="hidden" id="difficulty" name="difficulty" value="0">
                         </div>
                     </div>
