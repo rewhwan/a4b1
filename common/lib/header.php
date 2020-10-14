@@ -16,6 +16,11 @@
                     <li>비밀번호 : <?=$_SESSION['password']?></li>
                     <li>admin : <?=$_SESSION['admin']?></li>
                     |
+                    <?php
+                        if(isset($_SESSION['admin']) && $_SESSION['admin'] >= 1) {
+                    ?>
+                        <li class="cursor_pointer"><a href="http://<?=$_SERVER['HTTP_HOST']?>/a4b1/admin/">관리자 모드</a></li>|
+                    <?php } ?>
                     <li class="cursor_pointer"><a onclick="logoutCheck('<?=$_SERVER['HTTP_HOST']?>')">로그아웃</a></li>
             <?php }else{?>
                     <li class="cursor_pointer"><a href="http://<?=$_SERVER['HTTP_HOST']?>/a4b1/login/index.php">로그인</a></li>
