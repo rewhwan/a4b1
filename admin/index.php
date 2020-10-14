@@ -27,14 +27,58 @@ if(!isset($_SESSION['admin']) || $_SESSION['admin'] < 1) {
         <!--헤더 파일 추가-->
         <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/admin/css/admin.css?ver=1">
         <script src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/common/js/common.js?ver=1"></script>
+
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     </head>
     <body id="body">
         <div id="title_container">
-            <span id="title" class="gfont_1">A4B1</span>
-            <span id="title_sub" class="gfont_3">Admin Page</span>
+            <div>
+                <a href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/admin/">
+                    <span id="title" class="gfont_1">A4B1</span>
+                    <span id="title_sub" class="gfont_3">Admin Page</span>
+                </a>
+            </div>
+            <div id="title_function">
+                <a href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/">
+                    <span class="gfont_3">사이트로 돌아가기</span>
+                </a>
+            </div>
         </div>
         <div>
+            <div id="side_menu">
+                <ul>
+                    <li>
+                        <a href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/admin/css/admin.css?ver=1">
+                            <span class="gfont_3">메인 슬라이드 관리<span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/admin/css/admin.css?ver=1">
+                            <span class="gfont_3">메인 슬라이드 관리<span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/admin/css/admin.css?ver=1">
+                            <span class="gfont_3">메인 슬라이드 관리<span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/admin/css/admin.css?ver=1">
+                            <span class="gfont_3">메인 슬라이드 관리<span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/admin/css/admin.css?ver=1">
+                            <span class="gfont_3">메인 슬라이드 관리<span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div id="content">
 
+            </div>
         </div>
+
     </body>
 </html>
