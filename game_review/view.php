@@ -54,7 +54,19 @@ if (is_numeric($name)) {
 <head>
     <meta charset="UTF-8">
     <title>게임리뷰 상세보기</title>
+    <!--Jquery 추가-->
+    <script src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/common/js/jquery/jquery-3.5.1.min.js?ver=1"></script>
+
+    <!--alert & toastr 라이브러리 추가-->
+    <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/common/css/toastr/toastr.min.css?ver=1" />
+    <script src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/common/js/toastr/toastr.min.js?ver=1"></script>
+    <script src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/common/js/sweetalert/sweetalert.min.js?ver=1"></script>
+
+
+    <!--헤더 파일 추가-->
     <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/common/css/common.css?ver=1">
+    <script src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/common/js/common.js?ver=1"></script>
+
     <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/game_review/css/review.css">
     <script src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/common/js/jquery/jquery-3.5.1.min.js"></script>
     <script src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/common/js/common.js"></script>
@@ -85,20 +97,22 @@ if (is_numeric($name)) {
                             }
                             ?>
                         </div>
-    
+
                         <div id="user_info">
-                            <div><h2><?= $title ?></h2></div>
+                            <div>
+                                <h2><?= $title ?></h2>
+                            </div>
                             <div>game : <?= $name ?></div>
-                            <div>user : <?= $created_by?></div>
+                            <div>user : <?= $created_by ?></div>
                         </div>
-    
+
                         <div>
                             <div id="star_point">
                                 <div id="star1">
                                     <div id="story">
                                         <div>스토리</div>
                                         <div><?= $story ?></div>
-                                        <div class="story" >
+                                        <div class="story">
                                             <span class="starR1">별1_왼쪽</span>
                                             <span class="starR2">별1_오른쪽</span>
                                             <span class="starR1">별2_왼쪽</span>
@@ -115,7 +129,7 @@ if (is_numeric($name)) {
                                     <div id="graphic">
                                         <div>그래픽</div>
                                         <div><?= $graphic ?></div>
-                                        <div class="graphic" >
+                                        <div class="graphic">
                                             <span class="starR1">별1_왼쪽</span>
                                             <span class="starR2">별1_오른쪽</span>
                                             <span class="starR1">별2_왼쪽</span>
@@ -134,7 +148,7 @@ if (is_numeric($name)) {
                                     <div id="time">
                                         <div>런타임</div>
                                         <div><?= $time ?></div>
-                                        <div class="time" >
+                                        <div class="time">
                                             <span class="starR1">별1_왼쪽</span>
                                             <span class="starR2">별1_오른쪽</span>
                                             <span class="starR1">별2_왼쪽</span>
@@ -151,7 +165,7 @@ if (is_numeric($name)) {
                                     <div id="difficulty">
                                         <div>난이도</div>
                                         <div><?= $difficulty ?></div>
-                                        <div class="difficulty" >
+                                        <div class="difficulty">
                                             <span class="starR1">별1_왼쪽</span>
                                             <span class="starR2">별1_오른쪽</span>
                                             <span class="starR1">별2_왼쪽</span>
@@ -169,34 +183,36 @@ if (is_numeric($name)) {
                             </div>
                         </div>
                     </div>
-                    </div>
+                </div>
             </div>
         </div>
         <div id="content">
             <div id="user_review_img">
                 <div id="img_container">
-                <?php
+                    <?php
                     $sql = "select * from game_review_files where review_num = $num";
-                    $result = mysqli_query($dbcon,$sql);
-                    $row = mysqli_fetch_array($result);
-                    $r = mysqli_fetch_row($result);
-
-                    for($i =0; $i <count($r);$i++){
-                        $image=$row['name'];
-                        ?>
+                    $result = mysqli_query($dbcon, $sql);
+        
+                    while($row = mysqli_fetch_assoc($result)) {
+                        $image = $row['name'];
+                    ?>
                         <div>
-                            <img src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/game_review/img/<?=$image?>";>
+                            <img src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/game_review/img/<?= $image ?>" ;>
                         </div>
-                        <?php
+                    <?php
                     }
-                
+                    
                     mysqli_close($dbcon)
-                ?>
+                    ?>
                 </div>
             </div>
-            <textarea cols="150" rows="50"><?= $content ?></textarea>
+            <div id="content_review">
+                <div>
+                    <p><?= $content ?></p>
+                </div>
+            </div>
+            <div id="prev"><a href="./index.php/"><button>이전</button></a></div>
         </div>
-        <div id="prev"><button>이전</button></div>
     </div>
 </body>
 <footer>
