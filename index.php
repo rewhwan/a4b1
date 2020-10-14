@@ -22,12 +22,39 @@ $db->sessionStart();
         <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/common/css/toastr/toastr.min.css?ver=1"/>
         <script src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/common/js/toastr/toastr.min.js?ver=1"></script>
         <script src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/common/js/sweetalert/sweetalert.min.js?ver=1"></script>
+
+        <!--메인화면 파일 추가-->
+        <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/main/css/main.css?ver=1"/>
+        <script src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/main/js/main.js?ver=1"></script>
+
     </head>
     <body id="body">
         <header>
             <?php include $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/header.php"; ?>
         </header>
-        <div id="test">메인페이지<br>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21
+        <div>
+            <div class="slide_container">
+                <div class="slideshow">
+                    <div class="slideshow_slides">
+                        <a href="#"><img src="http://<?=$_SERVER['HTTP_HOST']?>/source/homework/200917/img/slide-1.jpg" alt="slide1"></a>
+                        <a href="#"><img src="http://<?=$_SERVER['HTTP_HOST']?>/source/homework/200917/img/slide-2.jpg" alt="slide2"></a>
+                        <a href="#"><img src="http://<?=$_SERVER['HTTP_HOST']?>/source/homework/200917/img/slide-3.jpg" alt="slide3"></a>
+                        <a href="#"><img src="http://<?=$_SERVER['HTTP_HOST']?>/source/homework/200917/img/slide-4.jpg" alt="slide4"></a>
+                    </div>
+
+                    <div class="slideshow_nav">
+                        <a href="#" class="prev">prev</a>
+                        <a href="#" class="next">next</a>
+                    </div>
+
+                    <div class="slideshow_indicator">
+                        <a href="#" class="active"></a>
+                        <a href="#"></a>
+                        <a href="#"></a>
+                        <a href="#"></a>
+                    </div>
+                </div>
+            </div>
         </div>
     </body>
 </html>
