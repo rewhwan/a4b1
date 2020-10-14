@@ -1,4 +1,5 @@
 <?php
+session_start();
 //설정한 지역의 시간대로 설정
 date_default_timezone_set("Asia/Seoul");
 require $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/db.mysqli.class.php";

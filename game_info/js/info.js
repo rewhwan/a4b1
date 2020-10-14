@@ -98,14 +98,21 @@ function file_check(file,id) {
 }
 //화면 출력시 댓글을 가져오는 함수
 function select_ripple(num,page){
+    $num=num;
+    $page=page;
     $.ajax({
         url : "./select_ripple.php?num="+num+"&page="+page,
         type : "POST",
         data : {num : num, page:page},
         datatype : 'json',
         success : function(data){
+            //console.log(data);
             var json_data = JSON.parse(data);
-
+            //console.log(json_data.isSuccess);
+            if(json_data.isSuccess[0] == null){
+                $("#ripple_form").append("<li>등록된 댓글이 없습니다.</li>");
+                return false;
+            }
             if(json_data.isSuccess[0] == 1){
                 $("#ripple_form").empty();
                 //console.log(json_data.isSuccess[3]);
@@ -122,11 +129,7 @@ function select_ripple(num,page){
                 $("#page_num").empty();
                 for(e=1; e<=length; e++){
                     //console.log(e);
-                    if (page == e) {
-                        $("#page_num").append("<a href='javascript:void(0);'>&nbsp;"+e+"&nbsp;</a>");
-                    } else {
-                        $("#page_num").append("<a href='javascript:void(0);' onclick='select_ripple("+num+",0+"+e+")'>&nbsp;"+e+"&nbsp;</a>");
-                    }
+                    $("#page_num").append("<a href='javascript:void(0);' onclick='select_ripple("+$num+",0+"+e+")'>&nbsp;"+e+"&nbsp;</a>");
                 }
             }else{
                 //alert("댓글로딩 오류");
@@ -147,7 +150,7 @@ function ripple_insert(num){
     $content = $("#ripple_content").val();
     $count = $content.length;
     $num = num;
-    if(!$name){
+    if(!$name || $name == null){
         alert('댓글이용은 로그인이 필요합니다.');
         return false;
     }
@@ -163,7 +166,12 @@ function ripple_insert(num){
         data: {"name":$name,"content":$content,"num":$num},
         datatype: 'json',
         success : function(data){
-            var json_data = JSON.parse(data)
+            var json_data = JSON.parse(data);
+            //console.log(json_data.isSuccess);
+            if(json_data.isSuccess == null){
+                alert('댓글등록 오류');
+                return false;
+            }
             if(json_data.isSuccess == 1){
                 // $("#ripple_form").prepend("<li id="+json_data.data.num
                 // +"><h3>작성자 : "+json_data.data.created_by+"</h3><p>작성일자 : "
@@ -174,7 +182,7 @@ function ripple_insert(num){
                 
                 // var offsetTOP = $("#"+json_data.data.num).offset().top;
                 // $('body').animate({scrollTop : offsetTOP}, 400);
-                select_ripple(num,1);
+                select_ripple($num,1);
                 $("#content").val("");
             }else{
                 alert("댓글달기 오류");
@@ -204,7 +212,10 @@ function ripple_delete(num){
         datatype: 'json',
         success : function(data){
             var json_data = JSON.parse(data);
-            
+            if(json_data.isSuccess == null){
+                alert("댓글지우기 오류");
+                return false;
+            }
             if(json_data.isSuccess == 1){
                 // console.log(json_data.data);
                 $("li").remove("#"+json_data.data);

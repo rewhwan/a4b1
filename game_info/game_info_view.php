@@ -1,4 +1,5 @@
 <?php
+session_start();
 //설정한 지역의 시간대로 설정
 date_default_timezone_set('Asia/Seoul');
 require $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/db.mysqli.class.php";
@@ -69,17 +70,17 @@ while ($row3 = mysqli_fetch_array($result)) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/common/js/jquery/jquery-3.5.1.min.js?ver=1"></script>
     <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/common/css/common.css?ver=1">
     <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/game_info/css/game_info_view.css">
     <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/game_info/css/game_info_view_slide.css">
     <script src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/common/js/common.js?ver=1"></script>
-    <script src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/common/js/jquery/jquery-3.5.1.min.js?ver=1"></script>
     <script src="./js/info.js"></script>
     <script>select_ripple(<?=$num?>,1)</script>
     <title>게임 상세 정보</title>
 </head>
 
-<body>
+<body id="body">
     <header>
         <?php include $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/header.php"; ?>
     </header>
@@ -162,10 +163,10 @@ while ($row3 = mysqli_fetch_array($result)) {
                     }
                 ?>
             </div>
+            <script src="./js/game_info_view_slide.js"></script>
         <?php
         }    
         ?> 
-        <script src="./js/game_info_view_slide.js"></script>
         
     </div>
     
@@ -173,7 +174,7 @@ while ($row3 = mysqli_fetch_array($result)) {
         <div id="ripple2">
             <p>댓글입력</p>
             <br>
-            <input type="hidden" name="userid" id="userid" value="<?= $_SESSION['id'] ?>">
+            <input type="hidden" name="userid" id="userid" value="<?=$_SESSION['id']?>">
             <!-- <input type="hidden" name="num" id="num" value=""> -->
             <textarea name="content" id="ripple_content" cols="70" rows="10"></textarea>
             <button onclick="ripple_insert(<?= $num ?>)">댓글달기</button>
