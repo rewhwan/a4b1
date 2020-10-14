@@ -50,7 +50,19 @@ mysqli_close($dbcon);
 <head>
     <meta charset="UTF-8">
     <title>게임리뷰</title>
+
+    <!--Jquery 추가-->
+    <script src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/common/js/jquery/jquery-3.5.1.min.js?ver=1"></script>
+
+    <!--alert & toastr 라이브러리 추가-->
+    <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/common/css/toastr/toastr.min.css?ver=1" />
+    <script src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/common/js/toastr/toastr.min.js?ver=1"></script>
+    <script src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/common/js/sweetalert/sweetalert.min.js?ver=1"></script>
+
+    <!--헤더 파일 추가-->
     <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/common/css/common.css?ver=1">
+    <script src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/common/js/common.js?ver=1"></script>
+
     <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/game_review/css/review.css">
     <script src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/common/js/jquery/jquery-3.5.1.min.js"></script>
     <script src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/game_review/js/modify.js"></script>
@@ -147,13 +159,15 @@ mysqli_close($dbcon);
                         </div>
                     </div>
                 </li>
-                <li><p>내용</p><textarea name="content" cols="30" rows="10" id="content"><?= $content ?></textarea></li>
+                <li>
+                    <p>내용</p><textarea name="content" cols="30" rows="10" id="content"><?= $content ?></textarea>
+                </li>
                 <li>
                     <p>파일첨부</p><input type="file" name="new_file[]" multiple accept="image/*">
                 </li>
             </ul>
             <div id="submit_container">
-                <button type="button" type="button">취소</button>
+                <a href="./index.php"><button type="button" type="button">취소</button></a>
                 <button type="button" onclick="check_input()">등록</button>
             </div>
         </form>
