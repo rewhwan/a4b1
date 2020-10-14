@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR&display=swap');
 body{
     width: 100%;
     height: 100%;
@@ -33,23 +34,22 @@ h1{
     margin-bottom: 50px;
 }
 label, span{
-    font: 200 20px/1.5 Do Hyeon, Times New Roman, serif;
+    font: 200 15px/1.5 Noto Serif KR, Times New Roman, serif;
 }
 #insert_form{
     background-color: white;
     border-radius: 10px;
     padding: 40px;
+    width: 800px;
 }
 .subject{
-    font: 200 30px/1.5 Do Hyeon, Times New Roman, serif;
+    font: 200 20px/1.5 Noto Serif KR, Times New Roman, serif;
 }
 input[type="text"], input[type="number"]{
     height: 30px;
-    width: 200px;
+    width: 700px;
 }
-#label_dev, #label_pri{
-    margin-left: 100px;
-}
+
 #div_b{
     text-align: right;
 }
