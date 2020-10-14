@@ -1,4 +1,6 @@
 <?php
+header('Content-Type: text/html; charset=utf-8');
+
 require $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/db.mysqli.class.php";
 include $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/submit_function.php";
 
@@ -18,6 +20,12 @@ if (isset($_POST['mode']) && $_POST['mode'] == "insert") {
 
     $title = test_input($title);
     $content = test_input($content);
+
+    if ($title == "") {
+        echo "<script>alert('제목이 입력되지않았습니다.');history.go(-1);</script>";
+        exit;
+    }
+
 
 //현재의 날짜와 시간을 저장
     $created_at = date("y-m-d (h:i)");
@@ -46,6 +54,8 @@ if (isset($_POST['mode']) && $_POST['mode'] == "insert") {
 
     mysqli_query($dbcon, $sql) or die("쿼리문 오류1 : " . mysqli_error($dbcon));
 
+//    system("chmod -R 000 ./data");
+//    echo shell_exec('whoami');
     echo "<script>location.href = 'index.php';</script>";
     exit;
 }
@@ -59,6 +69,13 @@ if (isset($_POST['mode']) && $_POST['mode'] == "modify") {
     $content = $_POST['content'];
 
     $upload_dir = "./data/";
+
+    $title = test_input($title);
+
+    if ($title == "") {
+        echo "<script>alert('제목이 입력되지않았습니다.');history.go(-1);</script>";
+        exit;
+    }
 
     if(isset($_POST['urgent']) && $_POST['urgent'] == 't') $sql = "SELECT * FROM notice_urgent WHERE num = {$num}";
     else $sql = "select *  from notice where num = {$num}";

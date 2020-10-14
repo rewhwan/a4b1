@@ -21,6 +21,7 @@
             $num = $_GET['num'];
             $page = $_GET['page'];
 
+
             $mode = "insert";
             require $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/db.mysqli.class.php";
             //싱글톤 객체 불러오기
@@ -42,6 +43,8 @@
             $file_copied = $row["file_copied"];
             $file_type = $row["file_type"];
             $hit = $row["hit"];
+
+
             ?>
         <form name="notice_form" method="post" action="dmi_notice.php" enctype="multipart/form-data">
             <ul id="notice_form">
