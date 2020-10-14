@@ -1,7 +1,7 @@
 <?php 
     session_start();
     include $_SERVER['DOCUMENT_ROOT']."/a4b1/common/lib/submit_function.php";
-    if(intval($_SESSION['admin']) < 1){
+    if(!isset($_SESSION['admin'])|| $_SESSION['admin'] < 1){
         alert_back("권한이 없습니다.");
     }
 ?>
@@ -31,14 +31,19 @@
         <ul>
             <li>
                 <label for="title_image" class="subject">타이틀 이미지</label>
+                <br>
                 <input type="file" name="title_image" id="title_image" accept="image/*" onchange="file_check(this,'title_image')">
             </li>
 
             <br>
             <li>
                 <label for="name" class="subject">게임 명</label>
+                <br>
                 <input type="text" name="name" id="name">
+                <br>
+                <br>
                 <label for="developer" class="subject" id="label_dev">개발사</label>
+                <br>
                 <input type="text" name="developer" id="developer">
             </li>
             
@@ -91,8 +96,12 @@
             <br>
             <li>
                 <label for="circulation" class="subject">유통사</label>
+                <br>
                 <input type="text" name="circulation" id="circulation">
+                <br>
+                <br>
                 <label for="price" class="subject" id="label_pri">가격</label>
+                <br>
                 <input type="number" name="price" id="price">
             </li>
             <br>
@@ -114,10 +123,12 @@
             </li>
             <li>
                 <label for="screen_shot" class="subject">게임 내 스크린 샷</label>
+                <br>
                 <input type="file" name="screen_shot[]" id="screen_shot" multiple accept="image/*" onchange="file_check(this,'screen_shot')">
             </li>
             <?php if(intval($_SESSION['admin']) >= 1){?>
                 <div id="div_b">
+                    <button onclick="history.go(-1)" type="button">뒤로가기</button>
                     <button onclick="check_input()" type="button">등록하기</button>
                 </div>
             <?php } ?>

@@ -1,7 +1,6 @@
 <?php
-session_start();
 //설정한 지역의 시간대로 설정
-date_default_timezone_set('Asia' / 'Seoul');
+date_default_timezone_set('Asia/Seoul');
 require $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/db.mysqli.class.php";
 include $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/submit_function.php";
 //싱글톤 객체 불러오기
@@ -12,7 +11,7 @@ $num = $_GET['num'];
 //DB에서 게임 정보 가져오기
 $sql = "SELECT * from `game_info` where `num` = $num";
 $result = mysqli_query($dbcon, $sql) or die("list select error2 : " . mysqli_error($dbcon));
-mysqli_data_seek($result, $i);
+// mysqli_data_seek($result, $i);
 $row = mysqli_fetch_array($result);
 $name = $row['name'];
 $developer = $row['developer'];
@@ -33,7 +32,7 @@ $homepage = $row['homepage'];
 $content = test_input($row['content']);
 //코드를 문자로 치환
 $content = html_entity_decode($content);
-
+$genre = null;
 $sql = "SELECT * from `game_info_genre` where `info_num` = $num";
 $result = mysqli_query($dbcon, $sql) or die("list select error3 : " . mysqli_error($dbcon));
 while ($row1 = mysqli_fetch_array($result)) {
@@ -43,6 +42,7 @@ while ($row1 = mysqli_fetch_array($result)) {
         $genre = $row1['genre'];
     }
 }
+$platform=null;
 $sql = "SELECT * from `game_info_platform` where `info_num` = $num";
 $result = mysqli_query($dbcon, $sql) or die("list select error4 : " . mysqli_error($dbcon));
 while ($row2 = mysqli_fetch_array($result)) {
@@ -52,6 +52,7 @@ while ($row2 = mysqli_fetch_array($result)) {
         $platform = $row2['platform'];
     }
 }
+$screen=null;
 $sql = "SELECT * from `game_info_files` where `info_num` = $num";
 $result = mysqli_query($dbcon, $sql) or die("list select error5 : " . mysqli_error($dbcon));
 while ($row3 = mysqli_fetch_array($result)) {
@@ -70,6 +71,7 @@ while ($row3 = mysqli_fetch_array($result)) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/common/css/common.css?ver=1">
     <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/game_info/css/game_info_view.css">
+    <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/game_info/css/game_info_view_slide.css">
     <script src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/common/js/common.js?ver=1"></script>
     <script src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/common/js/jquery/jquery-3.5.1.min.js?ver=1"></script>
     <script src="./js/info.js"></script>
@@ -128,24 +130,43 @@ while ($row3 = mysqli_fetch_array($result)) {
         <div id="ingame">
             게임 내 사진
         </div>
-        <ul>
+        
+            <div class="slideshow-container">
         <?php
                 $screen_shot = explode(",",$screen);
                 $count= count($screen_shot);
+                $i=0;
                 for($i=0; $i<$count; $i++){
                     $screen_image= $screen_shot[$i];
                     //echo"<script>console.log($screen_shot)</script>";
                     //echo"<script>console.log('$screen_image')</script>";
                     ?>
-                    <li>
-                    <img src='./img/screen/<?=$screen_image?>' alt=''>
-                    </li>
-                        
+                    <div class="mySlides fade">
+                        <div class="numbertext"><?=$i+1?> / <?=$count?></div>
+                            <img src="./img/screen/<?=$screen_image?>" style="width:100%">
+                        </div>
                 <?php
                 }
-            }    
-            ?> 
-        </ul>
+                ?>
+            
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+            </div>
+            <div style="text-align:center" id="dot_container">
+                <?php
+                    for($i=0; $i<$count; $i++){
+                ?>
+                <span class="dot" onclick="currentSlide(<?=$i?>+1)"></span> 
+                <?php
+                    }
+                ?>
+            </div>
+        <?php
+        }    
+        ?> 
+        <script src="./js/game_info_view_slide.js"></script>
+        
     </div>
     
     <div id="ripple_regist">

@@ -121,17 +121,13 @@ img{
     font: 200 40px/1.5 Do Hyeon, Times New Roman, serif;
 }
 /* 스크린샷 이미지 설정 */
-#screen_shot_show ul{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    list-style: none;
+#screen_shot_show{
+
 }
 #screen_shot_show img{
     margin-left: 20px;
     width: 300px;
-    height: 300px;
+    height: 500px;
 }
  /*댓글 달기 버튼*/
 button{
