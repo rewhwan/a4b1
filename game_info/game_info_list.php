@@ -26,10 +26,10 @@ $dbcon = $db->connector();
     <title>게임 정보 리스트</title>
 </head>
 
-<header>
-    <?php include $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/header.php"; ?>
-</header>
 <body id="body">
+    <header>
+        <?php include $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/header.php"; ?>
+    </header>
     <?php
     if(isset($_GET['mode'])){
         $mode = $_GET['mode'];
@@ -139,7 +139,7 @@ $dbcon = $db->connector();
                     }
                     $image = $row['image'];
                     $created_by = $row['created_by'];
-                    $created_at = $row['created_at'];
+                    //$created_at = $row['created_at'];
 
                     $sql = "SELECT * from `game_info_genre` where `info_num` = $num";
                     $result = mysqli_query($dbcon, $sql) or die("list select error3 : " . mysqli_error($dbcon));
@@ -180,7 +180,7 @@ $dbcon = $db->connector();
                         <p>지원 플랫폼 : <?=$platform?></p>
                         <p>한국어 지원 : <?=$service_kor?></p>
                         <p>작성자 : <?=$created_by?></p>
-                        <p>작성일자 : <?=$created_at?></p>
+                        <!-- <p>작성일자 : <?=$created_at?></p> -->
                         <p>등급 : <?=$grade?></p>
                     </li>
                 </a>

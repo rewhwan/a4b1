@@ -26,35 +26,52 @@ $db->sessionStart();
         <!--메인화면 파일 추가-->
         <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/main/css/main.css?ver=1"/>
         <script src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/main/js/main.js?ver=1"></script>
-
+        <!-- 슬라이드 쇼 css -->
+        <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/main/css/main_slide.css?ver=1"/>
     </head>
     <body id="body">
         <header>
             <?php include $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/header.php"; ?>
         </header>
         <div>
-            <div class="slide_container">
-                <div class="slideshow">
-                    <div class="slideshow_slides">
-                        <a href="#"><img src="http://<?=$_SERVER['HTTP_HOST']?>/source/homework/200917/img/slide-1.jpg" alt="slide1"></a>
-                        <a href="#"><img src="http://<?=$_SERVER['HTTP_HOST']?>/source/homework/200917/img/slide-2.jpg" alt="slide2"></a>
-                        <a href="#"><img src="http://<?=$_SERVER['HTTP_HOST']?>/source/homework/200917/img/slide-3.jpg" alt="slide3"></a>
-                        <a href="#"><img src="http://<?=$_SERVER['HTTP_HOST']?>/source/homework/200917/img/slide-4.jpg" alt="slide4"></a>
-                    </div>
+        <div class="slideshow-container">
+        <?php
+                // $screen_shot = explode(",",$screen);
+                // $count= count($screen_shot);
+                // $i=0;
+                // for($i=0; $i<$count; $i++){
+                //     $screen_image= $screen_shot[$i];
+                    //echo"<script>console.log($screen_shot)</script>";
+                    //echo"<script>console.log('$screen_image')</script>";
+                    ?>
+                    <div class="mySlides fade">
+                        <div class="numbertext">1 / 1</div>
+                            <img src="http://<?=$_SERVER['HTTP_HOST']?>/a4b1/game_review/data/background_image2.jpg" style="width:100%">
+                        </div>
+                <?php
+                //}
+                ?>
+            
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
 
-                    <div class="slideshow_nav">
-                        <a href="#" class="prev">prev</a>
-                        <a href="#" class="next">next</a>
-                    </div>
-
-                    <div class="slideshow_indicator">
-                        <a href="#" class="active"></a>
-                        <a href="#"></a>
-                        <a href="#"></a>
-                        <a href="#"></a>
-                    </div>
-                </div>
             </div>
+            <div style="text-align:center" id="dot_container">
+                <?php
+                    //for($i=0; $i<$count; $i++){
+                ?>
+                <span class="dot" onclick="currentSlide(1)"></span> 
+                <?php
+                    //}
+                ?>
+            </div>
+            <script src="http://<?=$_SERVER['HTTP_HOST']?>/a4b1/game_info/js/game_info_view_slide.js"></script>
+        </div>
+        <div id="game_info_view_container">
+            <img src="http://<?=$_SERVER['HTTP_HOST']?>/a4b1/game_review/data/background_image2.jpg" style="width:100%">
+        </div>
+        <div id="game_review_view_container">
+            <img src="http://<?=$_SERVER['HTTP_HOST']?>/a4b1/game_review/data/background_image2.jpg" style="width:100%">
         </div>
         <footer>
             <?php include $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/footer.php"; ?>
