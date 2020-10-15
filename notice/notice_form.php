@@ -17,7 +17,7 @@
         <?php include $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/header.php"; ?>
     </header>
 
-    <section>
+    <section id="insert_form_notice_container">
 
         <div id="notice_box">
             <h3 id="notice_title">
