@@ -6,13 +6,14 @@ function logoutCheck(host) {
 window.onscroll = function () {
     // 메뉴바 변수 적용
     var menu = document.getElementById("menu");
-    var offsetTop = menu.offsetTop;
+    var top_menu = document.getElementById('top_menu');
+    var offsetTop = top_menu.offsetHeight;
     var scrollTop = document.scrollingElement.scrollTop;
 
     // body 태그 변수 적용
-    var body = document.getElementsByTagName("body");
+    var body = document.getElementById("body");
 
-    if(scrollTop > 78.23) {
+    if(scrollTop > offsetTop) {
         menu.classList.add("leftTopFixed");
         body.classList.add("bodyMenuFixed");
     } else {
