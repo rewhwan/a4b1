@@ -28,8 +28,6 @@
 #notice_list .list4 { width: 40px; }
 #notice_list .list5 { width: 180px; }
 #notice_list .list6 { width: 45px; }
-#main_notice_container {height: 66vh; display: flex;}
-
 #notice_list .list4 img {vertical-align: middle;}
 
 #page_num {	text-align: center;	margin: 30px 0 }
@@ -58,4 +56,4 @@
 #view_content li:nth-child(3) button { padding: 5px 20px; margin: 15px 0 40px 720px; cursor: pointer; }
 
 #page_num { margin-top:10px; text-align:center; }
-#view_notice_container {height: 66vh; display: flex;}
+#notice_view_image {max-width: 640px; max-height: 360px; margin: 30px 0;}
