@@ -1,85 +1,65 @@
-/*슬라이드 쇼 관련 CSS*/
-.slide_container {
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap");
+#game_info_view_container{
+    display: flex;
     align-items: center;
     justify-content: center;
+    background-color: rgb(228, 224, 212);
+}
+#game_info_view_container img{
+    width: 270px;
+    height: 300px;
+}
+#game_review_view_container{
+    width: 100%;
     display: flex;
-    width: 100vw;
-    /*height: 80vh;*/
-    min-width: 960px;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(228, 224, 212);
 }
-
-
-
-.slideshow {
-    background-color: #000000;
-    width: 480px;
-    height: 240px;
-    overflow: hidden;
-    position: relative;
-    margin: 0 auto;
+#game_review_view_container img{
+    width: 270px;
+    height: 300px;
 }
-
-.slideshow_slides {
-    position: absolute;
-    width: 100%;
-    height: 100%;
+.label_container{
+    padding-top: 20px;
+    text-align: center;
+    font: bold 32px/1.5 Do Hyeon, Verdana, sans-serif;
+    background-color: rgb(228, 224, 212);
 }
-
-.slideshow_slides a {
-    position: absolute;
-    width: 100%;
-    height: 100%;
+.info_view_a{
+    padding: 10px;
     text-align: center;
 }
-
-.slideshow_slides img {
-    width: 100%;
-    height: 100%;
+.info_view_img{
+    border-radius: 20px;
 }
 
-/*네비바 버튼 CSS*/
-.slideshow_nav a {
-    background: url("../img/sprites.png") no-repeat;
-    width: 71px;
-    height: 71px;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translateY(-50%);
-    text-indent: -9999em;
+#calendar_notice_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
 }
-
-
-.slideshow_nav a.prev {
-    position: absolute;
-    background-position: 0 -20px;
-    margin-left: -230px;
+#calendar_container{
+    width: 400px;
+    height: 400px;
+    padding: 20px;
+    margin-left: 20px;
+    background-color: rgb(123, 122, 128);
 }
-
-.slideshow_nav a.next {
-    position: absolute;
-    background-position: -80px -20px;
-    margin-left: 160px;
+#calendar_container ul{
+    list-style: none;
 }
-
-.slideshow_indicator {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
+#notice_container{
+    width: 400px;
+    height: 400px;
+    padding: 20px;
+    margin-left: 20px;
+    background-color: rgb(123, 122, 128);
+}
+.span_container{
     text-align: center;
-}
-
-.slideshow_indicator a {
-    background: url("../img/sprites-sonic.png") no-repeat -256px -231px;
-    margin:  7px 5px;
-    width: 30px;
-    height: 30px;
-}
-
-.slideshow_indicator a.active {
-    background: url("../img/sprites-sonic.png") no-repeat -133px -10px;
-    margin:  0 5px;
-    width: 28px;
-    height: 44px;
+    background-color: darkgray;
+    font-weight: bold;
 }

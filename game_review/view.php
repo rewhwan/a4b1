@@ -235,7 +235,7 @@ if (is_numeric($name)) {
                     </div>
                     <div style="text-align:center" id="dot_container">
                         <?php
-                        for ($i = 0; $i < $row; $i++) {
+                        for ($i = 0; $i < $value; $i++) {
                         ?>
                             <span class="dot" onclick="currentSlide(<?= $i ?>+1)"></span>
                     <?php
