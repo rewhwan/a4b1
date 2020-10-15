@@ -24,15 +24,18 @@ a:active {text-decoration: none;}
 #title_container  {background-color: #242831; padding: 15px; height: 5vh; display: flex; justify-content: space-between; align-items: center;}
 #title {font-size: 40px; color: whitesmoke;}
 #title_sub {font-size: 35px; color: whitesmoke;}
+#title_function a {color: white;}
 
 
 /*사이드 메뉴 UI =================================================================================*/
-#side_menu {float: left; width: 15vw; height: 92vh; background-color: grey;}
+#side_menu {float: left; width: 15%; height: 91vh; background-color: grey;}
 
 #side_menu ul li {height: 5vh; background-color: #b7b7b7; display: flex; align-items: center;}
 #side_menu ul li:not(:last-child) {border-bottom: solid 2px black;}
 #side_menu ul li span {margin: 0 0 0 30px; font-size: 25px;}
 
 /*콘텐츠 UI ==================================================================================*/
-#content {float: left; width: 85vw; height: 92vh; background-image: url("../img/background.jpg"); background-size: cover;}
+#content {float: left; width: 85%; height: 91vh; background-image: url("../img/background.jpg"); background-size: cover;}
 
+/* 슬라이드 관리 페이지 UI =====================================================================================================*/
+h2 {text-align: center;}
