@@ -20,23 +20,8 @@
                 </a>
             </li>
             <li>
-                <a href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/admin/css/admin.css?ver=1">
-                    <span class="gfont_3">메인 슬라이드 관리<span>
-                </a>
-            </li>
-            <li>
-                <a href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/admin/css/admin.css?ver=1">
-                    <span class="gfont_3">메인 슬라이드 관리<span>
-                </a>
-            </li>
-            <li>
-                <a href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/admin/css/admin.css?ver=1">
-                    <span class="gfont_3">메인 슬라이드 관리<span>
-                </a>
-            </li>
-            <li>
-                <a href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/admin/css/admin.css?ver=1">
-                    <span class="gfont_3">메인 슬라이드 관리<span>
+                <a href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/admin/admin_member.php">
+                    <span class="gfont_3">멤버 권한 관리<span>
                 </a>
             </li>
         </ul>

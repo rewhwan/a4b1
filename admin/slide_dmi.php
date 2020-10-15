@@ -14,7 +14,7 @@
 
     if(isset($_REQUEST['mode']) && $_REQUEST['mode']) {
         $msg = new message();
-
+        echo $_REQUEST['mode'];
         switch($_REQUEST['mode']) {
             case 'insertSlide':
                 $msg = insertSlide();
@@ -29,6 +29,6 @@
         $msg = new message();
 
         $sql = 'INSERT INTO main_slide_files VALUES ()';
-        $msg->add('errorMsg',$_FILES['file']);
+        $msg->add('errorMsg',$_FILES['slide_file']);
         return $msg;
     }

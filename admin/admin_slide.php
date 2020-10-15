@@ -42,7 +42,7 @@ if(!isset($_SESSION['admin']) || $_SESSION['admin'] < 1) {
                     $result = mysqli_query($dbcon,$sql);
                     $resultArray = mysqli_fetch_all($result);
 
-                    print_r($resultArray);
+                    // print_r($resultArray);
                 ?>
             </ul>
         </div>
@@ -51,6 +51,6 @@ if(!isset($_SESSION['admin']) || $_SESSION['admin'] < 1) {
     <div id="insert_form">
         <h2>슬라이드쇼 사진 추가 하기</h2>
         <input type="file" id="slide_file" name="slide_file[]" multiple accept="image/*">
-        <button onclick="submit_slide()">추가</button>
+        <button type="button" onclick="submit_slide()">추가</button>
     </div>
 </html>
