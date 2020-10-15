@@ -109,5 +109,8 @@
             </ul>
         </div> <!-- notice_box -->
     </section>
+    <footer>
+        <?php include $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/footer.php"; ?>
+    </footer>
 </body>
 </html>
