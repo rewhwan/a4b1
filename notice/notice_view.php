@@ -70,6 +70,8 @@
 			       		<a href='notice_download.php?num=$num&real_name=$real_name&file_name=$file_name&file_type=$file_type'>[저장]</a><br><br>";
                     }
                     ?>
+                    <img src="./data/<?=$file_copied?>" id="notice_view_image">
+                    <br>
                     <?= $content ?>
                 </li>
             </ul>
