@@ -56,7 +56,7 @@ body::after{
 
   #page_num li { display: inline; }
 
-  #review_insert { list-style-type: none; }
+  #review_insert { list-style-type: none; width: 1400px; padding-bottom: 40px;}
   
   #review_insert a button{ font-size: 15px; }
   
@@ -98,7 +98,7 @@ body::after{
 
 #image_container {width: 500px; height: 500px;border: 1px solid black;}
 
-#prev { display: flex;    justify-content: flex-end;}
+#prev { margin: 0 auto; width: 80%; padding: 30px;}
  
 #button_group { display: flex; justify-content: flex-end; font-size: 15px; }
 
@@ -120,7 +120,7 @@ body::after{
 
 #content_review h2{ margin: 0px 0px 20px 0px; }
 
-#content_review ul{ background-color: white; width: 1500px; height: 400px; margin: 0 auto; list-style: none; border-radius: 20px; padding: 30px; background-color: rgb( 255, 255, 255); opacity: 0.90;}
+#content_review ul{ background-color: white; width: 80%; height: 400px; margin: 0 auto; list-style: none; border-radius: 20px; padding: 30px; background-color: rgb( 255, 255, 255); opacity: 0.90;}
 
 #content_review ul li:nth-child(1) h3{ text-align: end; }
 
