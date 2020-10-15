@@ -78,7 +78,6 @@ session_start();
 <body id="body">
     <header>
         <?php include $_SERVER['DOCUMENT_ROOT']."/a4b1/common/lib/header.php";?>
-        
     </header>
     <div id="form_container">
     <!-- 파일을 보내기위한 인코딩 방식 설정 -->
@@ -121,7 +120,7 @@ session_start();
                 <label>PS5<input type="checkbox" name="platform[]" value="PS5" id="PS5"></label>
                 <label>XBOX 360<input type="checkbox" name="platform[]" value="XBOX 360" id="XBOX 360"></label>
                 <label>XBOX one<input type="checkbox" name="platform[]" value="XBOX ONE" id="XBOX one"></label>
-                <label>nintendo switch<input type="checkbox" name="platform[]" value="nintendo switch" id="nintendo switch"></label>
+                <label>nintendo switch<input type="checkbox" name="platform[]" value="NINTENDO SWITCH" id="nintendo switch"></label>
                 <script>platform_check('<?=$platform?>')</script>
             </li>
 
@@ -221,6 +220,9 @@ session_start();
         <?php } ?>
     </form>
     </div>
+    <footer>
+        <?php include $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/footer.php"; ?>
+    </footer>
 </body>
 
 </html>

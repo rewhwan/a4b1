@@ -41,6 +41,7 @@ label, span{
     border-radius: 10px;
     padding: 40px;
     width: 800px;
+    margin-bottom: 30px;
 }
 .subject{
     font: 200 20px/1.5 Noto Serif KR, Times New Roman, serif;

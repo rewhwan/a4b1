@@ -119,15 +119,48 @@ if(isset($_FILES['title_image']) && $upload_error1  == UPLOAD_ERR_OK){
 //쿼리문 실행.
 mysqli_query($dbcon,$sql) or die("game_info_update_error3 : ".mysqli_error($dbcon));
 
-//장르처리
-for($i=0; $i<count($genre); $i++){
-    $sql = "UPDATE  `game_info_genre` set genre='$genre[$i]' where `info_num` = $num";
-    mysqli_query($dbcon,$sql) or die("game_info_update_error5 : ".mysqli_error($dbcon));
+//장르처리를 위한 배열 값 비교
+$genre_array = array();
+$intersect1 = null;
+$sql="SELECT * from `game_info_genre` where `info_num` = $num";
+$result_genre = mysqli_query($dbcon,$sql) or die("game_info_update_select_genre_error1 : ".mysqli_error($dbcon));
+while($row_genre = mysqli_fetch_array($result_genre)){
+    array_push($genre_array,$row_genre['genre']);
 }
+//교집합 개수 구하기
+$intersect1 = count(array_intersect($genre_array,$genre));
+//개수가 다를시 삭제하고 다시 넣는다.
+if($intersect1 != count($genre_array) || $intersect1 != count($genre)){
+    $sql="DELETE from `game_info_genre` where `info_num` = $num";
+    mysqli_query($dbcon,$sql) or die("game_info_update_genre_delete_error1 : ".mysqli_error($dbcon));
+    //장르처리
+    for($i=0; $i<count($genre); $i++){
+    $sql = "INSERT into `game_info_genre` values(null,$num,'$genre[$i]')";
+    //$sql = "UPDATE  `game_info_genre` set genre='$genre[$i]' where `info_num` = $num";
+    mysqli_query($dbcon,$sql) or die("game_info_update_error5 : ".mysqli_error($dbcon));
+    }
+}
+
+//장르처리를 위한 배열 값 비교
+$platform_array = array();
+$intersect2 = null;
+$sql="SELECT * from `game_info_platform` where `info_num` = $num";
+$result_platform = mysqli_query($dbcon,$sql) or die("game_info_update_select_platform_error1 : ".mysqli_error($dbcon));
+while($row_platform = mysqli_fetch_array($result_platform)){
+    array_push($platform_array,$row_platform['platform']);
+}
+//교집합 개수 구하기
+$intersect2 = count(array_intersect($platform_array,$platform));
+//개수가 다를시 삭제하고 다시 넣는다.
 //플랫폼 처리
-for($i=0; $i<count($platform); $i++){
-    $sql = "UPDATE  `game_info_platform` set platform='$platform[$i]' where `info_num` = $num";
-    mysqli_query($dbcon,$sql) or die("game_info_update_error6 : ".mysqli_error($dbcon));
+if($intersect2 != count($platform_array) || $intersect2 != count($platform)){
+    $sql="DELETE from `game_info_platform` where `info_num` = $num";
+    mysqli_query($dbcon,$sql) or die("game_info_update_genre_delete_error1 : ".mysqli_error($dbcon));
+    for($i=0; $i<count($platform); $i++){
+        $sql = "INSERT into `game_info_platform` values(null,$num,'$platform[$i]')";
+        //$sql = "UPDATE  `game_info_platform` set platform='$platform[$i]' where `info_num` = $num";
+        mysqli_query($dbcon,$sql) or die("game_info_update_error6 : ".mysqli_error($dbcon));
+    }
 }
 
 //오류 파악
@@ -151,4 +184,4 @@ for($i=0; $i<$count; $i++){
         }
     }
 mysqli_close($dbcon);
-// echo "<script>location.href='./game_info_view.php?num=$num';</script>";
+//echo "<script>location.href='./game_info_view.php?num=$num';</script>";

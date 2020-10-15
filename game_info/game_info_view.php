@@ -63,6 +63,14 @@ while ($row3 = mysqli_fetch_array($result)) {
         $screen = $row3['name'];
     }
 }
+$user_name = null;
+if(isset($_SESSION['id']) && $_SESSION['id'] !=null){
+    $user_name = $_SESSION['id'];
+}
+$user_admin = null;
+if(isset($_SESSION['admin']) && $_SESSION['admin'] !=null){
+    $user_admin = $_SESSION['admin'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="ko">
@@ -165,7 +173,7 @@ while ($row3 = mysqli_fetch_array($result)) {
             </div>
             <script src="./js/game_info_view_slide.js"></script>
         <?php
-        }    
+        }   
         ?> 
         
     </div>
@@ -174,10 +182,10 @@ while ($row3 = mysqli_fetch_array($result)) {
         <div id="ripple2">
             <p>댓글입력</p>
             <br>
-            <input type="hidden" name="userid" id="userid" value="<?=$_SESSION['id']?>">
-            <!-- <input type="hidden" name="num" id="num" value=""> -->
+            <input type="hidden" id="current_user" value="<?=$user_name?>">
+            <input type="hidden" id="current_admin" value="<?=$user_admin?>">
             <textarea name="content" id="ripple_content" cols="70" rows="10"></textarea>
-            <button onclick="ripple_insert(<?= $num ?>)">댓글달기</button>
+            <button onclick="ripple_insert(<?=$num?>,'<?=$user_name?>')">댓글달기</button>
         </div>
     </div>
     <div id="ripple_bag">
@@ -202,7 +210,9 @@ while ($row3 = mysqli_fetch_array($result)) {
             </div>
         </div>
     </div>
-    
+    <footer>
+        <?php include $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/footer.php"; ?>
+    </footer>
 </body>
 
 </html>

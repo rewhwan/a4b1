@@ -5,7 +5,7 @@ function alert_back($message)
     echo "
         <script>
             alert('$message');
-            // history.go(-1);
+            history.go(-1);
         </script>
         ";
     exit();
