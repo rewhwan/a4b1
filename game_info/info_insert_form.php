@@ -21,7 +21,6 @@
 <body id="body">
     <header>
         <?php include $_SERVER['DOCUMENT_ROOT']."/a4b1/common/lib/header.php";?>
-        
     </header>
     <!-- 파일을 보내기위한 인코딩 방식 설정 -->
     <div id="form_container">
@@ -56,7 +55,7 @@
                 <label>PS5<input type="checkbox" name="platform[]" value="PS5"></label>
                 <label>XBOX 360<input type="checkbox" name="platform[]" value="XBOX 360"></label>
                 <label>XBOX one<input type="checkbox" name="platform[]" value="XBOX ONE"></label>
-                <label>nintendo switch<input type="checkbox" name="platform[]" value="nintendo switch"></label>
+                <label>nintendo switch<input type="checkbox" name="platform[]" value="NINTENDO SWITCH"></label>
             </li>
 
             <br>
@@ -113,7 +112,7 @@
             <br>
             <li>
                 <label for="homepage" class="subject">공식 홈페이지</label>
-                <input type="text" name="homepage" id="homepage">
+                <input type="text" name="homepage" id="homepage" placeholder="정확한 주소를 입력해주세요">
             </li>
             <br>
             <li>
@@ -133,8 +132,10 @@
                 </div>
             <?php } ?>
         </ul>
-        
     </form>
     </div>
+    <footer>
+        <?php include $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/footer.php"; ?>
+    </footer>
 </body>
 </html>

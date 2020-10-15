@@ -26,10 +26,10 @@ $dbcon = $db->connector();
     <title>게임 정보 리스트</title>
 </head>
 
-<body>
-    <header>
-        <?php include $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/header.php"; ?>
-    </header>
+<header>
+    <?php include $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/header.php"; ?>
+</header>
+<body id="body">
     <?php
     if(isset($_GET['mode'])){
         $mode = $_GET['mode'];
@@ -57,8 +57,10 @@ $dbcon = $db->connector();
     }
     $result = mysqli_query($dbcon, $sql) or die("list select error1 : " . mysqli_error($dbcon));
     $total_record = mysqli_num_rows($result);
+    
     if($total_record == 0){
-        alert_back("검색 결과가 없습니다.");
+        //alert_back("검색 결과가 없습니다.");
+        echo"<script>alert('등록된 정보가 없습니다.');</script>";
     }
     //딱 맞아 떨어지면 그대로 아니면 올림수로 계산
     $total_page = ($total_record % SCALE == 0) ? ($total_record / SCALE) : (ceil($total_record / SCALE));
@@ -198,10 +200,12 @@ $dbcon = $db->connector();
                         <a href="./game_info_list.php?page=<?=$page-1?>&mode=search&search=<?=$search?>&search_word=<?=$search_word?>">이전◀</a>
                         <?php
                             }else{
+                                if($total_record != 0){
                             ?>
                         <a href="./game_info_list.php?page=<?=$page-1?>">이전◀</a>
                          <?php   
-                         }
+                                }
+                            }
                         }
                         ?>
                         &nbsp;&nbsp;&nbsp;
@@ -226,15 +230,19 @@ $dbcon = $db->connector();
                             <a href="./game_info_list.php?page=<?=$page+1?>&mode=search&search=<?=$search?>&search_word=<?=$search_word?>">▶다음</a>
                             <?php
                                 }else{
+                                    if($total_record !=0){
                             ?>
                             <a href="./game_info_list.php?page=<?=$page+1?>">▶다음</a>
                             <?php
+                                    }
                                 }
                             }
                             ?>
 						</div>
         </div>
-
+        <footer>
+            <?php include $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/footer.php"; ?>
+        </footer>
 </body>
 
 </html>
