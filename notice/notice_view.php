@@ -20,7 +20,7 @@
     <header>
         <?php include $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/header.php"; ?>
     </header>
-    <section>
+    <section id="view_notice_container">
         <div id="notice_box">
             <h3 class="title">
                 공지사항 > 내용
@@ -109,5 +109,8 @@
             </ul>
         </div> <!-- notice_box -->
     </section>
+    <footer>
+        <?php include $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/footer.php"; ?>
+    </footer>
 </body>
 </html>

@@ -21,7 +21,7 @@ $dbcon = $db->connector();
         <?php include $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/header.php"; ?>
     </header>
 
-    <section>
+    <section id="main_notice_container">
         <div id="notice_box">
             <h3>공지사항 > 목록</h3>
             <ul id="notice_list">

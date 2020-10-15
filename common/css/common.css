@@ -1,6 +1,7 @@
 /*구글폰트 추가*/
 @import url("https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cute+Font&display=swap');
 
 /*기본설정 UI ====================================================================================*/
 * {padding: 0; margin: 0;}
@@ -41,13 +42,36 @@ body {font-family: 'Noto Serif KR', serif;}
 #menu a:hover {text-decoration: none;}
 #menu a:active {text-decoration: none;}
 /*메뉴바 고정 클래스*/
-.leftTopFixed {position: fixed; left: 0; top: 0;}
+.leftTopFixed {position: fixed; left: 0; top: 0; z-index: 999;}
 .bodyMenuFixed {margin-top: 8vh;}
 /*body{height: 2000px;}*/
 
 /*푸터 UI ===================================================================================*/
-#footer_container {width: 100vw; height: fit-content; display: flex; background-color: grey;
-    justify-content: center; align-items: center;}
+#footer_container {width: 100vw; height: 15vh; display: flex; background-color: #e2e2e2; border-top: solid 1px black;
+    justify-content: space-around; padding: 25px 0;}
 /*로고 UI*/
-#logo_footer {width: 60px; height: 60px;}
-/*내용 UI*/
+#logo_footer {width: 120px; height: 120px;}
+#logo_footer_container {display: flex; flex-direction: column; align-items: center; justify-content: center;}
+/*기능&정보 UI*/
+#content h3 {font-family: 'Cute Font', cursive; font-size: 30px; border-bottom: solid 1px black;}
+#corp_container ul, #function_container ul {list-style: none;}
+#corp_container li,#function_container li {margin: 5px 0;}
+#corp_container a, #function_container a {color: #1d1d1d;}
+#corp_container a:link, #function_container a:link {text-decoration: none;}
+#corp_container a:visited, #function_container a:visited {text-decoration: none;}
+#corp_container a:hover, #function_container a:hover {text-decoration: none;}
+#corp_container a:active, #function_container a:link {text-decoration: none;}
+
+/*기업 정보 UI*/
+#corp_info h3 {font-family: 'Cute Font', cursive; font-size: 30px;}
+#corp_info ul {list-style: none;}
+#corp_info li {color: #6b6b6b;}
+#corp_info a:link {text-decoration: none;}
+#corp_info a:visited {text-decoration: none;}
+#corp_info a:hover {text-decoration: none;}
+#corp_info a:active {text-decoration: none;}
+
+/*개발자 정보 UI*/
+#developer_info h3 {font-family: 'Cute Font', cursive; font-size: 30px;}
+#developer_info ul {list-style: none;}
+#developer_info li {color: #6b6b6b;}

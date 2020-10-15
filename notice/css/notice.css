@@ -15,6 +15,8 @@
 #notice_box .buttons li { display: inline; }
 #notice_box .buttons button { padding: 5px 10px; cursor: pointer; }
 #notice_box .buttons form { display: inline-block; }
+#insert_form_notice_container{height: 66vh; display: flex;}
+#modify_notice_container{height: 66vh; display: flex;}
 
 /* 게시판 목록보기(index.php) */
 #notice_list {list-style: none;}
@@ -25,7 +27,8 @@
 #notice_list .list3 { width: 100px; }
 #notice_list .list4 { width: 40px; }
 #notice_list .list5 { width: 180px; }
-#notice_list .list6 { width: 40px; }
+#notice_list .list6 { width: 45px; }
+#main_notice_container {height: 66vh; display: flex;}
 
 #notice_list .list4 img {vertical-align: middle;}
 
@@ -55,3 +58,4 @@
 #view_content li:nth-child(3) button { padding: 5px 20px; margin: 15px 0 40px 720px; cursor: pointer; }
 
 #page_num { margin-top:10px; text-align:center; }
+#view_notice_container {height: 66vh; display: flex;}

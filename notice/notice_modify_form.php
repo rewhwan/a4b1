@@ -12,7 +12,7 @@
     <header>
         <?php include $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/header.php"; ?>
     </header>
-    <section>
+    <section id="modify_notice_container">
         <div id="notice_box">
             <h3 id="notice_title">
                 게시판 > 수정
@@ -94,5 +94,8 @@
         </form>
         </div> <!-- board_box -->
     </section>
+    <footer>
+        <?php include $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/footer.php"; ?>
+    </footer>
 </body>
 </html>
