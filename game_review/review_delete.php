@@ -25,7 +25,7 @@
         //파일 삭제 반복문
         while($row = mysqli_fetch_array($result)) {
             $file_path = "./img/".$row['name'];
-            if($file_path != null){
+            if($row['name'] != null){
                 unlink($file_path);
             }
         }
