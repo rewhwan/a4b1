@@ -56,7 +56,7 @@ body::after{
 
   #page_num li { display: inline; }
 
-  #review_insert { list-style-type: none; }
+  #review_insert { list-style-type: none; width: 1400px; padding-bottom: 40px;}
   
   #review_insert a button{ font-size: 15px; }
   
