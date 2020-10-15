@@ -21,12 +21,13 @@
     $result = mysqli_query($dbcon,$sql) or die("쿼리문 오류1 : ".mysqli_error($dbcon));;
 
     //해당 리뷰에 파일이 존재하는지 확인 하는 조건문
-    echo mysqli_num_rows($result);
     if(mysqli_num_rows($result) != 0) {
         //파일 삭제 반복문
         while($row = mysqli_fetch_array($result)) {
             $file_path = "./data/".$row['name'];
-            unlink($file_path);
+            if($file_path != null){
+                unlink($file_path);
+            }
         }
 
         //테이블 내용 삭제

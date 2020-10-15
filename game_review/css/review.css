@@ -203,7 +203,7 @@ button:hover:before,button:hover:after{width: 100%; transition:800ms ease all;}
   .mySlides {
     display: none;
 }
-.slideshow-container img {
+.slideshow-container img { 
     vertical-align: auto;
     height: 350px;
 }

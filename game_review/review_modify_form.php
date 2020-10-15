@@ -72,7 +72,7 @@ mysqli_close($dbcon);
 
 </style>
 
-<body>
+<body id="body">
     <header>
         <?php include $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/header.php"; ?>
     </header>
@@ -95,7 +95,7 @@ mysqli_close($dbcon);
                 <li>
                     <p>별점</p>
                     <div id="star_container">
-                        <p>스토리  </p>
+                        <p>스토리 </p>
                         <div class="story">
                             <?php
                             for ($i = 1; $i <= 10; $i++) {
@@ -202,7 +202,7 @@ mysqli_close($dbcon);
     </div>
 
     <footer>
-
+        <?php include $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/footer.php"; ?>
     </footer>
 
 </body>

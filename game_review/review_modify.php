@@ -43,7 +43,9 @@ if (isset($new_file)) {
         //파일 삭제 반복문
         while ($row = mysqli_fetch_array($result)) {
             $file_path = "./img/" . $row['name'];
-            unlink($file_path);
+            if ($file_path != null) {
+                unlink($file_path);
+            }
         }
     }
 

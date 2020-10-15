@@ -29,7 +29,7 @@
         <script src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/game_review/js/review.js?ver=1"></script>
     </head>
 
-    <body>
+    <body id="body">
         <header>
             <?php include $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/header.php"; ?>
         </header>
@@ -213,7 +213,7 @@
 
         </div>
         <footer>
-
+            <?php include $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/footer.php"; ?>
         </footer>
 
     </body>

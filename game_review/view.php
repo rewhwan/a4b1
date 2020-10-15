@@ -249,16 +249,16 @@ if (is_numeric($name)) {
 
 
         <div id="content_review">
-            
+
             <h1>게임 리뷰</h1>
             <ul>
                 <li>
-                    <h2>제목  :  <?=$title?></h2>
-                    <h3>Creation : <?=$created_at?></h3>
+                    <h2>제목 : <?= $title ?></h2>
+                    <h3>Creation : <?= $created_at ?></h3>
                 </li>
                 <hr>
                 <li>
-                    <p><?=$content?></p>
+                    <p><?= $content ?></p>
                 </li>
             </ul>
         </div>
@@ -267,7 +267,7 @@ if (is_numeric($name)) {
     </div>
 </body>
 <footer>
-
+    <?php include $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/footer.php"; ?>
 </footer>
 
 </html>
