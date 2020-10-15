@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap");
 * {margin: 0; padding: 0;}
 
-body{
+body {
     /* background-image: url("./back_img/back2.jpg");
     background-repeat: no-repeat; 
     background-attachment: fixed;*/
@@ -12,7 +12,7 @@ body{
     z-index: 1;
 }
 
-body::after{
+body::after {
     width: 100%;
     height: 100%;
     content: "";
@@ -26,70 +26,71 @@ body::after{
     opacity: 0.75;
 }
 /*리스트 관련 UI*/
-  #list{width: 1400px; margin: 0 auto;   padding: 10px 50px 10px 50px; border-radius: 20px;}
+#list {width: 1400px; margin: 0 auto; padding: 10px 50px 10px 50px; border-radius: 20px;}
 
-  #list ul {    list-style: none;    margin: 0;    padding: 0;  }
+#list ul { list-style: none; margin: 0; padding: 0; }
 
-  #list h3 {    font: bold 20px/1.5 Helvetica, Verdana, sans-serif;  }
+#list h3 { font: bold 20px/1.5 Helvetica, Verdana, sans-serif; }
 
-  #list li img {    float: left;    margin: 0 15px 0 0;    width: 300px;    height: 200px;  }
-  
-  #list li p {    font: 200 12px/1.5 Georgia, Times New Roman, serif;  }
-  
-  #list li {    width: 580px;    height: 200px;    padding: 10px;    border: 1px solid #777;    border-radius: 25px;    background-color: #ffffff;  }
+#list li img { float: left; margin: 0 15px 0 0; width: 300px; height: 200px; }
 
-  #list li:hover {    cursor: pointer;  }
+#list li p { font: 200 12px/1.5 Georgia, Times New Roman, serif; }
 
-  #list a {    display: inline-block;    color: #000;    margin: 8px 17px;    text-decoration: none;  }
+#list li { width: 580px; height: 200px; padding: 10px; border: 1px solid #777; border-radius: 25px; background-color: #ffffff; }
 
-  #top ul {    list-style-type: none;  }
+#list li:hover { cursor: pointer; }
 
-  #top ul li {    display: inline;  }
+#list a { display: inline-block; color: #000; margin: 8px 17px; text-decoration: none; }
 
-  #top {    display: flex;    justify-content: flex-end;  }
+#top ul { list-style-type: none; }
 
-  #container_body {    width: fit-content;    margin:0 auto;  }
+#top ul li { display: inline; }
 
-  button {    width: 80px;    height: 40px;  }
+#top { display: flex; justify-content: flex-end; }
 
-  #page_num {	text-align: center;	margin: 30px 0 }
+#container_body { width: fit-content; margin: 0 auto; }
 
-  #page_num li { display: inline; }
+button { width: 80px; height: 40px; }
 
-  #review_insert { list-style-type: none; width: 1400px; padding-bottom: 40px;}
-  
-  #review_insert a button{ font-size: 15px; }
-  
-  #review_insert { display: flex;    justify-content: flex-end; }
+#page_num { text-align: center; margin: 30px 0 }
 
-  #list_info { background-color: #ffffff; background-color: rgba( 255, 255, 255, 0.5 ); opacity: 0.95;}
+#page_num li { display: inline; }
 
-  #list_info h1{ text-align: center; margin-bottom: 20px; }
+#review_insert { list-style-type: none; width: 1400px; padding-bottom: 40px;}
 
-  #list_info div{ display: flex; margin-left: 35px; }
+#review_insert a button { font-size: 15px; }
 
-  #container_body a{text-decoration:none ; color:#000; font: 200 20px/1.5 Do Hyeon, Times New Roman, serif;}
+#review_insert { display: flex; justify-content: flex-end; }
 
-  #top ul{ margin-right: 180px;}
+#list_info { background-color: #ffffff; background-color: rgba(255, 255, 255, 0.5); opacity: 0.95;}
 
-  /* 상새보기 관련UI ===============================================================*/
+#list_info h1 { text-align: center; margin-bottom: 20px; }
+
+#list_info div { display: flex; margin-left: 35px; }
+#container_body a {text-decoration: none; font: 200 20px/1.5 Do Hyeon, Times New Roman, serif;}
+#container_body a:not[href=""] {color: #000;}
+
+#top ul { margin-right: 180px;}
+
+/* 상새보기 관련UI ===============================================================*/
 
 #fade img { border-radius: 20px; }
 
 #page_num { text-align: center; margin: 30px 0; font-size: 2em;}
 #page_num li { display: inline; }
+#selected_page {color: red}
 
 #creater_info {display: flex; justify-content: flex-end; align-items: center; margin-right: 20px;}
 
-#point_group{ display: flex; margin: 0 auto; }
+#point_group { display: flex; margin: 0 auto; }
 
-#point {width: 100%;  padding: 30px; display: flex; justify-content: space-around; align-items: center;}
+#point {width: 100%; padding: 30px; display: flex; justify-content: space-around; align-items: center;}
 
 #screen_shot_show { margin: 20px 0px 20px 0px; }
 
-#screen_shot_show h1{ text-align: center; font: 200 40px/1.5 Do Hyeon, Times New Roman, serif;}
+#screen_shot_show h1 { text-align: center; font: 200 40px/1.5 Do Hyeon, Times New Roman, serif;}
 
-#info_group { width: 700px; text-align: center; font: 200 25px/1.5 Do Hyeon, Times New Roman, serif; border-radius: 20px; padding: 30px; background-color: rgb( 255, 255, 255); opacity: 0.90; margin-right: 50px;}
+#info_group { width: 700px; text-align: center; font: 200 25px/1.5 Do Hyeon, Times New Roman, serif; border-radius: 20px; padding: 30px; background-color: rgb(255, 255, 255); opacity: 0.90; margin-right: 50px;}
 
 #star_point {border: 1px solid black; display: inline-block; padding: 10px 20px; margin: 30px 0;}
 
@@ -99,46 +100,45 @@ body::after{
 #image_container {width: 500px; height: 500px;border: 1px solid black;}
 
 #prev { margin: 0 auto; width: 80%; padding: 30px;}
- 
+
 #button_group { display: flex; justify-content: flex-end; font-size: 15px; }
 
-#textarea{font-size: 20px;}
+#textarea {font-size: 20px;}
 
-#user_review_img div{ display: inline-block; }
-#user_review_img div img{ width: 250px; height: 250px;}
+#user_review_img div { display: inline-block; }
+#user_review_img div img { width: 250px; height: 250px;}
 
 #image_container {border-radius: 20px;}
-#image_container img{border-radius: 20px; width: 100%; height: 100%;}
+#image_container img {border-radius: 20px; width: 100%; height: 100%;}
 
 #user_review_img { text-align: center; }
 
 #img_container { width: 1000px; display: inline-block;}
 
 
-
 #content_review { width: 100%; font: 200 23px/1.5 Do Hyeon, Times New Roman, serif; margin-left: 30px;}
 
-#content_review h2{ margin: 0px 0px 20px 0px; }
+#content_review h2 { margin: 0px 0px 20px 0px; }
 
-#content_review ul{ background-color: white; width: 80%; height: 400px; margin: 0 auto; list-style: none; border-radius: 20px; padding: 30px; background-color: rgb( 255, 255, 255); opacity: 0.90;}
+#content_review ul { background-color: white; width: 80%; height: 400px; margin: 0 auto; list-style: none; border-radius: 20px; padding: 30px; background-color: rgb(255, 255, 255); opacity: 0.90;}
 
-#content_review ul li:nth-child(1) h3{ text-align: end; }
+#content_review ul li:nth-child(1) h3 { text-align: end; }
 
-hr {margin-bottom: 30px ;}
+hr {margin-bottom: 30px;}
 
-#content p{ text-align: center; font: 200 25px/1.5 Do Hyeon, Times New Roman, serif;}
+#content p { text-align: center; font: 200 25px/1.5 Do Hyeon, Times New Roman, serif;}
 
-#content_review h1{ text-align: center; margin: 30px 0px 30px 0px;}
+#content_review h1 { text-align: center; margin: 30px 0px 30px 0px;}
 /* 삽입관련 UI ===================================================================*/
 #form_container {font-size: 20px; height: 86vh; display: flex; justify-content: center;
     align-items: center;}
-#form_container:after { content : ""; display: block; position: absolute; top: 0; left: 0;
-    background-image: url('../img/background-1.jpg'); background-size: cover; width: 100%; height: 100%; opacity : 0.7;
+#form_container:after { content: ""; display: block; position: absolute; top: 0; left: 0;
+    background-image: url("../img/background-1.jpg"); background-size: cover; width: 100%; height: 100%; opacity: 0.7;
     z-index: -1;}
 #form_container form {width: fit-content;}
 #form_container form ul li {list-style: none; display: flex; justify-content: flex-start; margin: 20px;}
 #form_container form ul li div {display: flex; justify-content: center; align-items: center; width: 300px; }
-#form_container form ul li input[type=text] {width: 800px; height:40px;}
+#form_container form ul li input[type=text] {width: 800px; height: 40px;}
 #form_container form ul li textarea {width: 800px;}
 #review_modify_form {background-color: white; border-radius: 15px; padding: 30px; margin: 60px 0;}
 #review_modify_form ul li p { width: 100px; text-align: center; margin: 0 20px 0 0;}
@@ -148,13 +148,13 @@ hr {margin-bottom: 30px ;}
 /*리뷰 작성 관련 UI =================================================================*/
 #insert_form_container {font-size: 20px; height: 86vh; display: flex; justify-content: center;
     align-items: center;}
-#insert_form_container:after { content : ""; display: block; position: absolute; top: 0; left: 0;
-    background-image: url('../img/background-1.jpg'); background-size: cover; width: 100%; height: 100%; opacity : 0.7;
+#insert_form_container:after { content: ""; display: block; position: absolute; top: 0; left: 0;
+    background-image: url("../img/background-1.jpg"); background-size: cover; width: 100%; height: 100%; opacity: 0.7;
     z-index: -1;}
 #insert_form_container form {width: fit-content;}
 #insert_form_container form ul li {list-style: none; display: flex; justify-content: flex-start; margin: 20px;}
 #insert_form_container form ul li div {display: flex; justify-content: center; align-items: center; width: 300px; }
-#insert_form_container form ul li input[type=text] {width: 800px; height:40px;}
+#insert_form_container form ul li input[type=text] {width: 800px; height: 40px;}
 #insert_form_container form ul li textarea {width: 800px;}
 
 /*리뷰 작성폼 UI*/
@@ -181,15 +181,13 @@ hr {margin-bottom: 30px ;}
 .starR2.on {background-position: -15px 0;}
 
 /*버튼 CSS*/
-button{background:#1AAB8A; color:#fff; border:none; position:relative; height:40px; font-size:1em; padding:0 1em;
-    margin: 0 10px; cursor:pointer; transition:800ms ease all; outline:none;}
-button:hover{background:#fff; color:#1AAB8A;}
-button:before,button:after{content:''; position:absolute; top:0; right:0; height:2px; width:0; background: #1AAB8A;
-    transition:400ms ease all;}
-button:after{right:inherit; top:inherit; left:0; bottom:0;}
-button:hover:before,button:hover:after{width: 100%; transition:800ms ease all;}
-
-
+button {background: #1AAB8A; color: #fff; border: none; position: relative; height: 40px; font-size: 1em; padding: 0 1em;
+    margin: 0 10px; cursor: pointer; transition: 800ms ease all; outline: none;}
+button:hover {background: #fff; color: #1AAB8A;}
+button:before, button:after {content: ""; position: absolute; top: 0; right: 0; height: 2px; width: 0; background: #1AAB8A;
+    transition: 400ms ease all;}
+button:after {right: inherit; top: inherit; left: 0; bottom: 0;}
+button:hover:before, button:hover:after {width: 100%; transition: 800ms ease all;}
 
 
 /* Slideshow container */
@@ -197,18 +195,18 @@ button:hover:before,button:hover:after{width: 100%; transition:800ms ease all;}
     width: 1000px;
     position: relative;
     margin: auto;
-    
-  }
-  /* 슬라이드 쇼 사진 */
-  .mySlides {
+
+}
+/* 슬라이드 쇼 사진 */
+.mySlides {
     display: none;
 }
-.slideshow-container img { 
+.slideshow-container img {
     vertical-align: auto;
     height: 350px;
 }
-  /* Next & previous buttons */
-  .prev, .next {
+/* Next & previous buttons */
+.prev, .next {
     cursor: pointer;
     position: absolute;
     top: 50%;
@@ -222,22 +220,22 @@ button:hover:before,button:hover:after{width: 100%; transition:800ms ease all;}
     font-size: 18px;
     transition: 0.6s ease;
     border-radius: 0 3px 3px 0;
-  }
-  
-  /* Position the "next button" to the right */
-  .next {
+}
+
+/* Position the "next button" to the right */
+.next {
     right: 0;
     border-radius: 3px 0 0 3px;
-  }
-  
-  /* On hover, add a black background color with a little bit see-through */
-  .prev:hover, .next:hover {
-    background-color: rgba(255, 255, 255,0.8);
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+    background-color: rgba(255, 255, 255, 0.8);
     color: black;
-  }
-  
-  /* Caption text */
-  .text {
+}
+
+/* Caption text */
+.text {
     color: black;
     font-size: 15px;
     padding: 8px 12px;
@@ -245,22 +243,22 @@ button:hover:before,button:hover:after{width: 100%; transition:800ms ease all;}
     bottom: 8px;
     width: 100%;
     text-align: center;
-  }
-  
-  /* Number text (1/3 etc) */
-  .numbertext {
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
     color: #f2f2f2;
     font-size: 15px;
     padding: 8px 12px;
     position: absolute;
     top: 0;
     margin-left: 20px;
-  }
-  #dot_container{
-      text-align: center;
-  }
-  /* The dots/bullets/indicators */
-  .dot {
+}
+#dot_container {
+    text-align: center;
+}
+/* The dots/bullets/indicators */
+.dot {
     cursor: pointer;
     height: 15px;
     width: 15px;
@@ -269,33 +267,33 @@ button:hover:before,button:hover:after{width: 100%; transition:800ms ease all;}
     border-radius: 50%;
     display: inline-block;
     transition: background-color 0.6s ease;
-  }
-  
-  .active, .dot:hover {
+}
+
+.active, .dot:hover {
     background-color: #717171;
-  }
-  
-  /* Fading animation */
-  .fade {
+}
+
+/* Fading animation */
+.fade {
     -webkit-animation-name: fade;
     -webkit-animation-duration: 1.5s;
     animation-name: fade;
     animation-duration: 1.5s;
-  }
-  
-  @-webkit-keyframes fade {
-    from {opacity: .4} 
-    to {opacity: 1}
-  }
-  
-  @keyframes fade {
-    from {opacity: .4} 
-    to {opacity: 1}
-  }
-  
-  /* On smaller screens, decrease text size */
-  @media only screen and (max-width: 300px) {
-    .prev, .next,.text {font-size: 11px}
-  }
+}
 
-  #fade img {margin: 0 auto;}
+@-webkit-keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+}
+
+@keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+    .prev, .next, .text {font-size: 11px}
+}
+
+#fade img {margin: 0 auto;}

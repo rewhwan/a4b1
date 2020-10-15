@@ -195,7 +195,7 @@
                 for ($i = 1; $i <= $total_page; $i++) {
                     if ($page == $i)     // 현재 페이지 번호 링크 안함
                     {
-                        echo "<li><b> $i </b></li>";
+                        echo "<li><a id='selected_page'> $i </a></li>";
                     } else {
                         echo "<li><a href='index.php?page=$i'> $i </a><li>";
                     }

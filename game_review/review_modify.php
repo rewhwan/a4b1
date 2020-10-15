@@ -53,9 +53,17 @@ if (isset($new_file)) {
     $sql = "delete from game_review_files where review_num={$num}";
     mysqli_query($dbcon, $sql);
 
+    //오류 파악
+    $count = count($_FILES['new_file']['error']);
+    $upload_error_value = UPLOAD_ERR_OK;
+    for($i=0; $i<$count; $i++){
+        if($_FILES['new_file']['error'][$i] != UPLOAD_ERR_OK) {
+            $upload_error_value = UPLOAD_ERR_NO_FILE;
+        }
+    }
 
     //스크린샷 파일이 있을 경우 실행
-    if (isset($_FILES['new_file']) && $_FILES['new_file']['error'] != UPLOAD_ERR_NO_FILE) {
+    if (isset($_FILES['new_file']) && $upload_error_value != UPLOAD_ERR_NO_FILE) {
         $copied_file_name = array();
         //파일업로드 함수
         $copied_file_name = file_upload_multi("new_file", "./img/");
@@ -66,6 +74,6 @@ if (isset($new_file)) {
         }
     }
 }
-echo "<script>location.href = 'view.php?num=$num&page=$page&name=$name';</script>";
+//echo "<script>location.href = 'view.php?num=$num&page=$page&name=$name';</script>";
 
 mysqli_close($dbcon);
