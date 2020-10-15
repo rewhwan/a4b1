@@ -42,12 +42,12 @@ body {font-family: 'Noto Serif KR', serif;}
 #menu a:hover {text-decoration: none;}
 #menu a:active {text-decoration: none;}
 /*메뉴바 고정 클래스*/
-.leftTopFixed {position: fixed; left: 0; top: 0;}
+.leftTopFixed {position: fixed; left: 0; top: 0; z-index: 999;}
 .bodyMenuFixed {margin-top: 8vh;}
 /*body{height: 2000px;}*/
 
 /*푸터 UI ===================================================================================*/
-#footer_container {width: 100vw; height: fit-content; display: flex; background-color: #e2e2e2; border-top: solid 1px black;
+#footer_container {width: 100vw; height: 15vh; display: flex; background-color: #e2e2e2; border-top: solid 1px black;
     justify-content: space-around; padding: 25px 0;}
 /*로고 UI*/
 #logo_footer {width: 120px; height: 120px;}
