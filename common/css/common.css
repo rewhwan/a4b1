@@ -54,15 +54,13 @@ body {font-family: 'Noto Serif KR', serif;}
 #logo_footer_container {display: flex; flex-direction: column; align-items: center; justify-content: center;}
 /*기능&정보 UI*/
 #content h3 {font-family: 'Cute Font', cursive; font-size: 30px; border-bottom: solid 1px black;}
-#corp_container {margin: 0 0 10px 0;}
-#function_container {margin: 10px 0 0 0;}
-#corp_container ul, #function_container ul {list-style: none; margin: 5px;}
-#content li {margin: 5px 0;}
-#content a {color: #1d1d1d;}
-#content a:link {text-decoration: none;}
-#content a:visited {text-decoration: none;}
-#content a:hover {text-decoration: none;}
-#content a:active {text-decoration: none;}
+#corp_container ul, #function_container ul {list-style: none;}
+#corp_container li,#function_container li {margin: 5px 0;}
+#corp_container a, #function_container a {color: #1d1d1d;}
+#corp_container a:link, #function_container a:link {text-decoration: none;}
+#corp_container a:visited, #function_container a:visited {text-decoration: none;}
+#corp_container a:hover, #function_container a:hover {text-decoration: none;}
+#corp_container a:active, #function_container a:link {text-decoration: none;}
 
 /*기업 정보 UI*/
 #corp_info h3 {font-family: 'Cute Font', cursive; font-size: 30px;}

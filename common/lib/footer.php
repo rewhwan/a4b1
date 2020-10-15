@@ -3,23 +3,21 @@
         <img src="http://<?=$_SERVER['HTTP_HOST']?>/a4b1/common/img/logo.png" id="logo_footer">
         <h3>A4B1's GameBox</h3>
     </div>
-    <div id="content">
-        <div id="corp_container">
-            <h3>정보</h3>
-            <ul>
-                <li><a href="http://<?=$_SERVER['HTTP_HOST']?>/a4b1/footer/terms_of_use.php">이용약관</a></li>
-                <li><a href="http://<?=$_SERVER['HTTP_HOST']?>/a4b1/footer/privacy_policy.php">개인정보취급방침</a></li>
-            </ul>
-        </div>
-        <div id="function_container">
-            <h3>사이트맵</h3>
-            <ul>
-                <li><a href="http://<?=$_SERVER['HTTP_HOST']?>/a4b1/index.php">메인</a></li>
-                <li><a href="http://<?=$_SERVER['HTTP_HOST']?>/a4b1/game_info/index.php">게임소개</a></li>
-                <li><a href="http://<?=$_SERVER['HTTP_HOST']?>/a4b1/game_review/index.php">게임리뷰</a></li>
-                <li><a href="http://<?=$_SERVER['HTTP_HOST']?>/a4b1/notice/index.php">공지사항</a></li>
-            </ul>
-        </div>
+    <div id="corp_container">
+        <h3>정보</h3>
+        <ul>
+            <li><a href="http://<?=$_SERVER['HTTP_HOST']?>/a4b1/footer/terms_of_use.php">이용약관</a></li>
+            <li><a href="http://<?=$_SERVER['HTTP_HOST']?>/a4b1/footer/privacy_policy.php">개인정보취급방침</a></li>
+        </ul>
+    </div>
+    <div id="function_container">
+        <h3>사이트맵</h3>
+        <ul>
+            <li><a href="http://<?=$_SERVER['HTTP_HOST']?>/a4b1/index.php">메인</a></li>
+            <li><a href="http://<?=$_SERVER['HTTP_HOST']?>/a4b1/game_info/index.php">게임소개</a></li>
+            <li><a href="http://<?=$_SERVER['HTTP_HOST']?>/a4b1/game_review/index.php">게임리뷰</a></li>
+            <li><a href="http://<?=$_SERVER['HTTP_HOST']?>/a4b1/notice/index.php">공지사항</a></li>
+        </ul>
     </div>
     <div id="corp_info">
         <h3>A4B1's GameBox 정보</h3>
