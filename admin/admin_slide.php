@@ -68,7 +68,8 @@ if(!isset($_SESSION['admin']) || $_SESSION['admin'] < 1) {
         <h2>슬라이드쇼 사진 추가</h2>
         <div id="insert_form_container">
             <form id="insert_slide" method="post">
-                파일추가 : <input type="file" id="slide_file" name="slide_file[]" multiple accept="image/*">
+                <span>파일추가 : </span>
+                <input type="file" id="slide_file" name="slide_file[]" multiple accept="image/*">
                 <input type="hidden" name="mode" value="insertSlide">
                 <button type="button" onclick="submit_slide()">추가</button>
             </form>
