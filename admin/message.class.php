@@ -4,6 +4,7 @@ class message
     public $errorMsg = array();
     public $errorIds = array();
     public $warningMsg = array();
+    public $successMsg = array();
     public $isSuccess = true;
     public $data = null;
 
@@ -21,6 +22,10 @@ class message
 
             case 'warningMsg' :
                 array_push($this->warningMsg, $msg);
+                break;
+
+            case 'successMsg' :
+                array_push($this->successMsg, $msg);
                 break;
 
             case 'data' :
