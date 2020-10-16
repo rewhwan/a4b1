@@ -59,11 +59,12 @@
                     echo "<script>search_word_check('$value','$word');</script>";
                 }
 
-                $sql = "select *,truncate((story+graphic+time+difficulty)/4,1) AS avg from game_review_point group by review_num order by avg desc;";
-                $result = mysqli_query($dbcon, $sql);
-                $row = mysqli_num_rows($result);
+            //검색기능 구현 파트
+                // $sql = "select *,truncate((story+graphic+time+difficulty)/4,1) AS avg from game_review_point group by review_num order by avg desc;";
+                // $result = mysqli_query($dbcon, $sql);
+                // $row = mysqli_num_rows($result);
 
-                $avg = $row['avg'];
+                // $avg = $row['avg'];
                 ?>
             </div>
 
