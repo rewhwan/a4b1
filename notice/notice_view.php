@@ -30,6 +30,7 @@
             $page = $_GET["page"];
             $urgent = $_GET["urgent"];
 
+            //공지사항폼에서 긴급공지로 올릴때
             if(isset($_GET["urgent"]) && $urgent == 't') $sql = "select * from notice_urgent where num={$num}";
             else $sql = "select * from notice where num=$num";
 
@@ -68,9 +69,9 @@
 
                         echo "▷ 첨부파일 : $file_name ($file_size Byte) &nbsp;&nbsp;&nbsp;&nbsp;
 			       		<a href='notice_download.php?num=$num&real_name=$real_name&file_name=$file_name&file_type=$file_type'>[저장]</a><br><br>";
+                        echo "<img src='./data/".$file_copied."' id='notice_view_image'>";
                     }
                     ?>
-                    <img src="./data/<?=$file_copied?>" id="notice_view_image">
                     <br>
                     <?= $content ?>
                 </li>
