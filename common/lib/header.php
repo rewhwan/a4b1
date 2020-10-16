@@ -25,7 +25,7 @@
             <?php }else{?>
                     <li class="cursor_pointer"><a href="http://<?=$_SERVER['HTTP_HOST']?>/a4b1/login/index.php">로그인</a></li>
                     |
-                    <li class="cursor_pointer"><a href="http://<?=$_SERVER['HTTP_HOST']?>/a4b1/login/index.php">회원가입</a></li>
+                    <li class="cursor_pointer"><a href="http://<?=$_SERVER['HTTP_HOST']?>/a4b1/login/signup.php">회원가입</a></li>
             <?php }?>
         </ul>
     </div>
