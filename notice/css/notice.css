@@ -50,6 +50,8 @@
 #notice_list li .list2 a:hover { color: blue; text-decoration: underline;}
 
 /* 게시판 내용보기(notice_view.php) */
+#view_notice_container {min-height: 63vh;}
+
 #notice_box { width: 800px; margin: 0 auto; }
 #notice_box .title { margin-top: 30px; padding: 10px; border-bottom: solid 2px #516e7f; font-size: 20px; }
 #view_content {list-style: none; }

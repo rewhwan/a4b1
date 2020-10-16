@@ -10,10 +10,10 @@ function submit_slide() {
         dataType:'json',
         success:function(data) {
             if(data.isSuccess == true) {
-                swal(data.successMsg[0]);
+                swal('파일 추가 성공',data.successMsg[0],'success').then(() => {location.reload();});
             }else {
                 for(var i in data.errorMsg) {
-                    swal(data.errorIds[i],data.errorMsg[i],'error');
+                    swal(data.errorIds[i],data.errorMsg[i],'error').then(() => {location.reload();});
                 }
             }
         },
@@ -48,11 +48,11 @@ function delete_slide(num) {
                         swal('삭제 성공',data.successMsg[0],'success').then(() => {location.reload();});
                     }else {
                         for(var i in data.errorMsg) {
-                            swal(data.errorIds[i],data.errorMsg[i],'error');
+                            swal(data.errorIds[i],data.errorMsg[i],'error').then(() => {location.reload();});
                         }
                     }
                 }
             });
-        } else swal('취소를 눌렀구나');
-    })
+        }
+    });
 }
