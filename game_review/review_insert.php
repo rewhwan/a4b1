@@ -30,8 +30,8 @@ $time = $_POST["time"];
 $difficulty = $_POST["difficulty"];
 
 //리뷰 내용 테이블 추가
-$sql = "insert into game_review(name, title, content, created_at, created_by)";
-$sql .= "values('$name','$title','$content',now(),'$userid')";
+$sql = "insert into game_review(name, title, content, created_at, created_by, hit)";
+$sql .= "values('$name','$title','$content',now(),'$userid',0)";
 mysqli_query($con, $sql) or die("DB 오류 : Error.Code = 1".mysqli_error($con));
 
 $sql = "SELECT * FROM game_review WHERE created_by = '".$userid."' AND content = '".$content."' ORDER BY num DESC;";
