@@ -1,6 +1,7 @@
 /* 공지사항 글쓰기(notice_insert.php) */
 #notice_box { position: relative; width: 800px; margin: 0 auto; }
-#notice_box h3 { margin-top: 30px;	padding: 10px; border-bottom: solid 2px #516e7f; font-size: 20px; }
+#notice_box h3 { margin-top: 30px;	padding: 10px;  }
+/*border-bottom: solid 2px #516e7f; font-size: 20px;*/
 #notice_form span { display: inline-block; }
 #notice_form .col1 { width: 150px; }
 #notice_form { list-style: none;}
@@ -66,3 +67,4 @@
 #notice_search_div #search_div1{float: left; margin-left: 5px; margin-right: 1px;}
 #notice_search_div #search_div2{float: left; margin-left: 3px;}
 #notice_search_div #search_div3{float: left; margin-left: 5px; margin-top: 3px;}
+#notice_list_top{border-bottom: solid 2px grey; font-size: 20px;}

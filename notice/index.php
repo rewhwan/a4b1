@@ -33,12 +33,11 @@ $dbcon = $db->connector();
     </header>
     <section id="main_notice_container">
         <div id="notice_box">
-            <h3>공지사항 > 목록
-                <div id="search_div">
+            <div id="notice_list_top">
+                <h3>공지사항 > 목록</h3>
                     <form method="GET" action="index.php" id="search_form">
                         <div id="notice_search_div">
                             <div id="search_div1">
-
                                 <select name="mode" id="search_select">
                                     <option value="title">제목</option>
                                     <option value="content">내용</option>
@@ -50,10 +49,7 @@ $dbcon = $db->connector();
                             </div>
                         </div>
                     </form>
-                </div>
-            </h3>
-
-
+            </div>
             <ul id="notice_list">
                 <li>
                     <span class="list1">번호</span>
