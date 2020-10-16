@@ -92,7 +92,7 @@
                 </li>
             </ul>
         </form>
-        </div> <!-- board_box -->
+        </div> <!-- notice_box -->
     </section>
     <footer>
         <?php include $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/footer.php"; ?>
