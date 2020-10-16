@@ -148,6 +148,7 @@ mysqli_close($dbcon);
     <script src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/main/js/main.js?ver=1"></script>
     <!-- 슬라이드 쇼 css -->
     <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/main/css/main_slide.css?ver=1" />
+    
 </head>
 
 <body id="body">
@@ -165,7 +166,7 @@ mysqli_close($dbcon);
             ?>
                 <div class="mySlides fade">
                     <div class="numbertext"><?= $i + 1 ?> / <?= $slide_count ?></div>
-                    <img src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/main/slide/<?= $slide_image ?>" style="width:100%">
+                    <img src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/main/slide/<?= $slide_image ?>" style="width:100%" id="slide_image">
                 </div>
             <?php
             }
@@ -184,7 +185,8 @@ mysqli_close($dbcon);
             }
             ?>
         </div>
-        <script src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/game_info/js/game_info_view_slide.js"></script>
+        <!-- <script src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/game_info/js/game_info_view_slide.js"></script> -->
+        <script src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/main/js/slide.js?ver=1"></script>
     </div>
     <div class="label_container">
         <label for="game_info_view_container">최신 게임 정보</label>
