@@ -50,7 +50,8 @@ if(!isset($_SESSION['admin']) || $_SESSION['admin'] < 1) {
                                         <img class='slide_preview' src='http://".$_SERVER['HTTP_HOST']."/a4b1/main/slide/".$resultArray[$i-1][1]."'>
                                     </div>
                                     <div id='slide_menu_container'>
-                                    <span>".$i."</span>
+                                        <span>".$i."</span>
+                                        <span id='image_title'>".$resultArray[$i-1][1]."</span>
                                         <img class='cursor_pointer' onclick='delete_slide(".$resultArray[$i-1][0].")' src='http://".$_SERVER['HTTP_HOST']."/a4b1/main/img/delete.png'>
                                     </div>
                                 </div>

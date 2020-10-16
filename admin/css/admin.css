@@ -47,6 +47,9 @@ a:active {text-decoration: none;}
 
 /*카드 디자인 UI*/
 #slide_card {background-color: white; padding: 5px; border: solid 3px black;}
+#slide_card span {display: inline-block;}
+#slide_card #image_title {width: 200px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;}
+#slide_card #slide_menu_container {display: flex; justify-content: space-around; align-items: center;}
 
 #image_content {display: flex; justify-content: center; align-items: center; flex-direction: column; list-style: none;}
 
