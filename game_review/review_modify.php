@@ -56,8 +56,8 @@ if (isset($new_file)) {
     //오류 파악
     $count = count($_FILES['new_file']['error']);
     $upload_error_value = UPLOAD_ERR_OK;
-    for($i=0; $i<$count; $i++){
-        if($_FILES['new_file']['error'][$i] != UPLOAD_ERR_OK) {
+    for ($i = 0; $i < $count; $i++) {
+        if ($_FILES['new_file']['error'][$i] != UPLOAD_ERR_OK) {
             $upload_error_value = UPLOAD_ERR_NO_FILE;
         }
     }
@@ -74,6 +74,6 @@ if (isset($new_file)) {
         }
     }
 }
-//echo "<script>location.href = 'view.php?num=$num&page=$page&name=$name';</script>";
+echo "<script>location.href = 'view.php?num=$num&page=$page&name=$name';</script>";
 
 mysqli_close($dbcon);
