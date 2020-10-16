@@ -32,7 +32,7 @@
     <div id="menu">
         <ul>
             <li><a href="http://<?=$_SERVER['HTTP_HOST']?>/a4b1/index.php">메인</a></li>
-            <li><a href="http://<?=$_SERVER['HTTP_HOST']?>/a4b1/game_info/index.php">게임소개</a></li>
+            <li><a href="http://<?=$_SERVER['HTTP_HOST']?>/a4b1/game_info/game_info_list.php">게임소개</a></li>
             <li><a href="http://<?=$_SERVER['HTTP_HOST']?>/a4b1/game_review/index.php">게임리뷰</a></li>
             <li><a href="http://<?=$_SERVER['HTTP_HOST']?>/a4b1/notice/index.php">공지사항</a></li>
         </ul>

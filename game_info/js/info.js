@@ -281,10 +281,10 @@ function platform_check(platform){
             case "XBOX 360" : 
                 $("input:checkbox[id='XBOX 360']").attr("checked",true);
             break;
-            case "XBOX one" : 
+            case "XBOX ONE" : 
                 $("input:checkbox[id='XBOX one']").attr("checked",true);
             break;
-            case "nintendo switch" : 
+            case "NINTENDO SWITCH" : 
                 $("input:checkbox[id='nintendo switch']").attr("checked",true);
             break;
             default:break;
