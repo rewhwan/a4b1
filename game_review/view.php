@@ -22,6 +22,13 @@ $title = $row["title"];
 $content = $row["content"];
 $created_at = $row["created_at"];
 $created_by = $row["created_by"];
+$hit = $row['hit'];
+
+//작성자 및 관리자가 아닐경우에만 조회수 up
+if($_SESSION['id'] != $created_by && $_SESSION['admin'] == 0){
+    $sql="UPDATE `game_review` set hit=$hit+1 where num = $num";
+    mysqli_query($dbcon,$sql) or die("review view hit update error1 : " . mysqli_error($dbcon));
+}
 
 //game_review_point table values
 $story = $row["story"];

@@ -62,9 +62,9 @@ if($upload_error1 != 0 && $upload_error1 != 4){
 if(isset($_FILES['title_image']) && $upload_error1 != 4){
     $copied_file_name=file_upload("title_image","./img/title/");
     //db 등록을 위한 쿼리문 작성
-    $sql = "INSERT into `game_info` values(null,'$name','$content','$developer','$grade','$open_day','$price','$homepage','$service_kor','$circulation','$copied_file_name','$create_by',now())";
+    $sql = "INSERT into `game_info` values(null,'$name','$content','$developer','$grade','$open_day','$price','$homepage','$service_kor','$circulation','$copied_file_name','$create_by',now(),0)";
 }else{
-    $sql = "INSERT into `game_info` values(null,'$name','$content','$developer','$grade','$open_day','$price','$homepage','$service_kor','$circulation',null,'$create_by',now())";
+    $sql = "INSERT into `game_info` values(null,'$name','$content','$developer','$grade','$open_day','$price','$homepage','$service_kor','$circulation',null,'$create_by',now(),0)";
 }
 //쿼리문 실행.
 mysqli_query($dbcon,$sql) or die("쿼리문 오류1 : ".mysqli_error($dbcon));
