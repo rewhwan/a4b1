@@ -36,24 +36,41 @@ if(!isset($_SESSION['admin']) || $_SESSION['admin'] < 1) {
         <?php include $_SERVER['DOCUMENT_ROOT'] . "/a4b1/admin/admin_menu.php"?>
         <div id="slide_content">
             <h2>메인페이스 슬라이드쇼 사진 관리</h2>
-            <ul>
+            <ul id="image_content">
                 <?php
                     $sql = 'SELECT * FROM main_slide_files ORDER BY num ASC';
                     $result = mysqli_query($dbcon,$sql);
                     $resultArray = mysqli_fetch_all($result);
 
-                     print_r($resultArray);
+                    for($i=1;$i<=count($resultArray);$i++) {
+                        if($i%3 == 1) echo "<li> ";
+                            echo "
+                                <div id='slide_card'>
+                                    <div id='slide_image_container'>
+                                        <img class='slide_preview' src='http://".$_SERVER['HTTP_HOST']."/a4b1/main/slide/".$resultArray[$i-1][1]."'>
+                                    </div>
+                                    <div id='slide_menu_container'>
+                                    <span>".$i."</span>
+                                        <img class='cursor_pointer' onclick='delete_slide(".$resultArray[$i-1][0].")' src='http://".$_SERVER['HTTP_HOST']."/a4b1/main/img/delete.png'>
+                                    </div>
+                                </div>
+                            ";
+                        if($i%3 == 0) echo "</li>";
+
+                    }
                 ?>
             </ul>
         </div>
     </body>
 
     <div id="insert_form">
-        <form id="insert_slide" method="post">
-            <h2>슬라이드쇼 사진 추가 하기</h2>
-            <input type="file" id="slide_file" name="slide_file[]" multiple accept="image/*">
-            <input type="hidden" name="mode" value="insertSlide">
-            <button type="button" onclick="submit_slide()">추가</button>
-        </form>
+        <h2>슬라이드쇼 사진 추가</h2>
+        <div id="insert_form_container">
+            <form id="insert_slide" method="post">
+                파일추가 : <input type="file" id="slide_file" name="slide_file[]" multiple accept="image/*">
+                <input type="hidden" name="mode" value="insertSlide">
+                <button type="button" onclick="submit_slide()">추가</button>
+            </form>
+        </div>
     </div>
 </html>
