@@ -19,7 +19,7 @@
                         <li><input type="text" id="id" name="id" placeholder="ID" autocomplete="off" onkeypress="enterLogin(event)"></li>
                         <li><input type="password" id="password" name="password" placeholder="Password" autocomplete="off" onkeypress="enterLogin(event)"></li>
                         <li><input type="submit" value="로그인"></li>
-                        <li><a href="http://<?=$_SERVER['HTTP_HOST']?>/a4b1/login/signup.php">회원가입</a><a onclick="showPopup()">아이디/비밀번호 찾기</a></li>
+                        <li><a href="http://<?=$_SERVER['HTTP_HOST']?>/a4b1/login/signup_form.php">회원가입</a><a onclick="showPopup()">아이디/비밀번호 찾기</a></li>
                     </ul>
                 </form>
             </div>
