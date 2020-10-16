@@ -27,6 +27,7 @@ function file_upload($file_name, $upload_location)
     //파일업로드기능
     //$_FILES['upfile']로부터 5가지 배열명을 가져와서 저장한다.
     $upload_name = $_FILES["$file_name"]['name']; //f03.jpg
+    $upload_name = str_replace (" ", "", $upload_name);
     $upload_type = $_FILES["$file_name"]['type']; //image/gif  file/txt
     $upload_tmp_name = $_FILES["$file_name"]['tmp_name'];
     $upload_error = $_FILES["$file_name"]['error'];
@@ -117,6 +118,7 @@ function file_upload_multi($file_name, $upload_location)
     for ($i = 0; $i < $count; $i++) {
         //파일업로드기능
         $upload_name = $file_array['name'][$i]; //f03.jpg
+        $upload_name = str_replace (" ", "", $upload_name);
         $upload_type = $file_array['type'][$i]; //image/gif  file/txt
         $upload_tmp_name = $file_array['tmp_name'][$i];
         $upload_error = $file_array['error'][$i];

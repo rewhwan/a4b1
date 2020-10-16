@@ -165,7 +165,7 @@ mysqli_close($dbcon);
             ?>
                 <div class="mySlides fade">
                     <div class="numbertext"><?= $i + 1 ?> / <?= $slide_count ?></div>
-                    <img src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/slide/<?= $slide_image ?>" style="width:100%">
+                    <img src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/main/slide/<?= $slide_image ?>" style="width:100%">
                 </div>
             <?php
             }
