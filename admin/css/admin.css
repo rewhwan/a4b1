@@ -43,8 +43,11 @@ button[type='button']:hover:before, button[type='button']:hover:after {width: 10
 #side_menu ul li:not(:last-child) {border-bottom: solid 2px black;}
 #side_menu ul li span {margin: 0 0 0 30px; font-size: 25px;}
 
-/*콘텐츠 UI ==================================================================================*/
-#content {float: left; width: 85%; height: 91vh; background-image: url("../img/background.jpg"); background-size: cover;}
+/*메인화면 UI ==================================================================================*/
+#content {float: left; width: 85%; height: 91vh; background-image: url("../img/background.jpg"); background-size: cover;
+    display: flex; justify-content: center; align-items: center;}
+#welcome_box {background-color: whitesmoke; padding: 30px; display: flex; flex-direction: column;
+    justify-content: center; align-items: center;}
 
 /* 슬라이드 관리 페이지 UI =====================================================================================================*/
 #slide_content {margin: 5% 5% 5% 20%; padding: 20px; border-radius: 20px; background-color: rgb(233, 233, 233);}
