@@ -66,7 +66,16 @@
         $msg = new message();
         $dbcon = $db->connector();
 
+
         if(isset($_POST['no'])) {
+            //파일 삭제로직
+            $sql = "SELECT * FROM main_slide_files WHERE num = ".$_POST['no'].";";
+            $result = mysqli_query($dbcon,$sql) or die($db->add('errorMsg','삭제할 데이터를 가져오는데 오류가 발생하였습니다.'));
+            $row = mysqli_fetch_assoc($result);
+
+            unlink('../main/slide/'.$row['name']);
+
+            //DB내용 삭제로직
             $sql = "DELETE FROM main_slide_files WHERE num = ".$_POST['no'].";";
             mysqli_query($dbcon,$sql) or die($db->add('errorMsg',mysqli_error($dbcon)));
         }else $db->error('삭제 정보 없음','삭제 처리를 하는데 오류가 발생했습니다. 새로고침이후 다시 이용해 주십시오.');
