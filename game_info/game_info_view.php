@@ -43,7 +43,7 @@ while ($row1 = mysqli_fetch_array($result)) {
         $genre = $row1['genre'];
     }
 }
-$platform=null;
+$platform = null;
 $sql = "SELECT * from `game_info_platform` where `info_num` = $num";
 $result = mysqli_query($dbcon, $sql) or die("list select error4 : " . mysqli_error($dbcon));
 while ($row2 = mysqli_fetch_array($result)) {
@@ -53,7 +53,7 @@ while ($row2 = mysqli_fetch_array($result)) {
         $platform = $row2['platform'];
     }
 }
-$screen=null;
+$screen = null;
 $sql = "SELECT * from `game_info_files` where `info_num` = $num";
 $result = mysqli_query($dbcon, $sql) or die("list select error5 : " . mysqli_error($dbcon));
 while ($row3 = mysqli_fetch_array($result)) {
@@ -64,11 +64,11 @@ while ($row3 = mysqli_fetch_array($result)) {
     }
 }
 $user_name = null;
-if(isset($_SESSION['id']) && $_SESSION['id'] !=null){
+if (isset($_SESSION['id']) && $_SESSION['id'] != null) {
     $user_name = $_SESSION['id'];
 }
 $user_admin = null;
-if(isset($_SESSION['admin']) && $_SESSION['admin'] !=null){
+if (isset($_SESSION['admin']) && $_SESSION['admin'] != null) {
     $user_admin = $_SESSION['admin'];
 }
 ?>
@@ -84,7 +84,9 @@ if(isset($_SESSION['admin']) && $_SESSION['admin'] !=null){
     <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/game_info/css/game_info_view_slide.css">
     <script src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/common/js/common.js?ver=1"></script>
     <script src="./js/info.js"></script>
-    <script>select_ripple(<?=$num?>,1)</script>
+    <script>
+        select_ripple(<?= $num ?>, 1)
+    </script>
     <title>게임 상세 정보</title>
 </head>
 
@@ -93,116 +95,116 @@ if(isset($_SESSION['admin']) && $_SESSION['admin'] !=null){
         <?php include $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/header.php"; ?>
     </header>
     <div id="container">
-    <div id="image_container">
-        <?php
-        if($image){
-        ?>
-        <img src="./img/title/<?= $image ?>" alt="">
-        <?php
-        }else{
-        ?>
-        <img src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/game_review/data/default.png">
-        <?php
-        }
-        ?>
-    </div>
-    <div id="game_info_view">
-        <div>
-            <h1>게임명 : <?= $name ?></h1>
-            
-            <p>지원 플랫폼 : <?= $platform ?></p>
-            <p>개발사 : <?= $developer ?></p>
+        <div id="image_container">
+            <?php
+            if ($image) {
+            ?>
+                <img src="./img/title/<?= $image ?>" alt="">
+            <?php
+            } else {
+            ?>
+                <img src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/game_review/data/default.png">
+            <?php
+            }
+            ?>
         </div>
-        <div>
-            <p>장르 : <?= $genre ?></p>
-            <p>출시일자 : <?= $release_date ?></p>
-            <p>등급 : <?= $grade ?></p>
+        <div id="game_info_view">
+            <div>
+                <h1>게임명 : <?= $name ?></h1>
+
+                <p>지원 플랫폼 : <?= $platform ?></p>
+                <p>개발사 : <?= $developer ?></p>
+            </div>
+            <div>
+                <p>장르 : <?= $genre ?></p>
+                <p>출시일자 : <?= $release_date ?></p>
+                <p>등급 : <?= $grade ?></p>
+            </div>
+            <div>
+                <p>유통사 : <?= $circulation ?></p>
+                <p>한국어 지원 : <?= $service_kor ?></p>
+                <p>가격 : <?= $price ?></p>
+            </div>
+            <div>
+                <a href="<?= $homepage ?>">공식홈페이지</a>
+            </div>
         </div>
-        <div>
-            <p>유통사 : <?= $circulation ?></p>
-            <p>한국어 지원 : <?= $service_kor ?></p>
-            <p>가격 : <?= $price ?></p>
+        <br>
+        <div id="game_content">
+            <p id="content"><?= $content ?></p>
         </div>
-        <div>
-            <a href="<?= $homepage ?>">공식홈페이지</a>
-        </div>
-    </div>
-    <br>
-    <div id="game_content">
-        <p id="content"><?= $content ?></p>
-    </div>
     </div>
     <div id="screen_shot_show">
-            <?php
-            if($screen != null){
-                ?>
-        <div id="ingame">
-            게임 내 사진
-        </div>
-        
-            <div class="slideshow-container">
         <?php
-                $screen_shot = explode(",",$screen);
-                $count= count($screen_shot);
-                $i=0;
-                for($i=0; $i<$count; $i++){
-                    $screen_image= $screen_shot[$i];
+        if ($screen != null) {
+        ?>
+            <div id="ingame">
+                게임 내 사진
+            </div>
+
+            <div class="slideshow-container">
+                <?php
+                $screen_shot = explode(",", $screen);
+                $count = count($screen_shot);
+                $i = 0;
+                for ($i = 0; $i < $count; $i++) {
+                    $screen_image = $screen_shot[$i];
                     //echo"<script>console.log($screen_shot)</script>";
                     //echo"<script>console.log('$screen_image')</script>";
-                    ?>
+                ?>
                     <div class="mySlides fade">
-                        <div class="numbertext"><?=$i+1?> / <?=$count?></div>
-                            <img src="./img/screen/<?=$screen_image?>" style="width:100%">
-                        </div>
+                        <div class="numbertext"><?= $i + 1 ?> / <?= $count ?></div>
+                        <img src="./img/screen/<?= $screen_image ?>" style="width:100%">
+                    </div>
                 <?php
                 }
                 ?>
-            
-            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
 
             </div>
             <div style="text-align:center" id="dot_container">
                 <?php
-                    for($i=0; $i<$count; $i++){
+                for ($i = 0; $i < $count; $i++) {
                 ?>
-                <span class="dot" onclick="currentSlide(<?=$i?>+1)"></span> 
+                    <span class="dot" onclick="currentSlide(<?= $i ?>+1)"></span>
                 <?php
-                    }
+                }
                 ?>
             </div>
             <script src="./js/game_info_view_slide.js"></script>
         <?php
-        }   
-        ?> 
-        
+        }
+        ?>
+
     </div>
-    
+
     <div id="ripple_regist">
         <div id="ripple2">
             <p>댓글입력</p>
             <br>
-            <input type="hidden" id="current_user" value="<?=$user_name?>">
-            <input type="hidden" id="current_admin" value="<?=$user_admin?>">
+            <input type="hidden" id="current_user" value="<?= $user_name ?>">
+            <input type="hidden" id="current_admin" value="<?= $user_admin ?>">
             <textarea name="content" id="ripple_content" cols="70" rows="10"></textarea>
-            <button onclick="ripple_insert(<?=$num?>,'<?=$user_name?>')">댓글달기</button>
+            <button onclick="ripple_insert(<?= $num ?>,'<?= $user_name ?>')">댓글달기</button>
         </div>
     </div>
     <div id="ripple_bag">
         <ul id="ripple_form">
-            
+
         </ul>
         <div id="page">
             <div id="page_button">
                 <div id="page_num">
-                </div>  
+                </div>
             </div>
             <div id="buttons">
                 <?php
-                if(isset($_SESSION['id']) && ($_SESSION['id'] == "admin" || intval($_SESSION['admin']) >= 1)){
+                if (isset($_SESSION['id']) && ($_SESSION['id'] == "admin" || intval($_SESSION['admin']) >= 1)) {
                 ?>
-                    <button onclick="location.href='./info_update_form.php?num=<?=$num?>'">정보 수정</button>
-                    <button onclick="location.href='./game_info_delete.php?num=<?=$num?>'">정보 삭제</button>
+                    <button onclick="location.href='./info_update_form.php?num=<?= $num ?>'">정보 수정</button>
+                    <button onclick="location.href='./game_info_delete.php?num=<?= $num ?>'">정보 삭제</button>
                 <?php
                 }
                 ?>

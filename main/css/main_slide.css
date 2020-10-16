@@ -38,7 +38,7 @@
   
   /* On hover, add a black background color with a little bit see-through */
   .prev:hover, .next:hover {
-    background-color: rgba(0,0,0,0.8);
+    background-color: gray;
   }
   
   /* Caption text */
@@ -60,6 +60,7 @@
     position: absolute;
     top: 0;
     margin-left: 20px;
+    background-color: gray;
   }
   #dot_container{
       text-align: center;

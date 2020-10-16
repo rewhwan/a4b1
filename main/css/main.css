@@ -6,6 +6,11 @@
     justify-content: center;
     background-color: rgb(228, 224, 212);
 }
+
+a:link { color: black; text-decoration: none;}
+a:visited { color: black; text-decoration: none;}
+a:hover { color: black; text-decoration: underline;}
+
 #game_info_view_container img{
     width: 270px;
     height: 300px;
@@ -37,29 +42,92 @@
 
 #calendar_notice_container{
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     padding: 20px;
+    background-color: rgb(228, 224, 212);
 }
 #calendar_container{
-    width: 400px;
+    width: 500px;
     height: 400px;
     padding: 20px;
     margin-left: 20px;
-    background-color: rgb(123, 122, 128);
+    background-color: whitesmoke;
 }
-#calendar_container ul{
+#calendar_container ul,#notice_container ul{
     list-style: none;
 }
 #notice_container{
-    width: 400px;
+    width: 600px;
     height: 400px;
     padding: 20px;
     margin-left: 20px;
-    background-color: rgb(123, 122, 128);
+    background-color: whitesmoke;
 }
 .span_container{
     text-align: center;
-    background-color: darkgray;
+    position: relative;
+    background-color: lightskyblue;
     font-weight: bold;
+}
+.span_container a{
+    justify-content: end;
+    position: absolute;
+    right: 3%;
+    font-size: 15px;
+    font-weight: normal;
+}
+#cal_day_con{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#cal_day_con span{
+    font-size: 20px;
+}
+#cal_day_con p{
+    background-color: white;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+#cal_day_con a{
+    display: block;
+    text-align: center;
+    font-weight: bold;
+    font-size: 13px;
+    margin-left: 20px;
+    width: 200px;
+}
+
+
+.cal_image{
+    margin-left: 20px;
+    margin-top: 5px;
+    width: 70px;
+    height: 65px;
+    margin-bottom: 5px;
+}
+
+#notice_con{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+#notice_con span{
+    font-size: 18px;
+}
+.notice_li{
+    margin: 13px 0;
+}
+#notice_con a{
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    /* margin: 5px 40px 10px; */
+    width: 350px;
+    word-break: keep-all;
 }
