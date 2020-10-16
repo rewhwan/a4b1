@@ -11,3 +11,8 @@ function check_input() {
     }
     document.notice_form.submit();
 }
+
+function search() {
+    var search_form = document.getElementById('search_form');
+    search_form.submit();
+}

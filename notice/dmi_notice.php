@@ -109,7 +109,7 @@ if (isset($_POST['mode']) && $_POST['mode'] == "modify") {
     echo "<script>location.href = 'index.php'</script>";
     exit;
 }
-
+//삭제기능
 if (isset($_POST['mode']) && $_POST['mode'] == "delete") {
 
     $num = $_POST['num'];

@@ -1,4 +1,4 @@
-/* 게시판 글쓰기(notice_insert.php) */
+/* 공지사항 글쓰기(notice_insert.php) */
 #notice_box { position: relative; width: 800px; margin: 0 auto; }
 #notice_box h3 { margin-top: 30px;	padding: 10px; border-bottom: solid 2px #516e7f; font-size: 20px; }
 #notice_form span { display: inline-block; }
@@ -18,7 +18,7 @@
 #insert_form_notice_container{height: 66vh; display: flex;}
 #modify_notice_container{height: 66vh; display: flex;}
 
-/* 게시판 목록보기(index.php) */
+/* 공지사항 목록보기(index.php) */
 #notice_list {list-style: none;}
 #notice_list li { padding: 10px 0; border-bottom: solid 1px #dddddd; }
 #notice_list span { display: inline-block; text-align: center; vertical-align: middle; font-size: 15px;}
@@ -29,7 +29,9 @@
 #notice_list .list5 { width: 180px; }
 #notice_list .list6 { width: 45px; }
 #notice_list .list4 img {vertical-align: middle;}
-
+#search{margin-right: 10px; width: 200px; height: 28px; float: left;}
+#imgbtn{margin-right: 10px;}
+/*공지사항 페이지*/
 #page_num {	text-align: center;	margin: 30px 0 }
 #page_num li { display: inline; }
 #page_num li  a:link { color: black; text-decoration: none;}
@@ -57,3 +59,10 @@
 
 #page_num { margin-top:10px; text-align:center; }
 #notice_view_image {max-width: 640px; max-height: 360px; margin: 30px 0;}
+
+#search_form{display: inline;}
+#searchbtn{width: 45px; height: 32px;}
+#notice_search_div{height: 30px; padding-bottom: 10px;margin-left: 450px;}
+#notice_search_div #search_div1{float: left; margin-left: 5px; margin-right: 1px;}
+#notice_search_div #search_div2{float: left; margin-left: 3px;}
+#notice_search_div #search_div3{float: left; margin-left: 5px; margin-top: 3px;}
