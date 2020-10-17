@@ -15,9 +15,9 @@ body #login_form_container{width: 100%; height: 92vh; display: flex; justify-con
 #login_form ul li {list-style: none; margin: 15px;}
 #login_form form ul li input[type='text'],#login_form form ul li input[type='password'] {
     width: 400px;height: 30px; font-size: 18px;}
-#signup {width: 400px; height: 35px; font-size: 24px; background-color: #235896;
+#login_form form ul li input[type='submit'] {width: 400px; height: 35px; font-size: 24px; background-color: #235896;
     color: white; border-radius: 10px;}
-#login_form form ul li:nth-child(6) {display: flex; justify-content: space-around; align-items: center;}
+#login_form form ul li:nth-child(5) {display: flex; justify-content: space-around; align-items: center;}
 #login_form form ul li a {margin: 5px; cursor: pointer;}
 
 
@@ -27,7 +27,3 @@ body #login_form_container{width: 100%; height: 92vh; display: flex; justify-con
 #password_certification { width: 70px; }
 
 #login_form form ul li input[type='text']:nth-child(5){ width: 150px;}
-
-#phone_input { margin-bottom: 20px; }
-
-#send_code { background-color: #235896;  color: white;}
