@@ -70,4 +70,24 @@ button[type='button']:hover:before, button[type='button']:hover:after {width: 10
 #insert_form {margin: 5% 5% 5% 20%; padding: 20px; border-radius: 20px; background-color: rgb(233, 233, 233);}
 #insert_form h2 {text-align: center; margin-bottom: 30px; border-bottom: solid 1px black; padding-bottom: 10px;}
 
+/*멤버 권한 관리 페이지 UI*/
+/*뱃지 디자인*/
+.badge {border-radius: 5px; padding: 5px; width: fit-content; display: inline-block; margin: 5px;}
+.badge_admin {background-color: red; color: white;}
+.badge_director {background-color: deepskyblue; color: white;}
+.badge_member {background-color: grey; color: white;}
 
+#badge_container {display: flex; justify-content: flex-end; align-items: center; height: 40px;}
+/*멤버 테이블 컨테이너 UI*/
+#member_table_container {margin: 5% 5% 5% 20%; padding: 20px; border-radius: 20px; background-color: rgb(233, 233, 233);}
+#member_table_container h2 {text-align: center; margin-bottom: 30px; border-bottom: solid 1px black; padding-bottom: 10px;}
+/*멤버 테이블 UI*/
+#member_table_container table tbody tr th {font-family: "Do Hyeon", sans-serif; font-size: 24px; font-weight: lighter;}
+#member_table_container table tbody tr td {font-family: 'Commissioner', sans-serif;}
+#member_table_container table tbody tr {height: 40px;}
+#member_table_container table tbody tr:not(:last-child) th,#member_table_container table tbody tr:not(:last-child) td {
+    border-bottom: 2px solid black;
+}
+#member_table_container table {text-align: center; width: 1000px; border-collapse: collapse;}
+
+#member_table{width: fit-content; padding: 20px; background-color: wheat; border-radius: 20px; margin: 20px auto;}
