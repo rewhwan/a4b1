@@ -66,9 +66,9 @@ $dbcon = $db->connector();
                                 else if ($row['admin'] == 1) echo "<td><div class='badge badge_director'>부어드민</div></td>";
                                 else echo "<td><div class='badge badge_admin'>어드민</div></td>";
 
-                                echo "<td><button>변경</button></td>
-                                <td><button>변경</button></td>
-                                <td><button>변경</button></td>";
+                                echo "<td><button onclick='update_permission(\"".$row['id']."\",\"일반회원\")'>변경</button></td>
+                                <td><button onclick='update_permission(\"".$row['id']."\",\"부어드민\")'>변경</button></td>
+                                <td><button onclick='update_permission(\"".$row['id']."\",\"어드민\")'>변경</button></td>";
 
                                 echo "</tr>";
                             }
