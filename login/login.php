@@ -55,8 +55,8 @@
         echo "<script>alert('아이디와 비밀번호가 일치하지 않습니다.');history.go(-1);</script>";
     }else {
         $_SESSION['id'] = $row['id'];
-        $_SESSION['password'] = $row['password'];
         $_SESSION['admin'] = $row['admin'];
+        $_SESSION['name'] = $row['name'];
 
         echo "<script>alert('로그인에 성공했습니다!.\\n환영합니다! ".$_SESSION['id']."님');history.go(-2);</script>";
     }

@@ -10,11 +10,9 @@
         </div>
         <ul>
             <?php
-                if(isset($_SESSION['id']) && isset($_SESSION['password'])) {
+                if(isset($_SESSION['id']) && isset($_SESSION['name'])) {
             ?>
-                    <li>아이디 : <?=$_SESSION['id']?></li>
-                    <li>비밀번호 : <?=$_SESSION['password']?></li>
-                    <li>admin : <?=$_SESSION['admin']?></li>
+                    <li><?=$_SESSION['name']?>(<?=$_SESSION['id']?>)님 환영합니다.</li>
                     |
                     <?php
                         if(isset($_SESSION['admin']) && $_SESSION['admin'] >= 1) {
