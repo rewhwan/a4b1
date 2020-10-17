@@ -30,7 +30,7 @@
 #notice_list .list5 { width: 180px; }
 #notice_list .list6 { width: 45px; }
 #notice_list .list4 img {vertical-align: middle;}
-#search{margin-right: 10px; width: 200px; height: 28px; float: left;}
+#keyword{margin-right: 10px; width: 200px; height: 28px; float: left;}
 #imgbtn{margin-right: 10px;}
 /*공지사항 페이지*/
 #page_num {	text-align: center;	margin: 30px 0 }
@@ -49,7 +49,7 @@
 #notice_list li .list2 a:visited { color: black; text-decoration: none;}
 #notice_list li .list2 a:hover { color: blue; text-decoration: underline;}
 
-/* 게시판 내용보기(notice_view.php) */
+/* 공지사항 내용보기(notice_view.php) */
 #notice_box { width: 800px; margin: 0 auto; }
 #notice_box .title { margin-top: 30px; padding: 10px; border-bottom: solid 2px #516e7f; font-size: 20px; }
 #view_content {list-style: none; }
@@ -60,8 +60,9 @@
 
 #page_num { margin-top:10px; text-align:center; }
 #notice_view_image {max-width: 640px; max-height: 360px; margin: 30px 0;}
-
+/*공지사항 검색기능 */
 #search_form{display: inline;}
+#search_select{margin-right: 6px;}
 #searchbtn{width: 45px; height: 32px;}
 #notice_search_div{height: 30px; padding-bottom: 10px;margin-left: 450px;}
 #notice_search_div #search_div1{float: left; margin-left: 5px; margin-right: 1px;}

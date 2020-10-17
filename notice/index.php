@@ -4,6 +4,7 @@ require $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/db.mysqli.class.php";
 $db = DB::getInstance();
 $db->sessionStart();
 $dbcon = $db->connector();
+include $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/submit_function.php";
 ?>
 
 <!doctype html>
@@ -25,7 +26,7 @@ $dbcon = $db->connector();
     <script src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/common/js/sweetalert/sweetalert.min.js?ver=1"></script>
 
     <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/notice/css/notice.css?ver=1">
-    <script src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/notice/notice.js"></script>
+    <script src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/notice/js/notice.js"></script>
 </head>
 <body id="body">
     <header>
@@ -35,20 +36,25 @@ $dbcon = $db->connector();
         <div id="notice_box">
             <div id="notice_list_top">
                 <h3>공지사항 > 목록</h3>
-                    <form method="GET" action="index.php" id="search_form">
-                        <div id="notice_search_div">
-                            <div id="search_div1">
-                                <select name="mode" id="search_select">
-                                    <option value="title">제목</option>
-                                    <option value="content">내용</option>
-                                </select>
-                            </div>
-                            <div id="search_div2"><input type="text" id="search" name="keyword"></div>
-                            <div id="search_div3">
-                                <button type="button" id="searchbtn" onclick="search()">검색</button>
-                            </div>
+                <form method="GET" action="index.php" id="search_form">
+                    <div id="notice_search_div">
+                        <div id="search_div1">
+                            <select name="mode" id="search_select">
+                                <option value="title" id="option_title">제목</option>
+                                <option value="content" id="optiong_content">내용</option>
+                            </select>
                         </div>
-                    </form>
+                        <input type="text" id="keyword" name="keyword" onkeypress="enter_notice(event)">
+                        <button type="button" id="searchbtn" onclick="notice_search()">검색</button>
+                    </div>
+                </form>
+                <?php
+                if (isset($_GET['mode']) && isset($_GET['keyword'])) {
+                    $value = $_GET['mode'];
+                    $word = $_GET['keyword'];
+                    echo "<script>search_word('$value','$word');</script>";
+                }
+                ?>
             </div>
             <ul id="notice_list">
                 <li>
@@ -62,6 +68,7 @@ $dbcon = $db->connector();
 
 
                 <?php
+
                 //                공지사항 하단 현재페이지와 다음페이지로 넘어가게해주로직
                 if (isset($_GET["page"])) $page = $_GET["page"];
                 else $page = 1;
@@ -71,6 +78,8 @@ $dbcon = $db->connector();
 
                 if (isset($_GET['mode']) && $_GET['mode'] != "") {
                     $keyword = $_GET['keyword'];
+                    $keyword = test_input($keyword);
+
                     switch ($_GET['mode']) {
                         case "title":
                             $sqlwhere = " `title` like '%{$keyword}%' ";
@@ -83,6 +92,7 @@ $dbcon = $db->connector();
                     $sqlwhere = " 1 ";
                 }
 
+
                 //현재 날짜에서 3일 이내의 긴급 공지를 가져옴 오름차순
                 $sql = "SELECT num,title,content,file_name,file_type,file_copied,hit,created_by,DATE_FORMAT(created_at,'%Y-%m-%d')AS created_at FROM notice_urgent WHERE date(now())-date(created_at) <=3 ";
                 $sql .= "AND" . $sqlwhere . "order by created_at DESC;";
@@ -92,9 +102,6 @@ $dbcon = $db->connector();
                 $total_record_urgent_notice = mysqli_num_rows($result_urgent);
                 $sql = "select num,title,content,file_name,file_type,file_copied,hit,created_by,DATE_FORMAT(created_at,'%Y-%m-%d') AS created_at from notice ";
                 $sql .= "WHERE" . $sqlwhere . "order by num desc;";
-
-                //                $search = $_POST['search'];
-                //                $search = test_input($_POST["search"]);
 
                 $result = mysqli_query($dbcon, $sql);
                 $total_record = mysqli_num_rows($result);
@@ -163,16 +170,17 @@ $dbcon = $db->connector();
                     $number++;
                 }
 
-                if ($total_record == 0 && $total_record_urgent_notice == 0) {
-                    ?>
-                    <li id="no_record">
-                        <p>등록된 공지사항이 없습니다.</p>
-                        <p>공지사항을 먼저 등록해주세요.</p>
-                    </li>
-                    <?php
-                }
+                    if ($total_record == 0 && $total_record_urgent_notice == 0) {
+                        ?>
+                        <li id="no_record">
+                            <p>등록된 공지사항이 없습니다.</p>
+                            <p>공지사항을 먼저 등록해주세요.</p>
+                        </li>
+                        <?php
+                    }
                 mysqli_close($dbcon);
                 ?>
+
             </ul>
             <ul id="page_num">
                 <?php
@@ -209,7 +217,7 @@ $dbcon = $db->connector();
             <ul class="buttons">
 
                 <li>
-                    <button onclick="location.href='index.php">목록</button>
+                    <button onclick="location.href='index.php'">목록</button>
                 </li>
                 <?php
                 if (isset($_SESSION['admin']) && $_SESSION['admin'] >= 1) {
