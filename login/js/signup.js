@@ -17,7 +17,6 @@ function checkID() {
     } else {
         span_id.innerHTML = "ID는 영문 소문자 5글자 이상 19글자 이하 입력해주세요.";
         id.value = "";
-        id.focus();
     }
 }
 
@@ -26,7 +25,6 @@ function checkName(){
         span_name.innerHTML= "";
     }else{
         span_name.innerHTML = "이름을 정확하게 입력하세요."; 
-        username.focus();
     }
 }
 
@@ -36,7 +34,6 @@ function checkPW() {
     } else {
         span_pw.innerHTML = '8자리 이상 숫자/대문자/소문자/특수문자를 포함해야 합니다.';
         password.value = "";
-        password.focus();
     }
 }
 
@@ -47,7 +44,6 @@ function checkPWOK() {
     } else {
         span_ok.innerHTML = '비밀번호 가 일치하지 않습니다.';
         password_ck.value = "";
-        password_ck.focus();
     }
 }
 
@@ -56,7 +52,6 @@ function checkEmail() {
         span_email.innerHTML = '';
     } else {
         span_email.innerHTML = '올바르지 않은 이메일 형식입니다 확인해주세요.';
-        email.focus();
     }
 }
 
@@ -128,7 +123,7 @@ function checkCode() {
 }
 
 function lastCheck() {
-    if (/^[a-z]+[a-z0-9]{5,19}$/.test(id.value)) {
+    if (/^[a-z]+[a-z]{4,19}$/.test(id.value)) {
     } else {
         swal("아이디 를 확인해주세요.", { closeOnClickOutside: false });
         return false;
@@ -152,7 +147,7 @@ function lastCheck() {
         return false;
     } if (password_certification.value === phone_code) {
     }else{
-        swal("인증번호가 일치 하지않습니다..", { closeOnClickOutside: false });
+        swal("본인인증 후 회원 가입할 수 있습니다.", { closeOnClickOutside: false });
         return false;
     }
     
