@@ -184,4 +184,4 @@ for($i=0; $i<$count; $i++){
         }
     }
 mysqli_close($dbcon);
-//echo "<script>location.href='./game_info_view.php?num=$num';</script>";
+echo "<script>location.href='./game_info_view.php?num=$num';</script>";

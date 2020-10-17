@@ -168,7 +168,7 @@ function ripple_insert(num,name){
                 // var offsetTOP = $("#"+json_data.data.num).offset().top;
                 // $('body').animate({scrollTop : offsetTOP}, 400);
                 select_ripple($num,1);
-                $("#content").val("");
+                $("#ripple_content").val("");
             }else{
                 alert("댓글달기 오류");
                 return false;

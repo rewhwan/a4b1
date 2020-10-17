@@ -35,12 +35,14 @@ $hit = $row['hit'];
 //코드를 문자로 치환
 $content = html_entity_decode($content);
 
-//작성자 및 관리자가 아닐경우에만 조회수 up
-if($_SESSION['id'] != $created_by && $_SESSION['admin'] == 0){
-    $sql="UPDATE `game_info` set hit=$hit+1 where num = $num";
-    mysqli_query($dbcon,$sql) or die("list view hit update error1 : " . mysqli_error($dbcon));
+//세션값이 있을 경우에만 발생하기 위해
+if(isset($_SESSION['id']) && $_SESSION['id'] != null){
+    //작성자 및 관리자가 아닐경우에만 조회수 up
+    if($_SESSION['id'] != $created_by && $_SESSION['admin'] == 0){
+        $sql="UPDATE `game_info` set hit=$hit+1 where num = $num";
+        mysqli_query($dbcon,$sql) or die("list view hit update error1 : " . mysqli_error($dbcon));
+    }
 }
-
 $genre = null;
 $sql = "SELECT * from `game_info_genre` where `info_num` = $num";
 $result = mysqli_query($dbcon, $sql) or die("list select error3 : " . mysqli_error($dbcon));

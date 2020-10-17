@@ -24,10 +24,13 @@ $created_at = $row["created_at"];
 $created_by = $row["created_by"];
 $hit = $row['hit'];
 
-//작성자 및 관리자가 아닐경우에만 조회수 up
-if($_SESSION['id'] != $created_by && $_SESSION['admin'] == 0){
-    $sql="UPDATE `game_review` set hit=$hit+1 where num = $num";
-    mysqli_query($dbcon,$sql) or die("review view hit update error1 : " . mysqli_error($dbcon));
+//세션값이 있을경우에만 실행
+if(isset($_SESSION['id']) && $_SESSION['id'] != null){
+    //작성자 및 관리자가 아닐경우에만 조회수 up
+    if($_SESSION['id'] != $created_by && $_SESSION['admin'] == 0){
+        $sql="UPDATE `game_review` set hit=$hit+1 where num = $num";
+        mysqli_query($dbcon,$sql) or die("review view hit update error1 : " . mysqli_error($dbcon));
+    }
 }
 
 //game_review_point table values
@@ -54,7 +57,14 @@ if (is_numeric($name)) {
     if ($row2['name'] == '') $image = $_SERVER['HTTP_HOST'] . "/a4b1/game_review/data/default.png";
     else  $image = $_SERVER['HTTP_HOST'] . "/a4b1/game_review/img/" . $row2['name'];
 }
-
+$user_name = null;
+if (isset($_SESSION['id']) && $_SESSION['id'] != null) {
+    $user_name = $_SESSION['id'];
+}
+$user_admin = null;
+if (isset($_SESSION['admin']) && $_SESSION['admin'] != null) {
+    $user_admin = $_SESSION['admin'];
+}
 ?>
 <html>
 
@@ -76,7 +86,10 @@ if (is_numeric($name)) {
     <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/game_review/css/review.css">
     <script src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/common/js/jquery/jquery-3.5.1.min.js"></script>
     <script src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/common/js/common.js"></script>
-
+    <script src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/game_review/js/review_ripples.js"></script>
+    <script>
+        select_ripple(<?= $num ?>, 1)
+    </script>
     <!-- <script src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/game_review/js/view.js"></script> -->
 </head>
 
@@ -267,6 +280,21 @@ if (is_numeric($name)) {
                 <li>
                     <p><?= $content ?></p>
                 </li>
+            </ul>
+        </div>
+        <div id="ripple_regist">
+            <div id="ripple2">
+                <p>댓글입력</p>
+                <br>
+                <input type="hidden" id="current_user" value="<?= $user_name ?>">
+                <input type="hidden" id="current_admin" value="<?= $user_admin ?>">
+                <textarea name="content" id="ripple_content" cols="70" rows="10"></textarea>
+                <button onclick="ripple_insert(<?= $num ?>,'<?= $user_name ?>')">댓글달기</button>
+            </div>
+        </div>
+        <div id="ripple_bag">
+            <ul id="ripple_form">
+
             </ul>
         </div>
         <div id="prev"><a href="./index.php/"><button>이전</button></a></div>
