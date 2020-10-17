@@ -41,18 +41,20 @@ function check_input() {
     }
 
     if (!inputPassword.value || inputPassword.value.trim() === '') {
-        if (!inputID.value || inputID.value.trim() === '') {
-            swal({
-                title: '비밀번호 입력 오류',
-                text: '비밀번호를 제대로 입력해 주세요.',
-                icon: 'warning'
-            });
-            alert("비밀번호를 입력해주세요.")
-            inputPassword.value = '';
-            inputPassword.focus();
-            return;
-        }
+        swal({
+            title: '비밀번호 입력 오류',
+            text: '비밀번호를 제대로 입력해 주세요.',
+            icon: 'warning'
+        });
+        inputPassword.value = '';
+        inputPassword.focus();
+        return;
     }
+
+    //공백을 없애고 로그인 하도록 함
+    inputID.value = inputID.value.trim();
+    inputPassword.value = inputPassword.value.trim();
+
     loginForm.submit();
 }
 

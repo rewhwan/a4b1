@@ -37,7 +37,16 @@
         return;
     }
 
-    $sql = "SELECT * FROM members where id = '{$_POST['id']}' AND password = '{$_POST['password']}';";
+    $sql = "SELECT * FROM members WHERE id = '{$_POST['id']}'";
+    $result = mysqli_query($dbcon,$sql)or die('Error: ' . mysqli_error($dbcon));
+    $row = mysqli_fetch_array($result);
+
+
+    $password = trim($_POST['password']);
+    $password = sha1($password,'b1a4');
+    $password = addslashes($password);
+
+    $sql = "SELECT * FROM members where id = '{$_POST['id']}' AND password = '{$password}';";
 
     $result = mysqli_query($dbcon,$sql)or die('Error: ' . mysqli_error($dbcon));
     $row = mysqli_fetch_array($result);

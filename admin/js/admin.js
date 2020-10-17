@@ -56,3 +56,39 @@ function delete_slide(num) {
         }
     });
 }
+
+function update_permission(id,permission) {
+    //경고창을 띄워 진짜 변경할 것인지 체크
+    swal({
+        title: '권한 변경 확인',
+        text: '정말 권한을 '+permission+'으로 변경하시겠습니까?',
+        icon: 'warning',
+        buttons: {
+            cancel: '아니요',
+            confirm: {
+                text: '예',
+                value: true,
+            }
+        },
+    }).then((value) => {
+        if(value) {
+            $.ajax({
+                url: './member_dmi.php',
+                type: 'POST',
+                data:{mode:'updatePermission',id:id,permission:permission},
+                dataType: 'json',
+                success:function (data) {
+                    console.log(data);
+                    //삭제 성공여부 분기점
+                    if(data.isSuccess == true) {
+                        swal('권한 변경 성공',data.successMsg[0],'success').then(() => {location.reload();});
+                    }else {
+                        for(var i in data.errorMsg) {
+                            swal(data.errorIds[i],data.errorMsg[i],'error').then(() => {location.reload();});
+                        }
+                    }
+                }
+            });
+        }
+    });
+}
