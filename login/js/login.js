@@ -52,9 +52,8 @@ function check_input() {
             inputPassword.focus();
             return;
         }
-
-        loginForm.submit();
     }
+    loginForm.submit();
 }
 
 //아이디 비밀번호 찾기 버튼 클릭시 팝업창으로 보여줌
