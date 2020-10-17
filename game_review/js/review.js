@@ -37,6 +37,54 @@ window.onload = function() {
             $('#submit_btn').click();
         }
     });
+
+        //게임검색 엔터키 입력시 검색 실행
+        $('#game_name').on('keypress',function () {
+            //검색어가 입력되어 있으면 검색버튼을 눌러준다.
+            if(event.keyCode == 13) {
+                if($(this).val().trim() != '') {
+                    $('#game_search').click();
+                }else {
+                    toastr.error('검색어를 입력해주세요',"검색어 입력요망", {timeOut: 3000});
+                    return;
+                }
+            }
+        });
+    
+        //검색버튼 클릭시 실행 함수
+        $('#game_search').click(function () {
+            $.ajax({
+                url: "http://localhost/a4b1/game_review/review_game_search.php",
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                   name: $('#game_name').val()
+                },
+                success: function (data) {
+                    let selectorContainer = $('#game_search_result_container');
+                    //console.log(data);
+                    //console.log(data.isSuccess);
+                    //console.log(data.data);
+                    if(data.isSuccess != 0 && data.data != null) {
+                        selectorContainer.css('display','flex');
+                        selectorContainer.empty();
+                        selectorContainer.append("<p>검색결과</p>");
+                        selectorContainer.append("<select id='game_search_result' name='name'></select>");
+                        let selector = $('#game_search_result');
+                        for(var i in data.data) {
+                            console.log(data.data[i]);
+                            selector.append("<option value="+data.data[i].num+">"+data.data[i].name+"</option>")
+                        }
+                    }else {
+                        toastr.error('다른검색어로 검색하거나 게임이름을 입력하고 리뷰를 등록해주세요.','게임 검색 결과가 없습니다.');
+                        selectorContainer.css('display','flex');
+                        selectorContainer.empty();
+                        selectorContainer.append("<p>게임이름</p>");
+                        selectorContainer.append("<input type='text' id='game_search_result' name='name'>");
+                    }
+                }
+            });
+        });
 }
 
 function check_input(){

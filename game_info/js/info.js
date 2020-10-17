@@ -76,7 +76,7 @@ function file_check(input) {
         if(input.value != '') {
             document.getElementById(checkbox_id).checked = true;
         }else{
-        document.getElementById(checkbox_id).checked = false;
+            document.getElementById(checkbox_id).checked = false;
         }
     }
 }

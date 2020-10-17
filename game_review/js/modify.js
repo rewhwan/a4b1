@@ -30,7 +30,7 @@ window.onload = function() {
         return false;
     });
 }
-
+//검색어 체크 함수
 function check_input(){
     if(!$("#title").val()){
         alert("제목을 입력해주세요.");
@@ -44,4 +44,15 @@ function check_input(){
     }
     
     $("#review_modify_form").submit();
+}
+// 파일 선택 변화시 체크박스 체크 설정
+function file_check() {
+    var screen_shot = document.getElementById("screen_select");
+    if(screen_shot != undefined){
+        if(screen_shot.value != '') {
+            document.getElementById("screen_select").checked = true;
+        }else{
+            document.getElementById("screen_select").checked = false;
+        }
+    }
 }

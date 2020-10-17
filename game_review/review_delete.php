@@ -16,6 +16,9 @@
         </script>";
         return;
     }
+    //리플 삭제 쿼리
+    $sql = "DELETE from game_review_ripples where info_num = $num";
+    mysqli_query($dbcon,$sql) or die("delet review ripples error : ".mysqli_error($dbcon));
 
     $sql = "select * from game_review_files where review_num = {$num}";
     $result = mysqli_query($dbcon,$sql) or die("쿼리문 오류1 : ".mysqli_error($dbcon));;
