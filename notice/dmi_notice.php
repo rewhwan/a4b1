@@ -10,7 +10,7 @@ $db->sessionStart();
 $dbcon = $db->connector();
 
 //권한체크
-if(!isset($_SESSION['admin']) || $_SESSION['admin']<1) echo alert_back("관리자 권한이 없습니다.");
+if (!isset($_SESSION['admin']) || $_SESSION['admin'] < 1) echo alert_back("관리자 권한이 없습니다.");
 
 if (isset($_POST['mode']) && $_POST['mode'] == "insert") {
 
@@ -20,7 +20,7 @@ if (isset($_POST['mode']) && $_POST['mode'] == "insert") {
 
     $title = test_input($title);
     $content = test_input($content);
-
+    $title = html_entity_decode($title);
     if ($title == "") {
         echo "<script>alert('제목이 입력되지않았습니다.');history.go(-1);</script>";
         exit;
@@ -39,23 +39,21 @@ if (isset($_POST['mode']) && $_POST['mode'] == "insert") {
     $created_by = $_SESSION['id'];
 
     //긴급공지사항인지 여부 분기점
-    if(isset($_POST['cb'])) {
+    if (isset($_POST['cb'])) {
         //파일을 같이 등록했는지 여부 분기점
         if (isset($_FILES['upfile']) && $_FILES['upfile']['error'] != UPLOAD_ERR_NO_FILE) {
             $copied_file_name = file_upload("upfile", "./data/");
             $sql = "insert into notice_urgent values(null,'$title','$content','$file_name','$file_type','$copied_file_name',0,'$created_by',now())";
-        }else $sql = "insert into notice_urgent values(null,'$title','$content',null,null,null,0,'$created_by',now())";
-    }else {
+        } else $sql = "insert into notice_urgent values(null,'$title','$content',null,null,null,0,'$created_by',now())";
+    } else {
         if (isset($_FILES['upfile']) && $_FILES['upfile']['error'] != UPLOAD_ERR_NO_FILE) {
             $copied_file_name = file_upload("upfile", "./data/");
             $sql = "insert into notice values(null,'$title','$content','$file_name','$file_type','$copied_file_name',0,'$created_by',now())";
-        }else $sql = "insert into notice values(null,'$title','$content',null,null,null,0,'$created_by',now())";
+        } else $sql = "insert into notice values(null,'$title','$content',null,null,null,0,'$created_by',now())";
     }
 
     mysqli_query($dbcon, $sql) or die("쿼리문 오류1 : " . mysqli_error($dbcon));
 
-//    system("chmod -R 000 ./data");
-//    echo shell_exec('whoami');
     echo "<script>location.href = 'index.php';</script>";
     exit;
 }
@@ -77,7 +75,7 @@ if (isset($_POST['mode']) && $_POST['mode'] == "modify") {
         exit;
     }
 
-    if(isset($_POST['urgent']) && $_POST['urgent'] == 't') $sql = "SELECT * FROM notice_urgent WHERE num = {$num}";
+    if (isset($_POST['urgent']) && $_POST['urgent'] == 't') $sql = "SELECT * FROM notice_urgent WHERE num = {$num}";
     else $sql = "select *  from notice where num = {$num}";
 
     $result = mysqli_query($dbcon, $sql) or die("쿼리문 오류1 : " . mysqli_error($dbcon));
@@ -93,14 +91,14 @@ if (isset($_POST['mode']) && $_POST['mode'] == "modify") {
     //새로운 파일 등록여부 확인
     if (isset($_FILES['upfile']) && $_FILES['upfile']['error'] != UPLOAD_ERR_NO_FILE) {
         //원래 파일이 존재했으면 삭제 한다.
-        if(isset($row['file_copied']) && $row['file_copied']) unlink($upload_dir.$row['file_copied']);
+        if (isset($row['file_copied']) && $row['file_copied']) unlink($upload_dir . $row['file_copied']);
         $copied_file_name = file_upload("upfile", "./data/");
 
-        if(isset($_POST['urgent']) && $_POST['urgent'] == 't') $sql = "update notice_urgent set title='$title',content = '$content',file_name='$file_name',file_type='$file_type',file_copied='$copied_file_name'";
+        if (isset($_POST['urgent']) && $_POST['urgent'] == 't') $sql = "update notice_urgent set title='$title',content = '$content',file_name='$file_name',file_type='$file_type',file_copied='$copied_file_name'";
         else $sql = "update notice set title='$title',content = '$content',file_name='$file_name',file_name='$file_name',file_type='$file_type',file_copied='$copied_file_name'";
         $sql .= " where num=$num";
     } else {
-        if(isset($_POST['urgent']) && $_POST['urgent'] == 't') $sql = "update notice_urgent set title='$title',content = '$content'";
+        if (isset($_POST['urgent']) && $_POST['urgent'] == 't') $sql = "update notice_urgent set title='$title',content = '$content'";
         else $sql = "update notice set title='$title',content = '$content'";
         $sql .= " where num = $num";
     }
@@ -122,7 +120,7 @@ if (isset($_POST['mode']) && $_POST['mode'] == "delete") {
     $row = mysqli_fetch_assoc($result);
 
     //파일삭제
-    if(isset($row['file_copied']) && $row['file_copied']) unlink("./data/" . $row['file_copied']);
+    if (isset($row['file_copied']) && $row['file_copied']) unlink("./data/" . $row['file_copied']);
 
     if (isset($_POST['urgent']) && $_POST['urgent'] == 't') $sql = "delete from notice_urgent where num = '$num'";
     else $sql = "delete from notice where num = '$num'";
