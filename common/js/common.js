@@ -1,6 +1,17 @@
 function logoutCheck(host) {
-    let check = confirm("정말 로그아웃하시겠습니까?");
-    if(check) location.href="http://"+host+"/a4b1/login/logout.php";
+    swal({
+        text: '정말 로그아웃 하시겠습니까?',
+        icon: 'info',
+        buttons: {
+            cancel: '아니요',
+            confirm: {
+                text: '예',
+                value: true,
+            }
+        },
+    }).then((value) => {
+        if(value) {location.href="http://"+host+"/a4b1/login/logout.php"}
+    });
 }
 
 window.onscroll = function () {

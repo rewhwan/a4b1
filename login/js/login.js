@@ -29,21 +29,32 @@ function prevent() {
 //아이디 비밀번호 값 검증이후 제출
 function check_input() {
 
-    if(!inputID.value || inputID.value.trim() === '') {
-        alert("아이디를 입력해주세요.")
+    if (!inputID.value || inputID.value.trim() === '') {
+        swal({
+            title: '아이디 입력 오류',
+            text: '아이디를 제대로 입력해 주세요.',
+            icon: 'warning'
+        });
         inputID.value = '';
         inputID.focus();
         return;
     }
 
-    if(!inputPassword.value || inputPassword.value.trim() === '') {
-        alert("비밀번호를 입력해주세요.")
-        inputPassword.value = '';
-        inputPassword.focus();
-        return;
-    }
+    if (!inputPassword.value || inputPassword.value.trim() === '') {
+        if (!inputID.value || inputID.value.trim() === '') {
+            swal({
+                title: '비밀번호 입력 오류',
+                text: '비밀번호를 제대로 입력해 주세요.',
+                icon: 'warning'
+            });
+            alert("비밀번호를 입력해주세요.")
+            inputPassword.value = '';
+            inputPassword.focus();
+            return;
+        }
 
-    loginForm.submit();
+        loginForm.submit();
+    }
 }
 
 //아이디 비밀번호 찾기 버튼 클릭시 팝업창으로 보여줌
