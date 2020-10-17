@@ -42,7 +42,7 @@ $sql = "select * from game_review_files where num = {$num}";
 $result = mysqli_query($dbcon, $sql);
 $row = mysqli_fetch_array($result);
 
-$file_name = $row['name'];
+
 
 mysqli_close($dbcon);
 ?>
