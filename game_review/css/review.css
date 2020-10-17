@@ -299,3 +299,87 @@ button:hover:before, button:hover:after {width: 100%; transition: 800ms ease all
 }
 
 #fade img {margin: 0 auto;}
+
+/* 댓글 창 관련 css */
+#ripple_regist{
+    margin: 10px auto;
+    text-align: center;
+}
+#ripple2{
+    display: inline-block;
+    margin-left: 70px;
+}
+
+#ripple_regist p{
+    font: 200 24px/1.5 Do Hyeon, Times New Roman, serif;
+    text-align: left;
+}
+/* 댓글 창 버튼 css */
+#ripple_regist button, #ripple_form button{
+    background:#89cebc;
+    color:#fff;
+    border:none;
+    border-radius: 10px;
+    position:relative;
+    height:30px;
+    font-size:12px;
+    padding:0 2px;
+    cursor:pointer;
+    transition:800ms ease all;
+    outline:none;
+ }
+#ripple_regist button:hover,#ripple_form button:hover{
+    background:#fff;
+    color:#89cebc;
+  }
+#ripple_regist button:before,#ripple_regist button:after,
+#ripple_form button:before,#ripple_form button:after{
+    content:'';
+    position:absolute;
+    top:0;
+    right:0;
+    height:2px;
+    width:0;
+    background: #89cebc;
+    transition:400ms ease all;
+  }
+#ripple_regist button:after,#ripple_form button:after{
+    right:inherit;
+    top:inherit;
+    left:0;
+    bottom:0;
+  }
+#ripple_regist button:hover:before, #ripple_regist button:hover:after,
+#ripple_form button:hover:before, #ripple_form button:hover:after{
+    width:100%;
+    transition:800ms ease all;
+  }
+#ripple_bag{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+#ripple_form{
+    list-style: none;
+    padding: 10px;
+}
+#list ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+#ripple_form li{
+    margin-top: 10px;
+    border-bottom: 1px solid black;
+    width: 800px;
+}
+
+#ripple_form li button{
+    margin: 10px 0 10px 0;
+}
+#ripple_form #page{
+    margin: 0 auto;
+    text-align: center;
+}
+
