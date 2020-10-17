@@ -15,6 +15,7 @@ $con = $db->connector();
 
     //user pw 값 암호화
     $user_pw = sha1($user_pw,'b1a4');
+    $user_pw = addslashes($user_pw);
 
     echo $user_pw;
     echo "데이터 타입<br>";
