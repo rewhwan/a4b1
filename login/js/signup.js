@@ -12,10 +12,10 @@ function showSignupPopup() {
 }
 
 function checkID() {
-    if (/^[a-z]+[a-z0-9]{5,19}$/.test(id.value)) {
+    if (/^[a-z]+[a-z]{4,19}$/.test(id.value)) {
         span_id.innerHTML = "사용 가능한 ID 입니다.";
     } else {
-        span_id.innerHTML = "앞자리는 영어(소) 시작 총 글자수는 4~20까지 입력해주세요";
+        span_id.innerHTML = "ID는 영문 소문자 5글자 이상 19글자 이하 입력해주세요.";
         id.value = "";
         id.focus();
     }
