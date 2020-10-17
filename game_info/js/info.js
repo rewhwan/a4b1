@@ -327,6 +327,7 @@ function check_search(){
         alert("검색어가 선택되지 않았습니다.");
         return false;
     }
+    
     location.href="game_info_list.php?mode=search&search="+$search+"&search_word="+$search_word;
 }
 
@@ -344,4 +345,11 @@ function search_word_check(search,search_word){
        break;
     }
     $("#search_word").val(search_word);
+}
+
+//enter 클릭 시 이벤트 적용
+function check_enter(event){
+    if(event.keyCode == 13){
+        check_search();
+    }
 }
