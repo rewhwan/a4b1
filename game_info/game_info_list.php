@@ -7,6 +7,56 @@ include $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/submit_function.php";
 //싱글톤 객체 불러오기
 $db = DB::getInstance();
 $dbcon = $db->connector();
+if (isset($_GET['mode'])) {
+    $mode = $_GET['mode'];
+} else {
+    $mode = "";
+}
+//상수 지정
+define('SCALE', 8);
+if ($mode == "search") {
+    $search = $_GET['search'];
+    $search_word = strtoupper($_GET['search_word']);
+    switch ($search) {
+        case "name":
+        case "grade":
+            $sql = "SELECT * from `game_info`  where $search like '%$search_word%' order by `num` desc";
+            break;
+        case "genre":
+        case "platform":
+            $sql = "SELECT * from `game_info` a left join game_info_$search b on a.num=b.info_num where $search like '%$search_word%' order by a.num desc";
+            break;
+        default:
+            $sql = "SELECT * from `game_info` order by `num` desc";
+            break;
+    }
+} else {
+    //전체 레코드수를 가져와 총 페이지 계산
+    $sql = "SELECT * from `game_info` order by `num` desc";
+}
+$result = mysqli_query($dbcon, $sql) or die("list select error1 : " . mysqli_error($dbcon));
+$total_record = mysqli_num_rows($result);
+
+//검색 결과가 없을 경우 되돌아 가기
+if($total_record == 0 && $mode == "search"){
+    alert_back("검색 결과가 없습니다.");
+}
+
+if ($total_record == 0 && $mode =="") {
+    echo "<script>alert('등록된 정보가 없습니다.');</script>";
+}
+//딱 맞아 떨어지면 그대로 아니면 올림수로 계산
+$total_page = ($total_record % SCALE == 0) ? ($total_record / SCALE) : (ceil($total_record / SCALE));
+
+//2.페이지가 없으면 디폴트 페이지 1페이지
+if (empty($_GET['page'])) {
+    $page = 1;
+} else {
+    $page = $_GET['page'];
+}
+
+$start = ($page - 1) * SCALE;
+$number = $total_record - $start;
 ?>
 <!DOCTYPE html>
 <html lang="ko">
@@ -23,61 +73,19 @@ $dbcon = $db->connector();
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
     <!-- 자바스크립트 추가 -->
     <script src="./js/info.js"></script>
+    <!--alert & toastr 라이브러리 추가-->
+    <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/common/css/toastr/toastr.min.css?ver=1" />
+    <script src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/common/js/toastr/toastr.min.js?ver=1"></script>
+    <script src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/common/js/sweetalert/sweetalert.min.js?ver=1"></script>
     <title>게임 정보 리스트</title>
 </head>
-
+<?php
+        if($total_record != 0){
+    ?>
 <body id="body">
     <header>
         <?php include $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/header.php"; ?>
     </header>
-    <?php
-    if (isset($_GET['mode'])) {
-        $mode = $_GET['mode'];
-    } else {
-        $mode = "";
-    }
-    //상수 지정
-    define('SCALE', 8);
-    if ($mode == "search") {
-        $search = $_GET['search'];
-        $search_word = strtoupper($_GET['search_word']);
-        switch ($search) {
-            case "name":
-            case "grade":
-                $sql = "SELECT * from `game_info`  where $search like '%$search_word%' order by `num` desc";
-                break;
-            case "genre":
-            case "platform":
-                $sql = "SELECT * from `game_info` a left join game_info_$search b on a.num=b.info_num where $search like '%$search_word%' order by a.num desc";
-                break;
-            default:
-                $sql = "SELECT * from `game_info` order by `num` desc";
-                break;
-        }
-    } else {
-        //전체 레코드수를 가져와 총 페이지 계산
-        $sql = "SELECT * from `game_info` order by `num` desc";
-    }
-    $result = mysqli_query($dbcon, $sql) or die("list select error1 : " . mysqli_error($dbcon));
-    $total_record = mysqli_num_rows($result);
-
-    if ($total_record == 0) {
-        //alert_back("검색 결과가 없습니다.");
-        echo "<script>alert('등록된 정보가 없습니다.');</script>";
-    }
-    //딱 맞아 떨어지면 그대로 아니면 올림수로 계산
-    $total_page = ($total_record % SCALE == 0) ? ($total_record / SCALE) : (ceil($total_record / SCALE));
-
-    //2.페이지가 없으면 디폴트 페이지 1페이지
-    if (empty($_GET['page'])) {
-        $page = 1;
-    } else {
-        $page = $_GET['page'];
-    }
-
-    $start = ($page - 1) * SCALE;
-    $number = $total_record - $start;
-    ?>
     <div id="container_body">
         <div id="top">
             <ul>
@@ -88,7 +96,7 @@ $dbcon = $db->connector();
                     <option value="platform" id="option_platform">플랫폼</option>
                     <option value="grade" id="option_grade">등급</option>
                 </select>
-                <li><input type="text" name="search_word" id="search_word"></li>
+                <li><input type="text" name="search_word" id="search_word" onkeypress="check_enter(event)"></li>
                 <li><button onclick="check_search()">검색하기</button></li>
                 <li><button onclick="location.href='info_insert_form.php'">글쓰기</button></li>
             </ul>
@@ -247,6 +255,9 @@ $dbcon = $db->connector();
             </div>
         </div>
     </div>
+    <?php
+        }
+    ?>
         <footer>
             <?php include $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/footer.php"; ?>
         </footer>

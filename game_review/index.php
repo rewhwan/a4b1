@@ -2,11 +2,59 @@
     <html lang="ko">
     <?php
     require $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/db.mysqli.class.php";
-
+    include $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/submit_function.php";
     //싱글톤 객체 불러오기
     $db = DB::getInstance();
     $db->sessionStart();
     $dbcon = $db->connector();
+    // mode로 검색인지 아닌지 파악
+    if (isset($_GET['mode'])) {
+        $mode = $_GET['mode'];
+    } else {
+        $mode = "";
+    }
+    //페이지 파악
+    if (isset($_GET["page"]))
+                        $page = $_GET["page"];
+                    else
+                        $page = 1;
+
+                    //검색 기능 mode 가 있는지 확인
+                    if ($mode === "search") {
+                        $search = $_GET['search'];
+                        $search_word = $_GET['search_word'];
+                        $sql = "select * from game_review left join game_review_point on num = review_num where $search like '%$search_word%' order by num desc";
+                    } else {
+                        $sql = "select * from game_review left join game_review_point on num = review_num order by num desc";
+                    }
+
+                    $result = mysqli_query($dbcon, $sql);
+                    $total_record = mysqli_num_rows($result);
+                    if($total_record == 0 && $mode == "search"){
+                        alert_back('검색 결과가 없습니다.');
+                    }
+                    if($total_record == 0 && $mode==""){
+                        echo"<script>alert('등록된 리뷰가 없습니다.');</script>";
+                    }
+                    //1페이지의 개수 상수로 정해놓기
+                    $scale = 8;
+
+                    // 전체 페이지 수($total_page) 계산 
+                    if ($total_record % $scale == 0)
+                        $total_page = floor($total_record / $scale);
+                    else
+                        $total_page = floor($total_record / $scale) + 1;
+
+                    // 전체 페이지 수($total_page) 계산 
+                    if ($total_record % $scale == 0)
+                        $total_page = floor($total_record / $scale);
+                    else
+                        $total_page = floor($total_record / $scale) + 1;
+
+                    // 표시할 페이지($page)에 따라 $start 계산  
+                    $start = ($page - 1) * $scale;
+
+                    $number = $start + 1;
     ?>
 
     <head>
@@ -28,7 +76,9 @@
         <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/game_review/css/review.css">
         <script src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/game_review/js/review.js?ver=1"></script>
     </head>
-
+    <?php
+      if($total_record != 0){  
+    ?>
     <body id="body">
         <header>
             <?php include $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/header.php"; ?>
@@ -39,19 +89,15 @@
                 <ul>
                     <select name="search" id="search">
                         <option value="" id="option_no">선택</option>
-                        <option value="name" id="option_name">게임별</option>
-                        <option value="created_by" id="option_reated_by">작성자</option>
-                        <option value="avg" id="option_avg">별점순</option>
+                        <option value="title" id="option_title">제목</option>
+                        <option value="created_by" id="option_created_by">작성자</option>
+                        <option value="content" id="option_content">내용</option>
                     </select>
-                    <li><input type="text" name="search_word" id="search_word"></li>
+                    <li><input type="text" name="search_word" id="search_word" onkeypress="check_enter(event)"></li>
                     <li><button onclick="check_search()">검색</button></li>
                 </ul>
                 <?php
-                if (isset($_GET['mode'])) {
-                    $mode = $_GET['mode'];
-                } else {
-                    $mode = "";
-                }
+                
 
                 if (isset($_GET['search'])  && isset($_GET['search_word'])) {
                     $value = $_GET['search'];
@@ -63,7 +109,6 @@
                 // $sql = "select *,truncate((story+graphic+time+difficulty)/4,1) AS avg from game_review_point group by review_num order by avg desc;";
                 // $result = mysqli_query($dbcon, $sql);
                 // $row = mysqli_num_rows($result);
-
                 // $avg = $row['avg'];
                 ?>
             </div>
@@ -72,54 +117,7 @@
             <div id="list">
                 <ul>
                     <?php
-                    if (isset($_GET["page"]))
-                        $page = $_GET["page"];
-                    else
-                        $page = 1;
-
-                    //검색 기능 mode 가 있는지 확인
-                    if ($mode === "sort") {
-                        $search = $_GET['sort'];
-
-                        switch ($search) {
-                            case "name":
-                                $sql = "select * from game_review left join game_review_point on num = review_num where name like $search_word order by num desc";
-                                break;
-                            case "created_by":
-                                "select * from game_review left join game_review_point on num = created_by where name like $search_word order by num desc";
-                                break;
-                            case "avg":
-                                "select * from game_review left join game_review_point on num = created_by where  like $search_word order by num desc";
-                                break;
-                            default:
-                                break;
-                        }
-                    } else {
-                        $sql = "select * from game_review left join game_review_point on num = review_num order by num desc";
-                    }
-
-                    $result = mysqli_query($dbcon, $sql);
-                    $total_record = mysqli_num_rows($result);
-
-                    //1페이지의 개수 상수로 정해놓기
-                    $scale = 8;
-
-                    // 전체 페이지 수($total_page) 계산 
-                    if ($total_record % $scale == 0)
-                        $total_page = floor($total_record / $scale);
-                    else
-                        $total_page = floor($total_record / $scale) + 1;
-
-                    // 전체 페이지 수($total_page) 계산 
-                    if ($total_record % $scale == 0)
-                        $total_page = floor($total_record / $scale);
-                    else
-                        $total_page = floor($total_record / $scale) + 1;
-
-                    // 표시할 페이지($page)에 따라 $start 계산  
-                    $start = ($page - 1) * $scale;
-
-                    $number = $start + 1;
+                    
 
 
                     for ($i = $start; $i < $start + $scale && $i < $total_record; $i++) {
@@ -218,5 +216,7 @@
         </footer>
 
     </body>
-
+    <?php
+      }
+    ?>            
     </html>

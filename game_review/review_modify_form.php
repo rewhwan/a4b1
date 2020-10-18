@@ -21,7 +21,7 @@ $num = $_GET['num'];
 $page = $_GET['page'];
 
 $sql = "select * from game_review left join game_review_point on num = review_num where num = {$num}";
-$result = mysqli_query($dbcon, $sql);
+$result = mysqli_query($dbcon, $sql) or die("review modify select review error".mysqli_error($dbcon));
 $row = mysqli_fetch_array($result);
 
 //game_review table values
@@ -37,12 +37,24 @@ $graphic = $row["graphic"];
 $time = $row["time"];
 $difficulty = $row["difficulty"];
 
-
-$sql = "select * from game_review_files where num = {$num}";
-$result = mysqli_query($dbcon, $sql);
+//$name을 가지고 게임 찾기
+$sql = "SELECT name from `game_info` where num = $name";
+$result = mysqli_query($dbcon, $sql) or die("review modify select game_info error".mysqli_error($dbcon));
 $row = mysqli_fetch_array($result);
+$game_name = $row['name'];
 
-$file_name = $row['name'];
+$screen_shots ="";
+$sql = "select * from game_review_files where review_num = {$num}";
+$result = mysqli_query($dbcon, $sql) or die("review modify select review files error".mysqli_error($dbcon));
+while($row = mysqli_fetch_array($result)){
+    if($screen_shots == null){
+        $screen_shots = $row['name'];
+    }else{
+        $screen_shots = $screen_shots.",".$row['name'];
+    }
+}
+
+
 
 mysqli_close($dbcon);
 ?>
@@ -87,7 +99,7 @@ mysqli_close($dbcon);
             <ul id="modify_list">
                 <li>
                     <p>게임이름</p>
-                    <?= $name ?>
+                    <?= $game_name ?>
                 </li>
                 <li>
                     <p>제목</p> <input type="text" id="title" name="title" value="<?= $title ?>">
@@ -114,7 +126,7 @@ mysqli_close($dbcon);
                                 }
                             }
                             ?>
-                            <input type="hidden" id="story" name="story" value="0">
+                            <input type="hidden" id="story" name="story" value="<?=$story?>">
                         </div>
 
                         <p>그래픽</p>
@@ -136,7 +148,7 @@ mysqli_close($dbcon);
                                 }
                             }
                             ?>
-                            <input type="hidden" id="graphic" name="graphic" value="0">
+                            <input type="hidden" id="graphic" name="graphic" value="<?=$graphic?>">
                         </div>
                     </div>
                 </li>
@@ -161,7 +173,7 @@ mysqli_close($dbcon);
                                 }
                             }
                             ?>
-                            <input type="hidden" id="time" name="time" value="0">
+                            <input type="hidden" id="time" name="time" value="<?=$time?>">
                         </div>
 
                         <p>난이도</p>
@@ -183,7 +195,7 @@ mysqli_close($dbcon);
                                 }
                             }
                             ?>
-                            <input type="hidden" id="difficulty" name="difficulty" value="0">
+                            <input type="hidden" id="difficulty" name="difficulty" value="<?=$difficulty?>">
                         </div>
                     </div>
                 </li>
@@ -191,8 +203,22 @@ mysqli_close($dbcon);
                     <p>내용</p><textarea name="content" cols="30" rows="10" id="content"><?= $content ?></textarea>
                 </li>
                 <li>
-                    <p>파일첨부</p><input type="file" name="new_file[]" multiple accept="image/*">
+                    <p>파일첨부</p><input type="file" name="new_file[]" multiple accept="image/*" onchange="file_check()" id="screen_shot">
                 </li>
+                <?php
+                    if(isset($screen_shots)&&$screen_shots != null){
+                ?>
+                <li>
+                    <label for="screen_select">기존 이미지 : </label>
+                    <span id="screen_names"><?=$screen_shots?></span>
+                </li>
+                <li>
+                    <label for="screen_select">기존 이미지 삭제</label>
+                    <input type="checkbox" name="screen_select" id="screen_select" value="check">
+                </li>
+                <?php
+                    }
+                ?>
             </ul>
             <div id="submit_container">
                 <a href="./index.php"><button type="button" type="button">취소</button></a>

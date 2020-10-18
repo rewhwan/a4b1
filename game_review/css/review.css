@@ -135,7 +135,7 @@ hr {margin-bottom: 30px;}
 #form_container {font-size: 20px; height: 86vh; display: flex; justify-content: center;
     align-items: center;}
 #form_container:after { content: ""; display: block; position: absolute; top: 0; left: 0;
-    background-image: url("../img/background-1.jpg"); background-size: cover; width: 100%; height: 100%; opacity: 0.7;
+    background-image: url("../data/background-1.jpg"); background-size: cover; width: 100%; height: 100%; opacity: 0.7;
     z-index: -1;}
 #form_container form {width: fit-content;}
 #form_container form ul li {list-style: none; display: flex; justify-content: flex-start; margin: 20px;}
@@ -151,7 +151,7 @@ hr {margin-bottom: 30px;}
 #insert_form_container {font-size: 20px; height: 86vh; display: flex; justify-content: center;
     align-items: center;}
 #insert_form_container:after { content: ""; display: block; position: absolute; top: 0; left: 0;
-    background-image: url("../img/background-1.jpg"); background-size: cover; width: 100%; height: 100%; opacity: 0.7;
+    background-image: url("../data/background-1.jpg"); background-size: cover; width: 100%; height: 100%; opacity: 0.7;
     z-index: -1;}
 #insert_form_container form {width: fit-content;}
 #insert_form_container form ul li {list-style: none; display: flex; justify-content: flex-start; margin: 20px;}
@@ -382,4 +382,13 @@ button:hover:before, button:hover:after {width: 100%; transition: 800ms ease all
     margin: 0 auto;
     text-align: center;
 }
-
+/* 수정 폼 체크박스 */
+#screen_select{
+    width: 100px;
+    height: 30px;
+}
+/* 스크린샷 파일이름  */
+#screen_names{
+    width: 800px;
+    word-break: break-word;
+}
