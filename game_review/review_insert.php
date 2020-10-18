@@ -47,7 +47,7 @@ mysqli_query($con, $sql) or die("DB 오류 : Error.Code = 3".mysqli_error($con))
 
 
 //스크린샷 파일이 있을 경우 실행
-if(isset($_FILES['new_file']) && $_FILES['new_file']['error'] != UPLOAD_ERR_NO_FILE){
+if(isset($_FILES['new_file']) && $_FILES['new_file']['error'] != UPLOAD_ERR_NO_FILE && $_FILES['new_file']['name'][0] != null){
     $copied_file_name = array();
     //파일업로드 함수
     $copied_file_name = file_upload_multi("new_file","./img/");
@@ -61,10 +61,10 @@ if(isset($_FILES['new_file']) && $_FILES['new_file']['error'] != UPLOAD_ERR_NO_F
 //db연결 끊기
 mysqli_close($con);
 
-// 완료후 돌아가기
-echo "
-	   <script>
-	    location.href = 'index.php';
-	   </script>
-	";
+// // 완료후 돌아가기
+// echo "
+// 	   <script>
+// 	    location.href = 'index.php';
+// 	   </script>
+// 	";
 ?>
