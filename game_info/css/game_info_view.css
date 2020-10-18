@@ -57,7 +57,7 @@ img{
 #game_info_view a{
     /* background-color: white; */
     display: inline-block;
-    font: 200 20px/1.5 Do Hyeon, Times New Roman, serif;
+    font: 200 25px/1.5 Do Hyeon, Times New Roman, serif;
 }
 #game_content{
     margin: 0 auto;
@@ -65,8 +65,9 @@ img{
 }
 #game_content #content{
     display: inline-block;
-    width: 500px;
+    width: 600px;
     font: 200 30px/1.5 Do Hyeon, Times New Roman, serif;
+    word-break: keep-all;
 }
 
 #ripple_regist{
@@ -81,6 +82,9 @@ img{
 #ripple_regist p{
     font: 200 24px/1.5 Do Hyeon, Times New Roman, serif;
     text-align: left;
+}
+#ripple_content{
+    resize: none;
 }
 #ripple_bag{
     display: flex;

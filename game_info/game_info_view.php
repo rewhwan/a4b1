@@ -141,7 +141,7 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] != null) {
                 <p>가격 : <?= $price ?></p>
             </div>
             <div>
-                <a href="<?= $homepage ?>">공식홈페이지</a>
+                <p><a href="<?= $homepage ?>" target="_blank">공식홈페이지</a></p>
             </div>
         </div>
         <br>
