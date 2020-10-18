@@ -59,7 +59,6 @@ $(document).ready(function () {
             type: 'POST',
             dataType: 'json',
             success: function (data) {
-                console.log(data);
                 if (data.isSuccess == 1) swal("아이디 찾기 완료", data.data.name + "님의 아이디는 \"" + data.data.id + "\" 입니다.",
                     "success", {closeOnClickOutside: false});
                 else if(data.errorMsg != null) toastr.error(data.errorMsg, 'Mysql 오류');
@@ -207,7 +206,67 @@ $(document).ready(function () {
                         phone_three: phone_three_value,
                     },
                     success: function (data) {
-                        swal("비밀번호 검색 완료",  data.data.id+"님의 비밀번호는 \""+data.data.password+"\"입니다.", {icon:"success",closeOnClickOutside: false});
+                        swal("핸드폰 인증 완료",  data.data.name+"님 핸드폰 인증이 완료되었습니다.", {icon:"success",closeOnClickOutside: false}).then(() => {
+                            swal({
+                                title: '비밀번호 변경',
+                                text: '변경할 비밀번호를 입력해주세요.\n비밀번호는 8자리 이상 숫자/대문자/소문자/특수문자를 포함해야 합니다.',
+                                icon: 'warning',
+                                buttons: {
+                                    confirm: {
+                                        text: '변경',
+                                        value: true,
+                                    }
+                                },
+                                content: {
+                                    element: "input",
+                                    attributes: {
+                                        placeholder: '변경할 비밀번호를 입력해주세요.',
+                                        type: 'password',
+                                    }
+                                },
+                                closeOnClickOutside: false,
+                                closeOnEsc: false,
+                            }).then((password)=>{
+                                //비밀번호 입력값이 조건에 충족할때
+                                if(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/.test(password) && password.trim() != ''){
+                                    $.ajax({
+                                        url: "http://localhost/a4b1/login/find_id_pw_check.php",
+                                        type: 'POST',
+                                        dataType: 'json',
+                                        data: {
+                                            find_type: 'change_password',
+                                            find_password_id: id_value,
+                                            change_password: password,
+                                        },
+                                        success: function (data) {
+                                            console.log(data);
+                                            //성공시 처리문
+                                            if(data.isSuccess == 1){
+                                                swal('비밀번호 변경 성공','비밀번호 변경에 성공했습니다.','success').then(()=>{
+                                                    // window.close();
+                                                });
+                                            }else {
+                                                swal('비밀번호 변경 실패','변경을 시도하던 도중 오류가 발생했습니다.\n개발자에게 문의해주세요.','error').then(()=>{
+                                                    // window.close();
+                                                });
+                                            }
+                                        }
+                                    });
+                                }else {
+                                    swal({
+                                        title: '비밀번호 변경 실패',
+                                        text:   '비밀번호는 8자리 이상 숫자/대문자/소문자/특수문자를 포함해야 합니다.\n다시 시도해주세요.',
+                                        icon: 'error',
+                                        buttons: {
+                                            confirm: {
+                                                text: 'OK',
+                                                value: true,
+                                            }
+                                        },
+                                    }).then(()=>{window.close();});
+                                }
+                            });
+                        });
                     }
                 });
             }

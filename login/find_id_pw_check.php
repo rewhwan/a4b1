@@ -9,7 +9,7 @@ $dbcon = $db->connector();
 //아이디 비밀번호 찾기 구분 변수
 $find_type = $_POST["find_type"];
 
-$returnArray = array('isSuccess' => null, 'data' => null, 'errorMsg' => null);
+$returnArray = array('isSuccess' => null, 'data' => null, 'errorMsg' => null, 'successMsg' => null);
 
 //아이디 찾기 처리문
 if ($find_type === "id") {
@@ -23,7 +23,7 @@ if ($find_type === "id") {
     $name = mysqli_real_escape_string($dbcon, $name);
     $email = mysqli_real_escape_string($dbcon, $email);
 
-    $sql = "select * from members where name='$name' and email='$email';";
+    $sql = "select id from members where name='$name' and email='$email';";
     $result = mysqli_query($dbcon, $sql) or die($db->mysqliError($returnArray, mysqli_error($dbcon)));
 
     //결과에 따른 반환값 설정
@@ -34,6 +34,7 @@ if ($find_type === "id") {
         $returnArray['isSuccess'] = 1;
         $returnArray['data'] = $row;
     }
+
     echo json_encode($returnArray);
 
     //비밀번호 찾기 처리문
@@ -55,7 +56,7 @@ if ($find_type === "id") {
     $id = mysqli_real_escape_string($dbcon, $id);
     $phone = mysqli_real_escape_string($dbcon, $phone);
 
-    $sql = "select * from members where id='$id' and phone='$phone';";
+    $sql = "select id,name from members where id='$id' and phone='$phone';";
     $result = mysqli_query($dbcon, $sql) or die($db->mysqliError($returnArray, mysqli_error($dbcon)));
 
     //결과에 따른 반환값 설정
@@ -89,7 +90,7 @@ if ($find_type === "id") {
     $id = mysqli_real_escape_string($dbcon, $id);
     $phone = mysqli_real_escape_string($dbcon, $phone);
 
-    $sql = "select * from members where id='$id' and phone='$phone';";
+    $sql = "select name from members where id='$id' and phone='$phone';";
     $result = mysqli_query($dbcon, $sql) or die($db->mysqliError($returnArray, mysqli_error($dbcon)));
 
     if (mysqli_num_rows($result) == 0) {
@@ -99,6 +100,21 @@ if ($find_type === "id") {
         $returnArray['isSuccess'] = 1;
         $returnArray['data'] = $row;
     }
+    echo json_encode($returnArray);
+}else if ($find_type == 'change_password') {
+    if(isset($_POST['change_password'])) $password = $_POST['change_password'];
+
+    //패스워드 암호화 로직
+    $password = sha1($password,'b1a4');
+    $password = addslashes($password);
+
+    $sql = "UPDATE members SET password = '{$password}' WHERE id = '{$_POST['find_password_id']}'";
+    mysqli_query($dbcon, $sql) or die($db->mysqliError($returnArray, mysqli_error($dbcon)));
+
+    //성공 메시지 추가
+    $returnArray['isSuccess'] = 1;
+    $returnArray['successMsg'] = '비밀번호 변경에 성공했습니다.';
+
     echo json_encode($returnArray);
 }
 
