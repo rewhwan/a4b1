@@ -62,13 +62,22 @@ $dbcon = $db->connector();
                                 echo "<td>{$row['name']}</td>
                                 <td>{$row['id']}</td>";
 
-                                if ($row['admin'] == 0) echo "<td><div class='badge badge_member'>일반회원</div></td>";
-                                else if ($row['admin'] == 1) echo "<td><div class='badge badge_director'>부어드민</div></td>";
-                                else echo "<td><div class='badge badge_admin'>어드민</div></td>";
-
-                                echo "<td><button onclick='update_permission(\"".$row['id']."\",\"일반회원\")'>변경</button></td>
-                                <td><button onclick='update_permission(\"".$row['id']."\",\"부어드민\")'>변경</button></td>
-                                <td><button onclick='update_permission(\"".$row['id']."\",\"어드민\")'>변경</button></td>";
+                                if ($row['admin'] == 0) {
+                                    echo "<td><div class='badge badge_member'>일반회원</div></td>";
+                                    echo "<td><div class='badge badge_member'>현재상태</div></td>
+                                        <td><button class='btn' onclick='update_permission(\"".$row['id']."\",\"부어드민\")'>변경</button></td>
+                                        <td><button class='btn' onclick='update_permission(\"".$row['id']."\",\"어드민\")'>변경</button></td>";
+                                } else if ($row['admin'] == 1) {
+                                    echo "<td><div class='badge badge_director'>부어드민</div></td>";
+                                    echo "<td><button class='btn' onclick='update_permission(\"".$row['id']."\",\"일반회원\")'>변경</button></td>
+                                        <td><div class='badge badge_director'>현재상태</div></td>
+                                        <td><button class='btn' onclick='update_permission(\"".$row['id']."\",\"어드민\")'>변경</button></td>";
+                                } else {
+                                    echo "<td><div class='badge badge_admin'>어드민</div></td>";
+                                    echo "<td><button class='btn' onclick='update_permission(\"".$row['id']."\",\"일반회원\")'>변경</button></td>
+                                        <td><button class='btn' onclick='update_permission(\"".$row['id']."\",\"부어드민\")'>변경</button></td>
+                                        <td><div class='badge badge_admin'>현재상태</div></td>";
+                                }
 
                                 echo "</tr>";
                             }
