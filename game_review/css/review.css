@@ -48,7 +48,7 @@ body::after {
 
 #top { display: flex; justify-content: flex-end; }
 
-#container_body { width: fit-content; margin: 0 auto; }
+#container_body { width: fit-content; margin: 0 auto; min-height: 64vh;}
 
 button { width: 80px; height: 40px; }
 
@@ -66,7 +66,9 @@ button { width: 80px; height: 40px; }
 
 #list_info { background-color: #ffffff; background-color: rgba(255, 255, 255, 0.5); opacity: 0.95;}
 
-#list_info h1 { text-align: center; margin-bottom: 20px; }
+#list_info h1 { text-align: center; margin-bottom: 20px; text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;}
 
 #list_info div { display: flex; margin-left: 35px; }
 #container_body a {text-decoration: none; font: 200 20px/1.5 Do Hyeon, Times New Roman, serif;}
@@ -384,6 +386,10 @@ button:hover:before, button:hover:after {width: 100%; transition: 800ms ease all
 #ripple_form #page{
     margin: 0 auto;
     text-align: center;
+}
+
+.page_num_a{
+    font-size: 16px;
 }
 /* 수정 폼 체크박스 */
 #screen_select{

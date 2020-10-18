@@ -297,6 +297,12 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] != null) {
 
             </ul>
         </div>
+        <div id="page">
+            <div id="page_button">
+                <div id="page_num">
+                </div>
+            </div>
+        </div>    
         <div id="prev"><a href="./index.php/"><button>이전</button></a></div>
     </div>
     </div>

@@ -20,19 +20,21 @@ function select_ripple(num,page,userid){
                 $("#ripple_form").empty();
                 //console.log(json_data.data[0]['created_by']);
                 for(i=0;i<json_data.isSuccess[3] && i<json_data.isSuccess[2]; i++){
-                $("#ripple_form").append("<li id="+json_data.data[i]['num']
-                +"><h3>작성자 : "+json_data.data[i]['created_by']+"</h3><p>작성일자 : "
-                +json_data.data[i]['created_at']+"</p><p>"+json_data.data[i]['content']
-                +"</p><p><input type='hidden' name='ripples_num' value="
-                +json_data.data[i]['num']+"></p><input type='hidden' id='ripple_user' value="+json_data.data[i]['created_by']+"><button onclick=ripple_delete("
-                +json_data.data[i]['num']+",'"+json_data.data[i]['created_by']+"')>삭        제</button></li>");
-                }
+                    if(json_data.data[i] != null){
+                        $("#ripple_form").append("<li id="+json_data.data[i]['num']
+                        +"><h3>작성자 : "+json_data.data[i]['created_by']+"</h3><p>작성일자 : "
+                        +json_data.data[i]['created_at']+"</p><p>"+json_data.data[i]['content']
+                        +"</p><p><input type='hidden' name='ripples_num' value="
+                        +json_data.data[i]['num']+"></p><input type='hidden' id='ripple_user' value="+json_data.data[i]['created_by']+"><button onclick=ripple_delete("
+                        +json_data.data[i]['num']+",'"+json_data.data[i]['created_by']+"','"+$num+"','"+page+"')>삭        제</button></li>");
+                        }
+                    }
 
                 length = parseInt(json_data.isSuccess[1]);
                 $("#page_num").empty();
                 for(e=1; e<=length; e++){
                     //console.log(e);
-                    $("#page_num").append("<a href='javascript:void(0);' onclick='select_ripple("+$num+",0+"+e+")'>&nbsp;"+e+"&nbsp;</a>");
+                    $("#page_num").append("<a href='javascript:void(0);' onclick='select_ripple("+$num+",0+"+e+")' class='page_num_a' id='"+e+"'>&nbsp;"+e+"&nbsp;</a>");
                 }
             }else{
                 //alert("댓글로딩 오류");
@@ -101,7 +103,7 @@ function ripple_insert(num,name){
     });
 }
 //댓글을 삭제하는 함수
-function ripple_delete(num,user){
+function ripple_delete(num,user,game_num,page){
     $num = num;
     $user = user;
     $current_user = $("#current_user").val();
@@ -120,8 +122,16 @@ function ripple_delete(num,user){
                     return false;
                 }
                 if(json_data.isSuccess == 1){
-                    // console.log(json_data.data);
+                    //console.log(game_num);
                     $("li").remove("#"+json_data.data);
+                    //console.log($('#ripple_form').find("li").length);
+                    //console.log(page);
+                    if($('#ripple_form').find("li").length == 0){
+                        $("a").remove("#".page);
+                        select_ripple(game_num,page-1);
+                    }else{
+                        select_ripple(game_num,page);
+                    }
                 }else{
                     alert("댓글지우기 오류");
                     return false;

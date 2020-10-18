@@ -28,6 +28,9 @@
   #list h3 {
     font: bold 21px/1.5 Do Hyeon, Verdana, sans-serif;
     margin-bottom: 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
 
   #list li img {
@@ -40,6 +43,11 @@
 
   #list li p {
     font: 200 16px/1.5 Nanum Myeongjo, Times New Roman, serif;
+    padding-bottom: 5px;
+    word-break: keep-all;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   #list li {

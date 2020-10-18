@@ -49,6 +49,10 @@ while ($row = mysqli_fetch_array($result2)) {
 for ($i = 0; $i < count($review_total_array); $i++) {
     $sql = "SELECT name from `game_review_files` where `review_num` =".$review_total_array[$i]['num']." order by num limit 1";
     $result_image = mysqli_query($dbcon, $sql) or die("main_select_game_review_flies_error1_: " . mysqli_error($dbcon));
+    $image_count = mysqli_num_rows($result_image);
+    if($image_count == 0){
+        array_push($review_screen_array, 0);
+    }
     while ($row = mysqli_fetch_array($result_image)) {
         array_push($review_screen_array, $row['name']);
     }
@@ -69,7 +73,8 @@ $cal_total_array = array();
 $cal_platform_array = array();
 
 //신작 캘린더에 넣을 정보 가져오기
-$sql = "SELECT num,name,release_date,image from game_info where release_date < now() order by release_date limit 5";
+//몇월인지 체크 출시예정일이 오늘보다 늦은 작품들을 5개 가져온다.
+$sql = "SELECT num,name,release_date,image from game_info where MONTH(now()) and release_date >= now() order by release_date limit 5";
 $result_date = mysqli_query($dbcon, $sql) or die("main_select_game_release_date_error1 : " . mysqli_error($dbcon));
 while ($row = mysqli_fetch_array($result_date)) {
     $cal_content_array =array(
@@ -222,7 +227,7 @@ mysqli_close($dbcon);
         ?>
             <a href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/game_review/view.php?num=<?= $review_total_array[$i]['num'] ?>&page=1" class="info_view_a">
                 <?php
-                if ($review_screen_array[$i] != null) {
+                if ($review_screen_array[$i] != 0) {
                 ?>
                     <img src="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/game_review/img/<?= $review_screen_array[$i] ?>" class="info_view_img">
                 <?php
@@ -243,7 +248,7 @@ mysqli_close($dbcon);
     <div id="calendar_notice_container">
         <div id="calendar_container">
             <div class="span_container">
-                <span>신작 캘린더</span>
+                <span>이달의 신작 캘린더</span>
             </div>
             <ul>
                 <?php

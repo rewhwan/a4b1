@@ -131,7 +131,7 @@ $dbcon = $db->connector();
                 </li>
             </ul>
             <div id="submit_container">
-                <button type="button">취소</button>
+                <button type="button" onclick="history.go(-1)">취소</button>
                 <button id="submit_btn" type="button" onclick="check_input()">등록</button>
             </div>
         </form>
