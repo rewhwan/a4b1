@@ -46,6 +46,7 @@ img{
     font: 200 50px/1.5 Do Hyeon, Times New Roman, serif;
     margin-left: 20px;
     margin-top: 30px;
+    word-break: keep-all;
 }
 #game_info_view h2,#game_info_view h3,#game_info_view p{
     /* background-color: white; */

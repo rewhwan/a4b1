@@ -40,7 +40,7 @@
             // $ripple_create_by = $row['created_by'];
             // $ripple_create_at = $row['created_at'];
             // $ripple_num = $row['num'];
-            
+            if($count != 0 && $row['num'] != null){
             $returnArray['isSuccess'][0]=1;
             $returnArray['isSuccess'][1]=$total_page;
             $returnArray['isSuccess'][2]=$count;
@@ -49,7 +49,7 @@
             
             $returnArray['data'][$e]=$row;
             $e++;
-            
+            }
             
             $number--;
             }

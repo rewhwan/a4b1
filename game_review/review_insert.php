@@ -61,10 +61,10 @@ if(isset($_FILES['new_file']) && $_FILES['new_file']['error'] != UPLOAD_ERR_NO_F
 //db연결 끊기
 mysqli_close($con);
 
-// // 완료후 돌아가기
-// echo "
-// 	   <script>
-// 	    location.href = 'index.php';
-// 	   </script>
-// 	";
+// 완료후 돌아가기
+echo "
+	   <script>
+	    location.href = 'index.php';
+	   </script>
+	";
 ?>

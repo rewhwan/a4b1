@@ -1,5 +1,5 @@
 <?php
-        if(isset($_REQUEST['num'])){
+        if(isset($_REQUEST['num']) && $_REQUEST['num'] != null){
         //설정한 지역의 시간대로 설정
         date_default_timezone_set('Asia/Seoul');
         require $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/db.mysqli.class.php";
@@ -40,17 +40,23 @@
             // $ripple_create_by = $row['created_by'];
             // $ripple_create_at = $row['created_at'];
             // $ripple_num = $row['num'];
-            
+            if($count != 0 && $row['num'] != null){
             $returnArray['isSuccess'][0]=1;
             $returnArray['isSuccess'][1]=$total_page;
             $returnArray['isSuccess'][2]=$count;
             $returnArray['isSuccess'][3]=SCALE;
             
+            // $result4_array = array(
+            //     'num'=> $row['num'],
+            //     'content'=> $row['content'],
+            //     'created_by'=> $row['created_by'],
+            //     'created_at'=> $row['created_at']
+            // );
             
             $returnArray['data'][$e]=$row;
             $e++;
-            
-            
+            }
+
             $number--;
             }
         }else{

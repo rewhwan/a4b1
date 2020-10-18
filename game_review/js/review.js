@@ -3,7 +3,7 @@ window.onload = function() {
         $(this).parent().children('span').removeClass('on');
         $(this).addClass('on').prevAll('span').addClass('on');
         $('#story').attr('value',$(".story .on").length);
-        console.log($(".story .on").length);
+        //console.log($(".story .on").length);
         return false;
     });
 
@@ -11,14 +11,14 @@ window.onload = function() {
         $(this).parent().children('span').removeClass('on');
         $(this).addClass('on').prevAll('span').addClass('on');
         $('#graphic').attr('value',$(".graphic .on").length);
-        console.log($(".graphic .on").length);
+        //console.log($(".graphic .on").length);
         return false;
     });
     $('.time span').click(function() {
         $(this).parent().children('span').removeClass('on');
         $(this).addClass('on').prevAll('span').addClass('on');
         $('#time').attr('value',$(".time .on").length);
-        console.log($(".time .on").length);
+        //console.log($(".time .on").length);
         return false;
     });
 
@@ -26,7 +26,7 @@ window.onload = function() {
         $(this).parent().children('span').removeClass('on');
         $(this).addClass('on').prevAll('span').addClass('on');
         $('#difficulty').attr('value',$(".difficulty .on").length);
-        console.log($(".difficulty .on").length);
+        //console.log($(".difficulty .on").length);
         return false;
     });
 
@@ -72,7 +72,7 @@ window.onload = function() {
                         selectorContainer.append("<select id='game_search_result' name='name'></select>");
                         let selector = $('#game_search_result');
                         for(var i in data.data) {
-                            console.log(data.data[i]);
+                            //console.log(data.data[i]);
                             selector.append("<option value="+data.data[i].num+">"+data.data[i].name+"</option>")
                         }
                     }else {

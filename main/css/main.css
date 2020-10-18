@@ -7,6 +7,13 @@
     background-color: rgb(228, 224, 212);
 }
 
+#game_info_view_container p{
+    width: 270px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 a:link { color: black; text-decoration: none;}
 a:visited { color: black; text-decoration: none;}
 a:hover { color: black; text-decoration: underline;}
@@ -21,6 +28,12 @@ a:hover { color: black; text-decoration: underline;}
     align-items: center;
     justify-content: center;
     background-color: rgb(228, 224, 212);
+}
+#game_review_view_container p{
+    width: 270px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 #game_review_view_container img{
     width: 270px;
