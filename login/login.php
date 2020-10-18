@@ -25,7 +25,7 @@
     //싱글톤 객체 불러오기
     $db = DB::getInstance();
     $db->sessionStart();
-    $dbcon = $db->MysqliConnect();
+    $dbcon = $db->connector();
 
     if(!isset($_POST['id']) || trim($_POST['id']) == '') {
         echo "<script>alert('아이디 값이 입력되지 않았습니다.');history.go(-1);</script>";

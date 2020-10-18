@@ -4,7 +4,14 @@ require $_SERVER['DOCUMENT_ROOT'] . "/a4b1/common/lib/db.mysqli.class.php";
 //싱글톤 객체 불러오기
 $db = DB::getInstance();
 $db->sessionStart();
-$dbcon = $db->connector();
+$dbcon = $db->MysqliConnect();
+$db->createProcedure();
+
+$sql = "SHOW TABLES;";
+$result = mysqli_query($dbcon,$sql) or die('Error: ' . mysqli_error($dbcon));
+$result_num = mysqli_num_rows($result);
+
+if($result_num == 0) $db->createTable();
 
 //게임정보를 담을 배열 선언
 $total_game_info_array = array();
