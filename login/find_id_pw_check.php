@@ -23,7 +23,7 @@ if ($find_type === "id") {
     $name = mysqli_real_escape_string($dbcon, $name);
     $email = mysqli_real_escape_string($dbcon, $email);
 
-    $sql = "select id from members where name='$name' and email='$email';";
+    $sql = "select id,name from members where name='$name' and email='$email';";
     $result = mysqli_query($dbcon, $sql) or die($db->mysqliError($returnArray, mysqli_error($dbcon)));
 
     //결과에 따른 반환값 설정
