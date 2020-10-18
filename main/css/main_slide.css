@@ -64,6 +64,7 @@
   }
   #dot_container{
       text-align: center;
+      padding: 30px;
   }
   /* The dots/bullets/indicators */
   .dot {

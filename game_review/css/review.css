@@ -328,6 +328,9 @@ button:hover:before, button:hover:after {width: 100%; transition: 800ms ease all
     transition:800ms ease all;
     outline:none;
  }
+ #ripple_content{
+    resize: none;
+}
 #ripple_regist button:hover,#ripple_form button:hover{
     background:#fff;
     color:#89cebc;
