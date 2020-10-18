@@ -574,16 +574,122 @@ class DB
             INSERT INTO `game_info_files` VALUES (337, 256, '2020_10_18_23_58_53_pikmin4.PNG');
         END;";
         mysqli_query($con,$sql) or die('Error: ' . mysqli_error($con));
+
+
+
+        echo "<script>alert('프로시저 생성완료')</script>";
     }
 
     public function createTable() {
         $con = mysqli_connect($this->host,$this->user,$this->password,'a4b1');
-        $con = mysqli_connect('localhost:3306','root','12345678','a4b1');
         $sql = "CALL create_tables();";
         mysqli_query($con,$sql)  or die('Error: ' . mysqli_error($con));
 
         $sql = "CALL create_dummy_data();";
         mysqli_query($con,$sql)  or die('Error: ' . mysqli_error($con));
+
+        $triggerArray = array('delete_game_info','delete_game_info_genre','delete_game_info_platform',
+            'delete_game_review','delete_game_review_point','delete_members','delete_notice','delete_notice_urgent');
+        foreach ($triggerArray as $element) $this->createTrigger($element);
+
+        echo "<script>alert('테이블 및 더미데이터 세팅 완료</script>";
+    }
+
+    //트리거 만드는 함수
+    public function createTrigger($trigger_name) {
+        $flag = "NO";
+        $con = mysqli_connect($this->host,$this->user,$this->password,'a4b1');
+        $sql = "SHOW TRIGGERS where `trigger` = '$trigger_name';";
+        $result = mysqli_query($con, $sql) or die('Error: ' . mysqli_error($con));
+
+        if (mysqli_num_rows($result) > 0) {
+            $flag = "OK";
+        }
+
+        if ($flag === "NO") {
+            switch ($trigger_name) {
+                case 'delete_notice':
+                    $sql = "CREATE TRIGGER delete_notice
+                        AFTER DELETE ON notice
+                        FOR EACH ROW 
+                        BEGIN
+                            INSERT INTO deleted_notice VALUES(OLD.num,OLD.title,OLD.content,OLD.file_name,OLD.file_type,
+                            OLD.file_copied,OLD.hit,OLD.created_by,OLD.created_at);
+                        END;";
+                    break;
+                case 'delete_notice_urgent':
+                    $sql = "CREATE TRIGGER delete_notice_urgent
+                        AFTER DELETE ON notice_urgent
+                        FOR EACH ROW 
+                        BEGIN
+                            INSERT INTO deleted_notice_urgent VALUES(OLD.num,OLD.title,OLD.content,OLD.file_name,OLD.file_type,
+                            OLD.file_copied,OLD.hit,OLD.created_by,OLD.created_at);
+                        END;";
+                    break;
+                case 'delete_members':
+                    $sql = "CREATE TRIGGER delete_members
+                        AFTER DELETE ON members
+                        FOR EACH ROW 
+                        BEGIN
+                            INSERT INTO deleted_members VALUES(OLD.id,OLD.password,OLD.name,OLD.phone,OLD.email,
+                            OLD.admin,OLD.created_at);
+                        END;";
+                    break;
+                case 'delete_game_review_point':
+                    $sql = "CREATE TRIGGER delete_game_review_point
+                        AFTER DELETE ON game_review_point
+                        FOR EACH ROW 
+                        BEGIN
+                            INSERT INTO deleted_game_review_point VALUES(OLD.review_num,OLD.story,OLD.graphic,OLD.time,
+                            OLD.difficulty);
+                        END;";
+                    break;
+                case 'delete_game_review':
+                    $sql = "CREATE TRIGGER delete_game_review
+                        AFTER DELETE ON game_review
+                        FOR EACH ROW 
+                        BEGIN
+                            INSERT INTO deleted_game_review VALUES(OLD.num,OLD.name,OLD.title,OLD.content,OLD.created_at
+                            ,OLD.created_by,OLD.hit);
+                        END;";
+                    break;
+                case 'delete_game_info_genre':
+                    $sql = "CREATE TRIGGER delete_game_info_genre
+                        AFTER DELETE ON game_info_genre
+                        FOR EACH ROW 
+                        BEGIN
+                            INSERT INTO deleted_game_info_genre VALUES(OLD.num,OLD.info_num,OLD.genre);
+                        END;";
+                    break;
+                case 'delete_game_info_platform':
+                    $sql = "CREATE TRIGGER delete_game_info_platform
+                        AFTER DELETE ON game_info_platform
+                        FOR EACH ROW 
+                        BEGIN
+                            INSERT INTO deleted_game_info_platform VALUES(OLD.num,OLD.info_num,OLD.platform);
+                        END;";
+                    break;
+                case 'delete_game_info':
+                    $sql = "CREATE TRIGGER delete_game_info
+                        AFTER DELETE ON game_info
+                        FOR EACH ROW 
+                        BEGIN
+                            INSERT INTO deleted_game_info VALUES(OLD.num,OLD.name,OLD.content,OLD.developer,OLD.grade,
+                            OLD.release_date,OLD.price,OLD.homepage,OLD.service_kor,OLD.circulation,null,OLD.created_by,
+                            OLD.created_at,OLD.hit);
+                        END;";
+                    break;
+                default:
+                    echo "<script>alert('해당트리거명이 없습니다. 점검요망!');</script>";
+                    break;
+            } //end of switch
+        }
+
+        if (mysqli_query($con, $sql)) {
+
+        } else {
+            echo "트리거 생성 중 실패원인" . mysqli_error($con);
+        }
     }
 
     public function sessionStart() {
