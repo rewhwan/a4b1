@@ -70,7 +70,9 @@ button { width: 80px; height: 40px; }
     white-space: nowrap;
     overflow: hidden;}
 
-#list_info div { display: flex; margin-left: 35px; }
+#list_info div { margin-left: 15px;white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;}
 #container_body a {text-decoration: none; font: 200 20px/1.5 Do Hyeon, Times New Roman, serif;}
 #container_body a:not[href=""] {color: #000;}
 

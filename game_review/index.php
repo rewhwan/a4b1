@@ -162,16 +162,13 @@
                                 <img src="http://<?= $image ?>">
                                 <h1><?= $title ?></h1>
                                 <div>
-                                    <div>game : </div>
-                                    <div> <?= $name ?></div>
+                                    <div>게임명 : <?= $name ?></div>
                                 </div>
                                 <div>
-                                    <div>grade : </div>
-                                    <div> <?= $avg ?></div>
+                                    <div>평점 : <?= $avg ?></div>
                                 </div>
                                 <div>
-                                    <div>creater : </div>
-                                    <div><?= $created_by ?></div>
+                                    <div>작성자 : <?= $created_by ?></div>
                                 </div>
                             </li>
                         </a>
