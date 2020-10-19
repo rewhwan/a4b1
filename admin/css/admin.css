@@ -44,7 +44,7 @@ button[type='button']:hover:before, button[type='button']:hover:after {width: 10
 /*사이드 메뉴 UI =================================================================================*/
 #side_menu {float: left; width: 15%; height: 91vh; background-color: grey;}
 
-#side_menu ul li {height: 5vh; background-color: #b7b7b7; display: flex; align-items: center;}
+#side_menu ul li {height: 5vh; background-color: #6ebe7b; display: flex; align-items: center;}
 #side_menu ul li:not(:last-child) {border-bottom: solid 2px black;}
 #side_menu ul li span {margin: 0 0 0 30px; font-size: 25px;}
 

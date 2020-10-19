@@ -87,27 +87,21 @@ class DB
                 `num` int(11) NOT NULL AUTO_INCREMENT,
                 `info_num` int(11) NOT NULL,
                 `name` varchar(50) NOT NULL,
-                PRIMARY KEY (`num`),
-                KEY `info_num` (`info_num`),
-                CONSTRAINT `deleted_game_info_files_ibfk_1` FOREIGN KEY (`info_num`) REFERENCES `deleted_game_info` (`num`)
+                PRIMARY KEY (`num`)
             ) ENGINE=InnoDB AUTO_INCREMENT=328 DEFAULT CHARSET=utf8;
             
             CREATE TABLE IF NOT EXISTS `deleted_game_info_genre` (
                 `num` int(11) NOT NULL AUTO_INCREMENT,
                 `info_num` int(11) NOT NULL,
                 `genre` varchar(30) NOT NULL,
-                PRIMARY KEY (`num`),
-                KEY `info_num` (`info_num`),
-                CONSTRAINT `deleted_game_info_genre_ibfk_1` FOREIGN KEY (`info_num`) REFERENCES `deleted_game_info` (`num`)
+                PRIMARY KEY (`num`)
             ) ENGINE=InnoDB AUTO_INCREMENT=297 DEFAULT CHARSET=utf8;
             
             CREATE TABLE IF NOT EXISTS `deleted_game_info_platform` (
                 `num` int(11) NOT NULL AUTO_INCREMENT,
                 `info_num` int(11) NOT NULL,
                 `platform` varchar(30) NOT NULL,
-                PRIMARY KEY (`num`),
-                KEY `info_num` (`info_num`),
-                CONSTRAINT `deleted_game_info_platform_ibfk_1` FOREIGN KEY (`info_num`) REFERENCES `deleted_game_info` (`num`)
+                PRIMARY KEY (`num`)
             ) ENGINE=InnoDB AUTO_INCREMENT=325 DEFAULT CHARSET=utf8;
             
             CREATE TABLE IF NOT EXISTS `deleted_game_review` (
@@ -125,9 +119,7 @@ class DB
                 `num` int(11) NOT NULL AUTO_INCREMENT,
                 `review_num` int(11) NOT NULL,
                 `name` varchar(200) NOT NULL,
-                PRIMARY KEY (`num`),
-                KEY `review_num` (`review_num`),
-                CONSTRAINT `deleted_game_review_files_ibfk_1` FOREIGN KEY (`review_num`) REFERENCES `deleted_game_review` (`num`)
+                PRIMARY KEY (`num`)
             ) ENGINE=InnoDB AUTO_INCREMENT=448 DEFAULT CHARSET=utf8;
             
             CREATE TABLE IF NOT EXISTS `deleted_game_review_point` (
@@ -136,8 +128,7 @@ class DB
                 `graphic` int(11) NOT NULL,
                 `time` int(11) NOT NULL,
                 `difficulty` int(11) NOT NULL,
-                PRIMARY KEY (`review_num`),
-                CONSTRAINT `deleted_game_review_point` FOREIGN KEY (`review_num`) REFERENCES `deleted_game_review` (`num`)
+                PRIMARY KEY (`review_num`)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
             
             CREATE TABLE IF NOT EXISTS `deleted_members` (
