@@ -130,6 +130,8 @@ button { width: 80px; height: 40px; }
 
 #content_review ul li:nth-child(1) h3 { text-align: end; }
 
+#content_review p{word-break: break-all;}
+
 hr {margin-bottom: 30px;}
 
 #content p { text-align: center; font: 200 25px/1.5 Do Hyeon, Times New Roman, serif;}
@@ -366,6 +368,9 @@ button:hover:before, button:hover:after {width: 100%; transition: 800ms ease all
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+#ripple_bag p{
+    word-break: break-all;
 }
 #ripple_form{
     list-style: none;
