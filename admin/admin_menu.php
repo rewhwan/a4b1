@@ -19,6 +19,7 @@
                     <span class="gfont_3">메인 슬라이드 관리<span>
                 </a>
             </li>
+            <?php if(isset($_SESSION['admin']) && $_SESSION['admin'] == 2) {?>
             <li>
                 <a href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/admin/admin_member.php">
                     <span class="gfont_3">멤버 권한 관리<span>
@@ -29,6 +30,7 @@
                     <span class="gfont_3">통계 정보<span>
                 </a>
             </li>
+            <?php } ?>
         </ul>
     </div>
 </div>
