@@ -123,7 +123,7 @@ function checkCode() {
 }
 
 function lastCheck() {
-    if (/^[a-z]+[a-z]{4,19}$/.test(id.value)) {
+    if (/^[a-z0-9_-]\w{4,20}$/.test(id.value)) {
     } else {
         swal("아이디 를 확인해주세요.", { closeOnClickOutside: false });
         return false;
