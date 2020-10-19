@@ -6,6 +6,11 @@
 /*기본여백 수정*/
 *{margin: 0; padding: 0;}
 
+body{background-color: grey;}
+
+#blank_content {float: left; width: 85%; background-color: white; min-height: 92vh; display: flex; justify-content: center; align-items: center;}
+#blank_content2 {float: left; width: 85%; background-color: white; min-height: 92vh; display: flex; justify-content: center; align-items: center; flex-direction: column;}
+
 /*글씨체 UI*/
 .gfont_1 {font-family: "Do Hyeon", sans-serif;}
 .gfont_2 {font-family: 'Noto Serif KR', serif;}
@@ -48,9 +53,9 @@ button[type='button']:hover:before, button[type='button']:hover:after {width: 10
     display: flex; justify-content: center; align-items: center;}
 #welcome_box {background-color: whitesmoke; padding: 30px; display: flex; flex-direction: column;
     justify-content: center; align-items: center;}
-
+#welcome_box h2{margin: 0 0 5% 0;}
 /* 슬라이드 관리 페이지 UI =====================================================================================================*/
-#slide_content {margin: 5% 5% 5% 20%; padding: 20px; border-radius: 20px; background-color: rgb(233, 233, 233);}
+#slide_content {margin: 5% 0 5% 0; padding: 20px; border-radius: 20px; background-color: rgb(233, 233, 233);}
 #slide_content h2 {text-align: center; border-bottom: solid 1px black; padding-bottom: 10px;}
 #slide_content ul {padding: 30px;}
 #slide_content li {width: 100%; display: flex; justify-content: space-around; margin:15px 0;}
@@ -67,7 +72,7 @@ button[type='button']:hover:before, button[type='button']:hover:after {width: 10
 
 /*슬라이드 추가 폼 UI*/
 #insert_form_container {display: flex; justify-content: center; align-items: center;}
-#insert_form {margin: 5% 5% 5% 20%; padding: 20px; border-radius: 20px; background-color: rgb(233, 233, 233);}
+#insert_form {margin: 5% 0 5% 0; padding: 20px; border-radius: 20px; background-color: rgb(233, 233, 233);}
 #insert_form h2 {text-align: center; margin-bottom: 30px; border-bottom: solid 1px black; padding-bottom: 10px;}
 
 /*멤버 권한 관리 페이지 UI*/
@@ -79,7 +84,7 @@ button[type='button']:hover:before, button[type='button']:hover:after {width: 10
 
 #badge_container {display: flex; justify-content: flex-end; align-items: center; height: 40px;}
 /*멤버 테이블 컨테이너 UI*/
-#member_table_container {margin: 5% 5% 5% 20%; padding: 20px; border-radius: 20px; background-color: rgb(233, 233, 233);}
+#member_table_container {padding: 20px; border-radius: 20px; background-color: rgb(233, 233, 233);}
 #member_table_container h2 {text-align: center; margin-bottom: 30px; border-bottom: solid 1px black; padding-bottom: 10px;}
 /*멤버 테이블 UI*/
 #member_table_container table tbody tr th {font-family: "Do Hyeon", sans-serif; font-size: 24px; font-weight: lighter;}

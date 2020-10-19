@@ -33,56 +33,58 @@ $dbcon = $db->connector();
         <?php if (isset($_SESSION['admin']) && $_SESSION['admin'] == 2) { ?>
             <body id="body">
                 <?php include $_SERVER['DOCUMENT_ROOT'] . "/a4b1/admin/admin_menu.php" ?>
-                <div id="member_table_container">
-                    <h2>멤버 권한 관리</h2>
-                    <div id="badge_container">
-                        <div id="sample_badge">
-                            <span>회원 구분 : </span>
-                            <span class='badge badge_member'>일반회원</span>
-                            <span class='badge badge_director'>부어드민</span>
-                            <span class='badge badge_admin'>어드민</span>
+                <div id="blank_content">
+                    <div id="member_table_container">
+                        <h2>멤버 권한 관리</h2>
+                        <div id="badge_container">
+                            <div id="sample_badge">
+                                <span>회원 구분 : </span>
+                                <span class='badge badge_member'>일반회원</span>
+                                <span class='badge badge_director'>부어드민</span>
+                                <span class='badge badge_admin'>어드민</span>
+                            </div>
                         </div>
-                    </div>
-                    <div id="member_table">
-                        <table>
-                            <tr>
-                                <th>이름</th>
-                                <th>아이디</th>
-                                <th>권한 상태</th>
-                                <th>일반회원</th>
-                                <th>부어드민</th>
-                                <th>어드민</th>
-                            </tr>
-                            <?php
-                            $sql = 'SELECT * FROM members';
-                            $result = mysqli_query($dbcon, $sql);
-                            while ($row = mysqli_fetch_assoc($result)) {
-                                echo "<tr>";
+                        <div id="member_table">
+                            <table>
+                                <tr>
+                                    <th>이름</th>
+                                    <th>아이디</th>
+                                    <th>권한 상태</th>
+                                    <th>일반회원</th>
+                                    <th>부어드민</th>
+                                    <th>어드민</th>
+                                </tr>
+                                <?php
+                                $sql = 'SELECT * FROM members';
+                                $result = mysqli_query($dbcon, $sql);
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    echo "<tr>";
 
-                                echo "<td>{$row['name']}</td>
+                                    echo "<td>{$row['name']}</td>
                                 <td>{$row['id']}</td>";
 
-                                if ($row['admin'] == 0) {
-                                    echo "<td><div class='badge badge_member'>일반회원</div></td>";
-                                    echo "<td><div class='badge badge_member'>현재상태</div></td>
-                                        <td><button class='btn' onclick='update_permission(\"".$row['id']."\",\"부어드민\")'>변경</button></td>
-                                        <td><button class='btn' onclick='update_permission(\"".$row['id']."\",\"어드민\")'>변경</button></td>";
-                                } else if ($row['admin'] == 1) {
-                                    echo "<td><div class='badge badge_director'>부어드민</div></td>";
-                                    echo "<td><button class='btn' onclick='update_permission(\"".$row['id']."\",\"일반회원\")'>변경</button></td>
+                                    if ($row['admin'] == 0) {
+                                        echo "<td><div class='badge badge_member'>일반회원</div></td>";
+                                        echo "<td><div class='badge badge_member'>현재상태</div></td>
+                                        <td><button class='btn' onclick='update_permission(\"" . $row['id'] . "\",\"부어드민\")'>변경</button></td>
+                                        <td><button class='btn' onclick='update_permission(\"" . $row['id'] . "\",\"어드민\")'>변경</button></td>";
+                                    } else if ($row['admin'] == 1) {
+                                        echo "<td><div class='badge badge_director'>부어드민</div></td>";
+                                        echo "<td><button class='btn' onclick='update_permission(\"" . $row['id'] . "\",\"일반회원\")'>변경</button></td>
                                         <td><div class='badge badge_director'>현재상태</div></td>
-                                        <td><button class='btn' onclick='update_permission(\"".$row['id']."\",\"어드민\")'>변경</button></td>";
-                                } else {
-                                    echo "<td><div class='badge badge_admin'>어드민</div></td>";
-                                    echo "<td><button class='btn' onclick='update_permission(\"".$row['id']."\",\"일반회원\")'>변경</button></td>
-                                        <td><button class='btn' onclick='update_permission(\"".$row['id']."\",\"부어드민\")'>변경</button></td>
+                                        <td><button class='btn' onclick='update_permission(\"" . $row['id'] . "\",\"어드민\")'>변경</button></td>";
+                                    } else {
+                                        echo "<td><div class='badge badge_admin'>어드민</div></td>";
+                                        echo "<td><button class='btn' onclick='update_permission(\"" . $row['id'] . "\",\"일반회원\")'>변경</button></td>
+                                        <td><button class='btn' onclick='update_permission(\"" . $row['id'] . "\",\"부어드민\")'>변경</button></td>
                                         <td><div class='badge badge_admin'>현재상태</div></td>";
-                                }
+                                    }
 
-                                echo "</tr>";
-                            }
-                            ?>
-                        </table>
+                                    echo "</tr>";
+                                }
+                                ?>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </body>

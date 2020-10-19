@@ -24,6 +24,11 @@
                     <span class="gfont_3">멤버 권한 관리<span>
                 </a>
             </li>
+            <li>
+                <a href="http://<?= $_SERVER['HTTP_HOST'] ?>/a4b1/admin/static.php">
+                    <span class="gfont_3">통계 정보<span>
+                </a>
+            </li>
         </ul>
     </div>
 </div>
